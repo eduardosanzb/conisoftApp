@@ -40,7 +40,7 @@ angular.module('app', ['ionic', 'firebase', 'angularMoment', 'app.controllers', 
             if (authData) {
                 console.log("Appjs Logged in as:", authData.uid);
                 $rootScope.authData = authData;
-                $rootScope.displayName = authData.name;
+                $rootScope.displayName = authData;
             } else {
                 console.log("Appjs Logged out");
                 $ionicLoading.hide();

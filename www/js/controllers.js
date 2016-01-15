@@ -19,7 +19,7 @@ angular.module('app.controllers', [])
 
     $scope.login = function(authMethod) {
       $ionicLoading.show({template: 'Signing Up...'});
-    Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
+    Auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
       console.log(authData)
       var user = {
           provider: authData.provider,
@@ -32,7 +32,7 @@ angular.module('app.controllers', [])
         $state.go('menu.schedule');
     }).catch(function(error) {
       if (error.code === 'TRANSPORT_UNAVAILABLE') {
-        Auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
+        Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
           console.log(authData)
           var user = {
           provider: authData.provider,
