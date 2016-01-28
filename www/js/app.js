@@ -1,13 +1,5 @@
 // Ionic Starter App
 
-
-
-function onDeviceReady(){
-  angular.bootstrap(document, ["app"]);
-}
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -56,6 +48,7 @@ angular.module('app', ['ionic', 'firebase', 'angularMoment', 'app.controllers', 
         });
         Auth.$unauth();
     }
+
 
     $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, error){
       if( error === "AUTH_REQUIRED"){

@@ -3,6 +3,21 @@ angular.module('app.controllers', [])
 .controller('LoginCtrl', function (FirebaseUrl, $scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope, Auth) {
   console.log("Login Controller initialized");
 
+   Auth.$onAuth(function (authData) {
+            if (authData) {
+                console.log("Appjs Logged in as:", authData.uid);
+                $rootScope.authData = authData;
+                $rootScope.displayName = authData;
+                $state.go('menu.schedule');
+            } else {
+                console.log("Appjs Logged out");
+                $ionicLoading.hide();
+                //$location.path('/login');
+            }
+        });
+
+
+
   var ref = new Firebase(FirebaseUrl);
   var auth = $firebaseAuth(ref);
   $scope.user = null;
@@ -19,7 +34,7 @@ angular.module('app.controllers', [])
 
     $scope.login = function(authMethod) {
       $ionicLoading.show({template: 'Signing Up...'});
-    Auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
+    Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
       console.log(authData)
       var user = {
           provider: authData.provider,
@@ -29,16 +44,17 @@ angular.module('app.controllers', [])
         console.log($rootScope.authData);
         ref.child("users").child(authData.uid).set(user);
         $ionicLoading.hide();
+        $localStorage.set()
         $state.go('menu.schedule');
     }).catch(function(error) {
       if (error.code === 'TRANSPORT_UNAVAILABLE') {
-        Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
+        Auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
           console.log(authData)
           var user = {
           provider: authData.provider,
           name: getName(authData),
           image: getImage(authData)
-        }
+          }
         console.log($rootScope.displayName);
         ref.child("users").child(authData.uid).set(user);
         $ionicLoading.hide();
