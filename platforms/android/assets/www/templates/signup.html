@@ -1,0 +1,41 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-light">
+        <h1 class="title">Create New Account</h1>
+        <button class="button button-clear button-primary" ng-click="closeModal()">Cancel</button>
+    </ion-header-bar>
+    <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
+
+        <form class="list" name="form.register" novalidate>
+            <ion-list >
+
+                
+
+                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.name.$invalid  && form.register.name.$touched || form.register.name.$invalid && form.register.$submitted}">
+                    <span class="input-label">Name</span>
+                    <input name="name" type="text" placeholder="Juan Perez" ng-model="user.name" required>
+                    <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.name.$touched && form.register.name.$invalid">
+                                <div class="form-error-red" ng-message="required">Required</div>
+                    </div>
+                </label>
+                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.email.$invalid  && form.register.email.$touched || form.register.email.$invalid && form.register.$submitted}">
+                    <span class="input-label">Email</span>
+                    <input name="email" type="text" placeholder="juan@mail.com" ng-model="user.email" required>
+                    <div class="form-errors" ng-messages="form.register.email.$error" ng-if="form.register.email.$touched && form.register.email.$invalid">
+                                <div class="form-error-red" ng-message="required">Required</div>
+                    </div>
+                </label>
+                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
+                    <span class="input-label">Password</span>
+                    <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
+                    <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
+                                <div class="form-error-red" ng-message="required">Required</div>
+                    </div>
+                </label>
+
+            </ion-list>
+            <button class="button button-stable button-block " ng-click="createUser(user)" ng-disabled="form.register.$invalid">Sign up</button>
+        </form>
+    
+       
+    </ion-content>
+</ion-modal-view>
