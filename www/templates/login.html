@@ -1,7 +1,14 @@
-<ion-view title="Login">
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
 
-        <form class="list" name="form.login" novalidate>
+<ion-view view-title="Log in">
+  <ion-header-bar>
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <form class="list" name="form.login" novalidate>
             <ion-list >
 
                 <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.login.email.$invalid  && form.login.email.$touched || form.login.email.$invalid && form.login.$submitted}">
@@ -24,13 +31,7 @@
             <button class="button button-stable button-block " ng-click="signIn(user)" ng-disabled="form.login.$invalid">Log in</button>
             <a href="#/signup" class="button button-positive button-clear button-block " ng-click="openModal()">Or create an account</a>
         </form>
-
-         <div class="button-bar">
-            <button class="button button-stable button-block  icon ion-social-facebook" ng-click="login('facebook')"></button>
-            <button class="button button-stable button-block  icon ion-social-github" ng-click="login('github')"></button>
-            <button class="button button-stable button-block  icon ion-social-twitter" ng-click="login('twitter')"></button>
-            <button class="button button-stable button-block  icon ion-social-google" ng-click="login('google')"></button>
-
-        </div>
-    </ion-content>
+    </div>
+  </ion-content>
 </ion-view>
+

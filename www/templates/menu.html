@@ -1,26 +1,47 @@
 <ion-side-menus enable-menu-with-back-views="false">
-    <ion-side-menu-content>
-        <ion-nav-bar class="bar-stable">
-            <ion-nav-back-button></ion-nav-back-button>
-            <ion-nav-buttons side="left">
-                <button class="button button-icon button-clear ion-navicon" menu-toggle=""></button>
-            </ion-nav-buttons>
-        </ion-nav-bar>
-        <ion-nav-view name="side-menu21"></ion-nav-view>
-    </ion-side-menu-content>
-    <ion-side-menu side="left">
-        <ion-header-bar class="bar-stable">
-            <div class="title">Menu {{displayName.name}}</div>
-        </ion-header-bar>
-        <ion-content padding="false" class="side-menu-left has-header" <="" ion-content="">
-            <ion-list>
-                <ion-item href="#/side-menu21/schedule" menu-close="">Schedule</ion-item>
-                <ion-item href="#/side-menu21/my_schedule" menu-close="">My Schedule</ion-item>
-                <ion-item href="#/side-menu21/speakers" menu-close="">Speakers</ion-item>
-                <ion-item href="#/side-menu21/about" menu-close="">About</ion-item>
-                <ion-item href="#/side-menu21/contact" menu-close="">Contact</ion-item>
-                <ion-item ng-click="logout()" menu-close="">Log out</ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-side-menu>
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Menu</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+
+        <ion-item menu-close href="#/app/schedule">
+          Schedule
+        </ion-item>
+        <ion-item menu-close href="#/app/myschedule">
+          My Schedule
+        </ion-item>
+        <ion-item menu-close href="#/app/speakers">
+          Speakers
+        </ion-item>
+        <ion-item menu-close href="#/app/contact">
+          Contact
+        </ion-item>
+        <ion-item menu-close href="#/app/about">
+          About
+        </ion-item>
+        <ion-item menu-close href="#/app/register">
+          Register
+        </ion-item>
+        <ion-item menu-close href="#/app/recomendations">
+          Recomendations
+        </ion-item>
+
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
 </ion-side-menus>

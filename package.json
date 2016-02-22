@@ -15,10 +15,12 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    {
-      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
-      "id": "cordova-plugin-whitelist"
-    }
+    "cordova-plugin-device",
+    "cordova-plugin-console",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": []
 }
