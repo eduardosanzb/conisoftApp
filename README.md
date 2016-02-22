@@ -33,14 +33,8 @@ If you want to see the **mockups** go [ahead](https://github.com/eduardosanzb/co
   - https://github.com/driftyco/ng-cordova
 ***
 
-
-## Tutos I have follow
-
-### Social Login the best and only one!
-- https://www.firebase.com/blog/2016-01-14-firebase-ionic-social-login.html
+## Complements
 
 ### qrCode
-- https://blog.nraboy.com/2014/09/implement-barcode-scanner-using-ionic-framework/
-- http://stackoverflow.com/questions/30773320/bar-code-scanner-using-ionic-framework
-- https://github.com/janantala/angular-qr
+- https://github.com/monospaced/angular-qrcode
 
