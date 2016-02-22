@@ -1,25 +1,46 @@
-Ionic App Base
-=====================
+Conisoft 2016 
+*****
 
-A starting project for Ionic that optionally supports using custom SCSS.
+## Introduction
 
-## Using this project
+This application has for purpose to manage the schedule of events.
+Properly for the Conisoft 2016 that is a Natioanl Software event in Mexico.
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
+So my University is hosting the event so lets make the app (easy one).
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+In this README we will be adding the plugins for the app, but first "let me take a selfie" no jk, first lets
+talk about the app.
 
-```bash
-$ npm install -g ionic
-```
+The app is made with Ionic framework as the front-end and we will use Firebase as the backend.
 
-Then run:
 
-```bash
-$ ionic start myProject tabs
-```
 
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
+### Mockups 
+If you want to see the **mockups** go [ahead](https://github.com/eduardosanzb/conisoftApp/tree/master/Mockups) .
+***
 
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
+
+## Plugins && Libraries
+
+- Whitelist
+  - ionic plugin add https://github.com/apache/cordova-plugin-whitelist.git
+- Inappbrowser
+  - cordova plugins add https://github.com/bez4pieci/Phonegap-Cookies-Plugin.git
+- phonegap barcodeScanner 
+  - phonegap plugin add phonegap-plugin-barcodescanner
+- ngCordova
+  - bower install ngCordova
+  - https://github.com/driftyco/ng-cordova
+***
+
+
+## Tutos I have follow
+
+### Social Login the best and only one!
+- https://www.firebase.com/blog/2016-01-14-firebase-ionic-social-login.html
+
+### qrCode
+- https://blog.nraboy.com/2014/09/implement-barcode-scanner-using-ionic-framework/
+- http://stackoverflow.com/questions/30773320/bar-code-scanner-using-ionic-framework
+- https://github.com/janantala/angular-qr
+
