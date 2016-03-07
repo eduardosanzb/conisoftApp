@@ -31,6 +31,11 @@ If you want to see the **mockups** go [ahead](https://github.com/eduardosanzb/co
 - ngCordova
   - bower install ngCordova
   - https://github.com/driftyco/ng-cordova
+- Globalization
+ - https://github.com/apache/cordova-plugin-globalization
+- QR creator
+ - https://github.com/monospaced/angular-qrcode
+ 
 ***
 
 ## Complements
