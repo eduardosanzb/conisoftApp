@@ -1,2 +1,7 @@
 .DS_Store
 /platforms
+/resources
+/plugins
+config.xml
+package.json
+plugins/fetch.json

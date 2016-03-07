@@ -20,6 +20,9 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    //Device language
+    console.log(navigator.language);
   });
 })
 
