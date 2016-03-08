@@ -1,5 +1,11 @@
 <ion-view view-title="Schedule">
   <ion-content>
-    <h1>Schedule</h1>
+    <ion-list>
+      <ion-item ng-repeat="conference in conferences">
+          {{conference.name}}
+          <p ng-repeat="speaker in conference.speakers"> {{'schedule.by_speaker' | translate}} {{speaker.name}} {{speaker.surname}} </p>
+          <p> {{conference.location}} </p>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

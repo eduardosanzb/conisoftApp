@@ -5,9 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 // 'firebase' will inject all the firebase and angularFire functions to our app
-angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','conisoft16.services'])
+angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','conisoft16.services', 'pascalprecht.translate'])
 
-.run(function($ionicPlatform) {
+.constant('FirebaseUrl', "https://conisoft16.firebaseio.com/")
+
+
+
+.run(function($ionicPlatform, $localStorage, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,11 +26,20 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
     }
 
     //Device language
-    console.log(navigator.language);
+    var locale = 'en';
+    if(navigator.language){
+      if(navigator.language.split('-')[0] == "es" || navigator.language.split('-')[0] == "en"){
+        locale = navigator.language.split('-')[0];
+        //localStorage.set('locale', locale);
+        $rootScope.locale = locale;
+
+      }
+    }
+
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
   $stateProvider
 
   .state('login', {
@@ -123,4 +136,32 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
     ;
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
+
+$translateProvider.translations('en',{
+  login:{
+    example : "This is an example of the translations."
+  },
+  schedule:{
+    by_speaker :  "by"
+  }
+});
+
+$translateProvider.translations('en',{
+  login:{
+    example : "Este es un ejemplo de las traducciones."
+  }
+});
+
+var locale = 'en';
+if(navigator.language){
+  if(navigator.language.split('-')[0] == "es" || navigator.language.split('-')[0] == "en"){
+    locale = navigator.language.split('-')[0];
+  }
+}
+
+$translateProvider.preferredLanguage(locale);
+$translateProvider.fallbackLanguage(locale);
+$translateProvider.useSanitizeValueStrategy('');
+
+
 });
