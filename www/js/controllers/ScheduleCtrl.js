@@ -33,7 +33,14 @@ function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
 //   }
 // });
 
-  
+$scope.selectDay = function(daySelected){
+  console.log(daySelected);
+}
+
+ $scope.goToDetailEvent = function(eventId){
+  console.log(eventId);
+ } 
+
 }
 
 

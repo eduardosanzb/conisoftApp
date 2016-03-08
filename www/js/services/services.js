@@ -110,6 +110,11 @@ function Reviews(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope){}
 Reviews.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
 
 function Countries(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope){
-
+  var ref = new Firebase(FirebaseUrl + "countries/");
+  return {
+    mx: function(){
+      return $firebaseArray(ref.child("mx").orderByChild( "NOMBRE"));
+    }
+  }
 }
 Countries.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];

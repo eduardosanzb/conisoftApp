@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
 .controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup){
+function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries){
 
   $scope.closeLogin = function(){
     $state.go('app.schedule')
@@ -62,7 +62,11 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
      });
     };
 
+
+    $scope.mx = Countries.mx();
+  console.log($scope.mx);
+
 }
-LoginCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage","$ionicSlideBoxDelegate", "$ionicPopup"];
+LoginCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage","$ionicSlideBoxDelegate", "$ionicPopup", "Countries"];
 
 

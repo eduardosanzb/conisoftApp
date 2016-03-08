@@ -1,7 +1,13 @@
 <ion-view view-title="Schedule">
   <ion-content>
+    <h4> {{ 'schedule.month' | translate}} 2016 </h4>
+    <div class="button-bar">
+      <a class="button" ng-click="selectDay(1461646800000)">26</a>
+      <a class="button" ng-click="selectDay(1461733200000)">27</a>
+      <a class="button" ng-click="selectDay(1461819600000)">28</a>
+    </div>
     <ion-list>
-      <ion-item ng-repeat="conference in conferences">
+      <ion-item ng-repeat="conference in conferences" ng-click="goToDetailEvent(conference.$id)">
           {{conference.name}}
           <p ng-repeat="speaker in conference.speakers"> {{'schedule.by_speaker' | translate}} {{speaker.name}} {{speaker.surname}} </p>
           <p> {{conference.location}} </p>

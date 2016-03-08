@@ -142,6 +142,7 @@ $translateProvider.translations('en',{
     example : "This is an example of the translations."
   },
   schedule:{
+    month : "April",
     by_speaker :  "by"
   }
 });
