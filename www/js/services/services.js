@@ -7,9 +7,14 @@ angular
     .factory('Countries',Countries)
     .factory('Users', Users)
     .factory('Reviews', Reviews)
+    .factory('Auth',Auth)
     ;
 
-
+function Auth(FirebaseUrl, $firebaseAuth){
+  var ref = new Firebase(FirebaseUrl);
+  return $firebaseAuth(ref);
+}
+Auth.$inject = ['FirebaseUrl', '$firebaseAuth'];
 
 function $localStorage($window) {
     return {
@@ -114,6 +119,9 @@ function Countries(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope){
   return {
     mx: function(){
       return $firebaseArray(ref.child("mx").orderByChild( "NOMBRE"));
+    },
+    all: function(){
+      return $firebaseArray(ref.child('others').orderByChild('name/common'));
     }
   }
 }

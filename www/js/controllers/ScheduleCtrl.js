@@ -5,7 +5,16 @@ ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionic
 
 function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray){
 
-
+/* Strategy:
+     *  1.- Verify if there is internet connection
+     *    1.1.- If true: Download data and continue normal flow of the view
+     *    1.2.- If false: Verify if we have any cached data in the $localStorage
+     *      1.2.1.- If true: Just use the cached data and continue normal flow of the view
+     *      1.2.2.- If false: Display an alert indicating : "There is no internet connection
+     *                                                        and we dont have any cached data. Please connect"
+     *  2.- The normal flow of the app will be:
+     *    2.1.- Connect the firebaseObjects with the scope
+     */
   Conferences.all().$loaded(function(conferences){
 
     $localStorage.setObject("conferences",conferences);

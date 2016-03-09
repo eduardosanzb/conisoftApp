@@ -133,16 +133,16 @@
                                     <div class="form-error-red" ng-message="required">Required</div>
                         </div>
                     </label>
-                    <button class="button button-stable button-block " ng-click="nextPage(user)" ng-disabled="form.register.$invalid">Next Page</button>
+                    <button class="button button-stable button-block " ng-click="nextPage(user)">Next Page</button>
                 </form>
               </ion-slide>
 
               <ion-slide class="padding">
               <form class="list" name="form.register2" novalidate>
-                    <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
+                    <label name="country" class="item item-input  item-stacked-label" ng-click="openCountryModal()" ng-class="{ 'has-error-red' : form.register2.country.$invalid  && form.register2.country.$touched || form.register2.country.$invalid && form.register2.$submitted}">
                         <span class="input-label">Country</span>
-                        <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                        <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
+                        <input type="text" placeholder="Mexico" ng-model="user.country">
+                        <div class="form-errors" ng-messages="form.register2.country.$error" ng-if="form.register2.country.$touched && form.register2.country.$invalid">
                                     <div class="form-error-red" ng-message="required">Required</div>
                         </div>
                     </label>

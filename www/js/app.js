@@ -11,7 +11,7 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
 
 
 
-.run(function($ionicPlatform, $localStorage, $rootScope) {
+.run(function($ionicPlatform, $localStorage, $rootScope, $ionicPopup, Auth) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -35,6 +35,18 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
 
       }
     }
+
+    //Device internet connection
+    if(window.Connection) {
+                if(navigator.connection.type == Connection.NONE) {
+                    $rootScope.thereIsInternetConnection = false;
+                } else {
+                    $rootScope.thereIsInternetConnection = true;
+                }
+            }
+
+    //Authenticaion stuff
+    console.log(Auth.$getAuth());
 
   });
 })
@@ -139,7 +151,8 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
 
 $translateProvider.translations('en',{
   login:{
-    example : "This is an example of the translations."
+    example : "This is an example of the translations.",
+    country_header : "Countries"
   },
   schedule:{
     month : "April",
@@ -149,11 +162,17 @@ $translateProvider.translations('en',{
 
 $translateProvider.translations('en',{
   login:{
-    example : "Este es un ejemplo de las traducciones."
+    example : "This is an example of the translations.",
+    country_header : "Paises"
+  },
+  schedule:{
+    month : "Abril",
+    by_speaker :  "Por"
   }
 });
 
-var locale = 'en';
+var locale = 'es';
+
 if(navigator.language){
   if(navigator.language.split('-')[0] == "es" || navigator.language.split('-')[0] == "en"){
     locale = navigator.language.split('-')[0];

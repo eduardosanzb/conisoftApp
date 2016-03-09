@@ -35,6 +35,9 @@ If you want to see the **mockups** go [ahead](https://github.com/eduardosanzb/co
  - https://github.com/apache/cordova-plugin-globalization
 - QR creator
  - https://github.com/monospaced/angular-qrcode
+ - Connection checker
+  - cordova plugin add org.apache.cordova.network-information
+
  
 ***
 
