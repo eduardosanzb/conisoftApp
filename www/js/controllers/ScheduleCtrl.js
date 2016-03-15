@@ -1,10 +1,20 @@
 angular.module('conisoft16.controllers')
 .controller('ScheduleCtrl', ScheduleCtrl);
 
-ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading","$localStorage","Conferences", "Speakers", "$firebaseArray"];
+ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading","$localStorage","Conferences", "Speakers", "$firebaseArray","Auth"];
 
-function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray){
+function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray,Auth){
 
+Auth.$authWithPassword({
+  email: "myemail@mail.com",
+  password: "12345"
+}).then(function(authData){
+  console.log(authData);
+}).catch(function(error){
+  console.log(error);
+});
+
+console.log($rootScope.locale);
 /* Strategy:
      *  1.- Verify if there is internet connection
      *    1.1.- If true: Download data and continue normal flow of the view

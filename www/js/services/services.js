@@ -16,6 +16,9 @@ function Auth(FirebaseUrl, $firebaseAuth){
 }
 Auth.$inject = ['FirebaseUrl', '$firebaseAuth'];
 
+
+
+
 function $localStorage($window) {
     return {
         set: function(key, value) {
@@ -77,6 +80,20 @@ function References(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
         }
     }
     var ref = new Firebase(FirebaseUrl + "references/" + locale);
+    return {
+        ref: function() {
+            return ref;
+        },
+        get: function(referenceId) {
+            return $firebaseObject(ref.child(referenceId));
+        },
+        all: function() {
+            return $firebaseArray(ref.orderByChild("Name"));
+        },
+        allObject: function() {
+            return $firebaseObject(ref);
+        }
+    }
 }
 References.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
 
@@ -108,7 +125,17 @@ function Speakers(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
 Speakers.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
 
 
-function Users(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {}
+function Users(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
+  var ref = new Firebase(FirebaseUrl + "/users");
+  return{
+    ref: function(){
+      return ref;
+    },
+    get: function(userId){
+      return $firebaseObject( ref.child(userId) );
+    }
+  }
+}
 Users.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
 
 function Reviews(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope){}

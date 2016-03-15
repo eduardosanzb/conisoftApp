@@ -1,182 +1,90 @@
-<!-- <ion-modal-view>
-    <ion-header-bar class="bar bar-header bar-light">
-        <h1 class="title">Create New Account</h1>
-        <button class="button button-clear button-primary" ng-click="closeModal()">Cancel</button>
-    </ion-header-bar>
-    <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
+<ion-modal-view>
+  <ion-header-bar>
+    <button ng-click="closeModal()" class="button button-clear">
+      <i ng-if="selectModalSlider.currentIndex() == 0" class="icon ion-close-round"></i>
+      <i ng-if="selectModalSlider.currentIndex() > 0" class="icon ion-chevron-left"></i>
+    </button>
+    <h1 class="title">Select something</h1>
+    <button ng-click="createUser()" class="button button-balanced" ng-disabled="form.register.$invalid">
+      <i class="icon ion-checkmark-round"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content class="has-header has-footer">
+  <form class="list" name="form.register" novalidate>
+        <ion-slide-box delegate-handle="modalSlider" show-pager="false">
 
-
-
-
-
-
-        <form class="list" name="form.register" novalidate>
-            <ion-list >
-
-                
-
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.name.$invalid  && form.register.name.$touched || form.register.name.$invalid && form.register.$submitted}">
+          <ion-slide class="padding">            
+<!--             <form class="list" name="form.register" novalidate>
+ -->                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : (form.register.name.$invalid  && form.register.name.$touched) || (form.register.name.$invalid && form.register.$submitted)}">
                     <span class="input-label">Name</span>
-                    <input name="name" type="text" placeholder="Juan Perez" ng-model="user.name" required>
+                    <input name="name" type="text" placeholder="Juan" ng-model="user.name" required>
                     <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.name.$touched && form.register.name.$invalid">
                                 <div class="form-error-red" ng-message="required">Required</div>
                     </div>
                 </label>
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.name.$invalid  && form.register.name.$touched || form.register.name.$invalid && form.register.$submitted}">
+                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : (form.register.surname.$invalid  && form.register.surname.$touched) || (form.register.surname.$invalid && form.register.$submitted)}">
                     <span class="input-label">Surnames</span>
-                    <input name="name" type="text" placeholder="Juan Perez" ng-model="user.name" required>
-                    <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.name.$touched && form.register.name.$invalid">
+                    <input name="surname" type="text" placeholder="Perez" ng-model="user.surname" required>
+                    <div class="form-errors" ng-messages="form.register.surname.$error" ng-if="form.register.surname.$touched && form.register.surname.$invalid">
                                 <div class="form-error-red" ng-message="required">Required</div>
                     </div>
                 </label>
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.email.$invalid  && form.register.email.$touched || form.register.email.$invalid && form.register.$submitted}">
+                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : (form.register.email.$invalid  && form.register.email.$touched) || (form.register.email.$invalid && form.register.$submitted)}">
                     <span class="input-label">Email</span>
                     <input name="email" type="text" placeholder="juan@mail.com" ng-model="user.email" required>
                     <div class="form-errors" ng-messages="form.register.email.$error" ng-if="form.register.email.$touched && form.register.email.$invalid">
                                 <div class="form-error-red" ng-message="required">Required</div>
                     </div>
                 </label>
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
+                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : (form.register.password.$invalid  && form.register.password.$touched) || (form.register.password.$invalid && form.register.$submitted)}">
                     <span class="input-label">Password</span>
                     <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                    <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
+                    <div class="form-errors" ng-messages="form.register.password.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
                                 <div class="form-error-red" ng-message="required">Required</div>
                     </div>
                 </label>
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
-                    <span class="input-label">Country</span>
-                    <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                    <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
-                                <div class="form-error-red" ng-message="required">Required</div>
-                    </div>
-                </label>
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
-                    <span class="input-label">State</span>
-                    <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                    <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
-                                <div class="form-error-red" ng-message="required">Required</div>
-                    </div>
-                </label>
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
-                    <span class="input-label">Afiliation</span>
-                    <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                    <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
-                                <div class="form-error-red" ng-message="required">Required</div>
-                    </div>
-                </label>
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
-                    <span class="input-label">Modality</span>
-                    <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                    <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
-                                <div class="form-error-red" ng-message="required">Required</div>
-                    </div>
-                </label>
+                <button class="button button-stable button-block " ng-click="nextPage(user)" 
+                                                                        ng-disabled="form.register.name.$invalid &&
+                                                                            form.register.email.$invalid && 
+                                                                            form.register.password.$invalid">Next Page</button>
+         <!--    </form> -->
 
-            </ion-list>
-            <button class="button button-stable button-block " ng-click="createUser(user)" ng-disabled="form.register.$invalid">Sign up</button>
-        </form>
-    
-       
-    </ion-content>
+          </ion-slide>
+
+          <ion-slide class="padding">
+<!--           <form class="list" name="form.register" novalidate>
+ -->                <label class="item item-input  item-stacked-label" ng-click="openCountryModal()" ng-class="{ 'has-error-red' : (form.register.country.$invalid  && form.register.country.$touched) || (form.register.country.$invalid && form.register.$submitted)}">
+                    <span class="input-label">Country</span>
+                    <a name="country" ng-model="user.country">{{user.country}}</a>
+                    <div class="form-errors" ng-messages="form.register.country.$error" ng-if="form.register.country.$touched && form.register.country.$invalid">
+                                <div class="form-error-red" ng-message="required">Required</div>
+                    </div>
+                </label>
+                <label class="item item-input  item-stacked-label" ng-if="mxFlag" ng-click="openStateModal()" ng-class="{ 'has-error-red' : (form.register.state.$invalid  && form.register.state.$touched) || (form.register.state.$invalid && form.register.$submitted)}">
+                    <span class="input-label">State</span>
+                    <a name="state" ng-show="mxFlag" ng-model="user.state"> {{user.state}} </a>
+                    <a name="state" ng-show="!mxFlag"> Only for Mexico  </a>
+                    <div class="form-errors" ng-messages="form.register.state.$error" ng-if="form.register.state.$touched && form.register.state.$invalid">
+                                <div class="form-error-red" ng-message="required">Required</div>
+                    </div>
+                </label>
+                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : (form.register.afiliation.$invalid  && form.register.afiliation.$touched) || (form.register.afiliation.$invalid && form.register.$submitted)}">
+                    <span class="input-label">Afiliation</span>
+                    <input name="afiliation" type="text" placeholder="UPAEP" ng-model="user.afiliation" required>
+                    <div class="form-errors" ng-messages="form.register.afiliation.$error" ng-if="form.register.afiliation.$touched && form.register.afiliation.$invalid">
+                                <div class="form-error-red" ng-message="required">Required</div>
+                    </div>
+                </label>
+                <label class="item item-input  item-stacked-label" ng-click="openModalitiesModal()" ng-class="{ 'has-error-red' : (form.register.modality.$invalid  && form.register.modality.$touched) || (form.register.modality.$invalid && form.register.$submitted)}">
+                    <span class="input-label">Modality</span>
+                    <a name="modality" ng-model="user.modality"> {{user.modality}} </a>
+                    <div class="form-errors" ng-messages="form.register.modality.$error" ng-if="form.register.modality.$touched && form.register.modality.$invalid">
+                                <div class="form-error-red" ng-message="required">Required</div>
+                    </div>
+                </label>
+          </ion-slide>
+        </ion-slide-box>
+    </form>    
+  </ion-content>
 </ion-modal-view>
 
- -->
-
-
-
-
-
-
-
-    <ion-modal-view>
-      <ion-header-bar>
-        <button ng-click="closeModal()" class="button button-clear">
-          <i ng-if="selectModalSlider.currentIndex() == 0" class="icon ion-close-round"></i>
-          <i ng-if="selectModalSlider.currentIndex() > 0" class="icon ion-chevron-left"></i>
-        </button>
-        <h1 class="title">Select something</h1>
-        <button ng-click="submitSelection()" class="button button-balanced" ng-disabled="!itemSelected">
-          <i class="icon ion-checkmark-round"></i>
-        </button>
-      </ion-header-bar>
-      <ion-content class="has-header has-footer">
-      <form class="list" name="form.register" novalidate>
-            <ion-slide-box delegate-handle="modalSlider" show-pager="false">
-
-              <ion-slide class="padding">            
-                <form class="list" name="form.register" novalidate>
-                    <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.name.$invalid  && form.register.name.$touched || form.register.name.$invalid && form.register.$submitted}">
-                        <span class="input-label">Name</span>
-                        <input name="name" type="text" placeholder="Juan Perez" ng-model="user.name" required>
-                        <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.name.$touched && form.register.name.$invalid">
-                                    <div class="form-error-red" ng-message="required">Required</div>
-                        </div>
-                    </label>
-                    <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.name.$invalid  && form.register.name.$touched || form.register.name.$invalid && form.register.$submitted}">
-                        <span class="input-label">Surnames</span>
-                        <input name="name" type="text" placeholder="Juan Perez" ng-model="user.surname" required>
-                        <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.name.$touched && form.register.name.$invalid">
-                                    <div class="form-error-red" ng-message="required">Required</div>
-                        </div>
-                    </label>
-                    <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.email.$invalid  && form.register.email.$touched || form.register.email.$invalid && form.register.$submitted}">
-                        <span class="input-label">Email</span>
-                        <input name="email" type="text" placeholder="juan@mail.com" ng-model="user.email" required>
-                        <div class="form-errors" ng-messages="form.register.email.$error" ng-if="form.register.email.$touched && form.register.email.$invalid">
-                                    <div class="form-error-red" ng-message="required">Required</div>
-                        </div>
-                    </label>
-                    <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
-                        <span class="input-label">Password</span>
-                        <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                        <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
-                                    <div class="form-error-red" ng-message="required">Required</div>
-                        </div>
-                    </label>
-                    <button class="button button-stable button-block " ng-click="nextPage(user)">Next Page</button>
-                </form>
-              </ion-slide>
-
-              <ion-slide class="padding">
-              <form class="list" name="form.register2" novalidate>
-                    <label name="country" class="item item-input  item-stacked-label" ng-click="openCountryModal()" ng-class="{ 'has-error-red' : form.register2.country.$invalid  && form.register2.country.$touched || form.register2.country.$invalid && form.register2.$submitted}">
-                        <span class="input-label">Country</span>
-                        <input type="text" placeholder="Mexico" ng-model="user.country">
-                        <div class="form-errors" ng-messages="form.register2.country.$error" ng-if="form.register2.country.$touched && form.register2.country.$invalid">
-                                    <div class="form-error-red" ng-message="required">Required</div>
-                        </div>
-                    </label>
-                    <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
-                        <span class="input-label">State</span>
-                        <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                        <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
-                                    <div class="form-error-red" ng-message="required">Required</div>
-                        </div>
-                    </label>
-                    <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
-                        <span class="input-label">Afiliation</span>
-                        <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                        <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
-                                    <div class="form-error-red" ng-message="required">Required</div>
-                        </div>
-                    </label>
-                    <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.register.password.$invalid  && form.register.password.$touched || form.register.password.$invalid && form.register.$submitted}">
-                        <span class="input-label">Modality</span>
-                        <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
-                        <div class="form-errors" ng-messages="form.register.name.$error" ng-if="form.register.password.$touched && form.register.password.$invalid">
-                                    <div class="form-error-red" ng-message="required">Required</div>
-                        </div>
-                    </label>
-                </form>
-              </ion-slide>
-            </ion-slide-box>
-        
-      </ion-content>
-    </ion-modal-view>
-
-
-  
-
- 
-
-  

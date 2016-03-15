@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <<ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button" ng-click="doSomething()">Left Button</button>
+    </div>
+    <h1 class="title">{{'login.state_header' | translate}}</h1>
+    <div class="buttons">
+      <button class="button">Right Button</button>
+    </div>
+
+  </ion-header-bar>
+  <ion-content>
+    <div class="list card" ng-repeat="state in states">
+    
+      <a ng-click="stateSelected(state)" class="item item-icon-left">
+        <i class="icon ion-home"></i>
+        {{state.nombre}}
+      </a>
+    
+    
+    </div>
+  </ion-content>
+</ion-modal-view>
