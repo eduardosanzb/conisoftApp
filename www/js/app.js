@@ -59,11 +59,36 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl',
       resolve:{
-        // controller will not be loaded until $waitForAuth resolves
-        "currentAuth": ["Auth", function(Auth){
-            // $waitForAuth returns a promise so the resolve waits for it to complete
-            return Auth.$waitForAuth();
-        }]
+        /* controller will not be loaded until $waitForAuth resolves*/
+        "currentAuth": function(Auth, $localStorage, Users, $state){
+            /* $waitForAuth returns a promise so the resolve waits for it to complete */
+            return Auth.$requireAuth().then(function(data){
+              /*  In the existence of a valid Auth in the phone.
+               *  1. We will create/update the $localStorage userProfile
+               *  2. Then we will redirect to app.schedule
+               */
+               //console.log();
+              if( !( $localStorage.get('userProfile') ) ){
+                Users.get(data.auth.uid).$loaded().then(function(data){
+                  console.log(data);
+                  var user = {
+                    uid: data.$id,
+                    name: data.name + data.surname,
+                    email: data.email,
+                    payment: data.payment
+                  }
+                  console.log(user);
+                  $localStorage.setObject('userProfile',user);
+                  return user;
+                  
+                });
+              }
+              $state.go('app.schedule');
+              
+            },function(error){
+              console.log(error);
+            });
+        }
       }
     })
 
@@ -95,7 +120,7 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
           resolve:{
             "currentAuth":function(Auth,$state,$ionicPopup){
               Auth.$requireAuth().then(function(data){
-                $state.go('app.myschedule');
+                console.log(data);
               }).catch(function(error){
                 $ionicPopup.confirm({
                   title: 'No login',
@@ -130,7 +155,7 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
           resolve:{
             "currentAuth":function(Auth,$state,$ionicPopup){
               Auth.$requireAuth().then(function(data){
-                $state.go('app.myschedule');
+                console.log(data);
               }).catch(function(error){
                 $ionicPopup.confirm({
                   title: 'No login',
@@ -213,7 +238,7 @@ $translateProvider.translations('en',{
     country_label:"Country",
     country_placeholder:"Mexico",
     state_header: "State",
-    state_label:"Puebla",
+    state_label:"State",
     afiliation_label:"Afiliation",
     afiliation_placeholder:"UPAEP",
     modality_label:"Modality",

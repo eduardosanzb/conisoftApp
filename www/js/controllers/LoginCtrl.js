@@ -1,8 +1,32 @@
 angular.module('conisoft16.controllers')
     .controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users) {
+function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users, $http) {
 
+    // var GetMethod = {
+    //     method: 'POST',
+    //     url: 'http://upaep.mx/micrositios/preregistro/validate.php',
+    //     params: ''
+    // };
+    // var url = 'http://upaep.mx/micrositios/preregistro/validate.php';
+    // var data = {
+    //     ref: '05870000000054EX5', 
+    //     cadena: "e41723625f5ae2514d064f684d79836fd1c1835896a2d143ac30c1ac98b256c9564cee7ee855d4ba5bbf11bd17571795f93682930762f074af356236cdcd01ed638bc6c93a2082ad58f1478b97b97b2a59bc458aa5732dd9e53fe58e507de10f0d2a07c5ada3ae619a7e3393c7ef96a9"
+    // };
+
+    // $http.post(url,data).success(function(data){
+    //     console.log(data);
+    // }).error(function(error){
+    //     console.log(error);
+    // });
+
+    // $http(GetMethod).success(function(data){
+    //     console.log(data);
+    // }).error(function(error){
+    //     console.log(error);
+    // });
+
+   
 
     var filterBarInstance;
 
@@ -14,8 +38,25 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
                 if (filterText) {
                     console.log(filterText);
                 }
+            },
+            cancel: function(){
+
+            },
+            done: function(){
+                //$scope.closeFilterBar();
             }
         });
+    console.log(filterBarInstance);
+
+    };
+
+
+    $scope.closeFilterBar = function() {
+        if(filterBarInstance){
+            filterBarInstance();
+            filterBarInstance = null;
+        }
+        
     };
 
     $scope.refreshItems = function() {
@@ -25,24 +66,29 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         }
     }
 
-
-
-
-
-
-
-
     $scope.login = function(user) {
         $scope.authData = null;
         $scope.error = null;
 
+        console.log(user);
         Auth.$authWithPassword({
             email: user.email,
             password: user.password
-        }).then(function(authData) {
-            console.log("User loged with data: " + authData);
-            $state.go('app.schedule');
-            //save the user from the firm to the localStorage
+        }).then(function(data) {
+            console.log(data);
+            Users.get(data.auth.uid).$loaded().then(function(data){
+                var user = {
+                    uid: data.$id,
+                    name: data.name + " " + data.surname,
+                    email: data.email,
+                    payment: data.payment
+                  }
+                console.log(user);
+                $localStorage.setObject('userProfile',user);
+                $scope.selectModal.hide();
+                $state.go('app.schedule');
+              });
+
         }).catch(function(error) {
             console.log("Error login the user,  " + error);
         });
@@ -54,18 +100,18 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             email: $scope.user.email,
             password: $scope.user.password,
             name: $scope.user.name,
-            surname: $scope.user.surname,
             afiliation: $scope.user.afiliation,
             conferences: {},
             location: {
                 country: $scope.user.country,
                 state: $scope.user.state
             },
-            modality: $scope.user.modality,
             payment: {
                 validation: false,
-                voucherImage: false
-            }
+                referenceNumber: false,
+                registerFlag:false
+            },
+            my_conferences:{}
         }
 
         Auth.$createUser(newUser).then(function(userData) {
@@ -78,40 +124,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         });
 
     }
-    /* Strategy:
-     *  1.- Verify if there is a user logged in
-     *    1.1.- If true: Continue with the schedule.html
-     *    1.2.- If false: Continue with step 2
-     *  2.- Verify if there is internet connection
-     *    2.1.- If true: Let the user login or register
-     *    2.2.- If false: Display alert: "Cannot continue, because we dont have internet connection"
-     *  3.- The normal flow of the app will be:
-     *    3.1.- Connect the firebaseObjects with the scope
-     */
-
-
-
-    //if ($rootScope.thereIsInternetConnection){
-    if (true) {
-        //strategy step 1.1
-        $scope.countries = Countries.all();
-        $scope.states = Countries.mx();
-        $scope.modalities = References.all();
-        $localStorage.set('countriesFlag', true);
-        $localStorage.setObject('countries', $scope.countries);
-        $localStorage.setObject('mxStates', $scope.states);
-        $scope.user = {};
-
-    } else {
-        $ionicPopup.confirm({
-            title: "Internet Disconnected",
-            content: "The internet is disconnected on your device."
-        }).then(function(result) {
-            if (!result) {
-                ionic.Platform.exitApp();
-            }
-        });
-    }
+    
 
     $scope.closeLogin = function() {
         $state.go('app.schedule')
@@ -141,9 +154,12 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
 
     $scope.openModal = function() {
         $scope.selectModalSlider.slide(0);
-        $scope.form = {};
+        $scope.user = {};
+        $scope.user.afiliation = null;
+        $scope.secondPage = true;
         $scope.user.state = "n/a"
         $scope.selectModal.show();
+        console.log($scope.form);
     };
 
     $scope.nextPage = function(user) {
@@ -164,11 +180,17 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
 
     });
     $scope.closeCountryModal = function() {
+        $scope.closeFilterBar();
         $scope.selectCountryModal.hide();
     };
     $scope.openCountryModal = function() {
-        console.log($scope.countries);
-        $scope.selectCountryModal.show();
+        $ionicLoading.show();
+        Countries.all().$loaded().then(function(data){
+            console.log(data);
+            $scope.countries = data;
+            $ionicLoading.hide();
+            $scope.selectCountryModal.show();
+        });
     };
     $scope.countrySelected = function(countryId, countryKey) {
         console.log(countryId);
@@ -189,7 +211,13 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         $scope.selectStateModal.hide();
     };
     $scope.openStateModal = function() {
-        $scope.selectStateModal.show();
+        $ionicLoading.show();
+        Countries.mx().$loaded().then(function(data){
+            $scope.states = data;
+            $ionicLoading.hide();
+            $scope.selectStateModal.show();
+        });
+        
     };
     $scope.stateSelected = function(state) {
         $scope.user.state = state.nombre;
@@ -217,4 +245,4 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     }
 
 }
-LoginCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicSlideBoxDelegate", "$ionicPopup", "Countries", "$ionicFilterBar", "References", "Auth", "Users"];
+LoginCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicSlideBoxDelegate", "$ionicPopup", "Countries", "$ionicFilterBar", "References", "Auth", "Users", "$http"];

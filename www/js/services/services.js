@@ -8,6 +8,7 @@ angular
     .factory('Users', Users)
     .factory('Reviews', Reviews)
     .factory('Auth',Auth)
+    .factory('UnAuth', UnAuth)
     ;
 
 function Auth(FirebaseUrl, $firebaseAuth){
@@ -16,7 +17,11 @@ function Auth(FirebaseUrl, $firebaseAuth){
 }
 Auth.$inject = ['FirebaseUrl', '$firebaseAuth'];
 
-
+function UnAuth(FirebaseUrl, $firebaseAuth){
+    var ref = new Firebase(FirebaseUrl);
+    return ref;
+}
+UnAuth.$inject = ['FirebaseUrl', '$firebaseAuth'];
 
 
 function $localStorage($window) {
