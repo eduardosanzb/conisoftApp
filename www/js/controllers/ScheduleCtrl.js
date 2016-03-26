@@ -1,55 +1,71 @@
 angular.module('conisoft16.controllers')
-.controller('ScheduleCtrl', ScheduleCtrl);
+    .controller('ScheduleCtrl', ScheduleCtrl);
 
-ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading","$localStorage","Conferences", "Speakers", "$firebaseArray","Auth"];
+ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth"];
 
-function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray,Auth){
+function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth) {
 
-/* Strategy:
-     *  1.- Verify if there is internet connection
-     *    1.1.- If true: Download data and continue normal flow of the view
-     *    1.2.- If false: Verify if we have any cached data in the $localStorage
-     *      1.2.1.- If true: Just use the cached data and continue normal flow of the view
-     *      1.2.2.- If false: Display an alert indicating : "There is no internet connection
-     *                                                        and we dont have any cached data. Please connect"
-     *  2.- The normal flow of the app will be:
-     *    2.1.- Connect the firebaseObjects with the scope
-     */
-  Conferences.all().$loaded(function(conferences){
+    var startingHour = function(milliseconds){
+        var theDate = new Date();
+        theDate.setTime(milliseconds);
+        return theDate.getHours();
+    }
+    var dayOfTheEvent = function(milliseconds){
+        var theDate = new Date();
+        theDate.setTime(milliseconds);
+        return theDate.getDate();
+    }
+    $scope.theDay  = dayOfTheEvent(1461733200000);
+    $ionicLoading.show();
 
-    $localStorage.setObject("conferences",conferences);
-    $scope.conferences = conferences
+    if(false){       //There is no internet Connection
+        $scope.conferences = $localStorage.getObject('conferences');
+    } else {
 
-    angular.forEach($scope.conferences, function(conference){
-      conference.speakers = Conferences.getSpeakers(conference.$id);
-      
-      
+        Conferences.all().$loaded(function(conferences) {
+        /*  Strategy:
+         *  1.- Retrieve all the conferences
+         *  2.- ForEach conference append the speakers
+         *  3.- Order them in the $scope.conferences by (day,startHour)
+         *      $scope.conferences:{
+         *          dayNumber:{
+         *                 08:00:00:{conferences} -> 17:00:00:{conferences}
+         *           }
+         *       } 
+         *  4.- Save in LocalStorage
+        */
+        
+        var conferences = conferences;
+        $scope.conferences = {};
+        angular.forEach(conferences, function(conference) {
+            conference.speakers = Conferences.getSpeakers(conference.$id);
+            conference.day = dayOfTheEvent(conference.date);
+            //console.log(conference);
+            var startHour = startingHour(conference.date);
+            if(!$scope.conferences[startHour]) $scope.conferences[startHour] = [];
+            $scope.conferences[startHour].push(conference);
+
+            
+        });
+
+
+        //$scope.conferences = conferences
+        console.log($scope.conferences);
+        $ionicLoading.hide();
+    }, function(error) {
+        console.log("Error: ", error)
     });
-
-    console.log($scope.conferences);
-  }, function(error){
-    console.log("Error: ",error)
-  });
+    }
+    
 
 
-// //This will call the conference and his speakers
-// var ref = new Firebase("https://conisoft16.firebaseio.com/");
-// ref.child("conferences/en/conference1").once('value',function(conference){
-//   for(key in conference.val().speakers){
-//     ref.child("speakers/en").orderByKey().equalTo(key).on('child_added', function(data){
-//       //console.log(data.val());
-//     });
-//   }
-// });
+    $scope.selectDay = function(daySelected) {
+        $scope.theDay = dayOfTheEvent(daySelected);
 
-$scope.selectDay = function(daySelected){
-  console.log(daySelected);
-}
+    }
 
- $scope.goToDetailEvent = function(eventId){
-  console.log(eventId);
- } 
+    $scope.goToDetailEvent = function(eventId) {
+        console.log(eventId);
+    }
 
 }
-
-

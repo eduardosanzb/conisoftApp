@@ -31,7 +31,7 @@
                 </label>
                 <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : (firstPage.password.$invalid  && firstPage.password.$touched) }">
                     <span class="input-label">{{ 'login.password_label' | translate }}</span>
-                    <input name="password" type="text" placeholder="{{ 'login.password_placeholder' | translate }}" ng-model="user.password" required="">
+                    <input name="password" type="password" placeholder="{{ 'login.password_placeholder' | translate }}" ng-model="user.password" required="">
                     <div class="form-errors" ng-messages="firstPage.name.$error" ng-if="firstPage.password.$touched && firstPage.password.$invalid">
                                 <div class="form-error-red" ng-message="required">Required</div>
                     </div>

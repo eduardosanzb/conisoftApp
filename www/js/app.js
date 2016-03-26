@@ -30,23 +30,11 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
     if(navigator.language){
       if(navigator.language.split('-')[0] == "es" || navigator.language.split('-')[0] == "en"){
         locale = navigator.language.split('-')[0];
-        //localStorage.set('locale', locale);
+        $localStorage.set('locale', locale);
         $rootScope.locale = locale;
 
       }
     }
-
-    // //Device internet connection
-    // if(window.Connection) {
-    //             if(navigator.connection.type == Connection.NONE) {
-    //                 $rootScope.thereIsInternetConnection = false;
-    //             } else {
-    //                 $rootScope.thereIsInternetConnection = true;
-    //             }
-    //         }
-
-    //Authenticaion stuff
-
 
   });
 })
@@ -67,16 +55,25 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
                *  1. We will create/update the $localStorage userProfile
                *  2. Then we will redirect to app.schedule
                */
-               //console.log();
+               console.log(data);
+               if(data.password.isTemporaryPassword){
+                  $state.go('resetPassword');
+                }
               if( !( $localStorage.get('userProfile') ) ){
                 Users.get(data.auth.uid).$loaded().then(function(data){
                   console.log(data);
                   var user = {
                     uid: data.$id,
-                    name: data.name + data.surname,
+                    name: data.name,
                     email: data.email,
-                    payment: data.payment
+                    password:data.password,
+                    afiliation:data.afiliation,
+                    payment: data.payment,
+                    location:data.location
                   }
+                  if(data.conferences){
+                        user.conferences = data.conferences;
+                    }
                   console.log(user);
                   $localStorage.setObject('userProfile',user);
                   return user;
@@ -100,13 +97,61 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
   })
  
 
+    .state('resetPassword',{
+      url: '/reset',
+      templateUrl:'templates/resetPassword.html',
+      controller:'ResetCtrl',
+      resolve:{
+        "cacheUser": function($localStorage,Auth,Users){
+          var data = Auth.$getAuth();
+          if(data){
+            console.log(data);
+            if( !( $localStorage.get('userProfile') ) ){
+              Users.get(data.auth.uid).$loaded().then(function(data){
+                  console.log(data);
+                  var user = {
+                    uid: data.$id,
+                    name: data.name,
+                    email: data.email,
+                    password:data.password,
+                    afiliation:data.afiliation,
+                    payment: data.payment,
+                    location:data.location
+                  }
+                  if(data.conferences){
+                        user.conferences = data.conferences;
+                    }
+                  console.log(user);
+                  $localStorage.setObject('userProfile',user);
+                  return user;
+                  
+                });
+            }
+          } else {
+            $state.go('login');
+          }
+        }
+      }
+    })
+
     .state('app.schedule', {
       url: '/schedule',
       views: {
         'menuContent': {
           templateUrl: 'templates/schedule.html',
           controller: 'ScheduleCtrl',
-          resolve:{}
+          resolve:{
+            "currentAuth":function(Auth,$state,$ionicPopup){
+              Auth.$requireAuth().then(function(data){
+                //console.log(data);
+                if(data.password.isTemporaryPassword){
+                  $state.go('resetPassword');
+                }
+              }).catch(function(error){
+                console.log(error);
+              });
+            }
+          }
         }
       }
     })
@@ -141,7 +186,18 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
         'menuContent': {
           templateUrl: 'templates/speakers.html',
           controller: 'SpeakersCtrl',
-          resolve:{}
+          resolve:{
+            "currentAuth":function(Auth,$state,$ionicPopup){
+              Auth.$requireAuth().then(function(data){
+                console.log(data);
+                if(data.password.isTemporaryPassword){
+                  $state.go('resetPassword');
+                }
+              }).catch(function(error){
+                console.log(error);
+              });
+            }
+          }
         }
       }
     })
@@ -200,7 +256,18 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
         'menuContent': {
           templateUrl: 'templates/about.html',
           controller: 'AboutCtrl',
-          resolve:{}
+          resolve:{
+            "currentAuth":function(Auth,$state,$ionicPopup){
+              Auth.$requireAuth().then(function(data){
+                console.log(data);
+                if(data.password.isTemporaryPassword){
+                  $state.go('resetPassword');
+                }
+              }).catch(function(error){
+                console.log(error);
+              });
+            }
+          }
         }
       }
     })
@@ -211,7 +278,18 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
         'menuContent': {
           templateUrl: 'templates/recomendations.html',
           controller: 'RecomendationsCtrl',
-          resolve:{}
+          resolve:{
+            "currentAuth":function(Auth,$state,$ionicPopup){
+              Auth.$requireAuth().then(function(data){
+                console.log(data);
+                if(data.password.isTemporaryPassword){
+                  $state.go('resetPassword');
+                }
+              }).catch(function(error){
+                console.log(error);
+              });
+            }
+          }
         }
       }
     })

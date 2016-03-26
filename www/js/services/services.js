@@ -4,20 +4,21 @@ angular
     .factory('Conferences', Conferences)
     .factory('References', References)
     .factory('Speakers', Speakers)
-    .factory('Countries',Countries)
+    .factory('Countries', Countries)
     .factory('Users', Users)
     .factory('Reviews', Reviews)
-    .factory('Auth',Auth)
+    .factory('Auth', Auth)
     .factory('UnAuth', UnAuth)
     ;
 
-function Auth(FirebaseUrl, $firebaseAuth){
-  var ref = new Firebase(FirebaseUrl);
-  return $firebaseAuth(ref);
+
+function Auth(FirebaseUrl, $firebaseAuth) {
+    var ref = new Firebase(FirebaseUrl);
+    return $firebaseAuth(ref);
 }
 Auth.$inject = ['FirebaseUrl', '$firebaseAuth'];
 
-function UnAuth(FirebaseUrl, $firebaseAuth){
+function UnAuth(FirebaseUrl, $firebaseAuth) {
     var ref = new Firebase(FirebaseUrl);
     return ref;
 }
@@ -65,8 +66,8 @@ function Conferences(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
         allObject: function() {
             return $firebaseObject(ref);
         },
-        getSpeakers: function(conferenceId){
-          return $firebaseArray(rootRef.child("speakers/" + locale).orderByChild( "conferences/"+ conferenceId).equalTo(true));
+        getSpeakers: function(conferenceId) {
+            return $firebaseArray(rootRef.child("speakers/" + locale).orderByChild("conferences/" + conferenceId).equalTo(true));
         }
     }
 }
@@ -131,30 +132,30 @@ Speakers.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootSc
 
 
 function Users(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
-  var ref = new Firebase(FirebaseUrl + "/users");
-  return{
-    ref: function(){
-      return ref;
-    },
-    get: function(userId){
-      return $firebaseObject( ref.child(userId) );
+    var ref = new Firebase(FirebaseUrl + "/users");
+    return {
+        ref: function() {
+            return ref;
+        },
+        get: function(userId) {
+            return $firebaseObject(ref.child(userId));
+        }
     }
-  }
 }
 Users.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
 
-function Reviews(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope){}
+function Reviews(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {}
 Reviews.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
 
-function Countries(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope){
-  var ref = new Firebase(FirebaseUrl + "countries/");
-  return {
-    mx: function(){
-      return $firebaseArray(ref.child("mx").orderByChild( "NOMBRE"));
-    },
-    all: function(){
-      return $firebaseArray(ref.child('others').orderByChild('name/common'));
+function Countries(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
+    var ref = new Firebase(FirebaseUrl + "countries/");
+    return {
+        mx: function() {
+            return $firebaseArray(ref.child("mx").orderByChild("NOMBRE"));
+        },
+        all: function() {
+            return $firebaseArray(ref.child('others').orderByChild('name/common'));
+        }
     }
-  }
 }
 Countries.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];

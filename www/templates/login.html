@@ -20,15 +20,20 @@
                 </label>
                 <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.login.password.$invalid  && form.login.password.$touched || form.login.password.$invalid && form.login.$submitted}">
                     <span class="input-label">Password</span>
-                    <input name="password" type="text" placeholder="*****" ng-model="user.password" required>
+                    <input name="password" type="password" placeholder="*****" ng-model="user.password" required>
                     <div class="form-errors" ng-messages="form.login.name.$error" ng-if="form.login.password.$touched && form.login.password.$invalid">
                                 <div class="form-error-red" ng-message="required">Required</div>
                     </div>
                 </label>
 
             </ion-list>
-            <div class="spacer" style="height: 40px;"></div>
-            <button class="button button-stable button-block " ng-click="login(user)" ng-disabled="form.login.$invalid">Log in</button>
+            
+            <div>
+                <button class="button button-stable button-block " ng-click="login(user)" ng-disabled="form.login.$invalid">Log in</button>
+                <a  class="button button-positive button-clear button-block " style="font-size: small;!important" ng-click="openRecoveryPasswordModal()">I Forgot my password</a>    
+            </div>
+            <div class="spacer" style="height: 10px;"></div>
+
             <a href="#/signup" class="button button-positive button-clear button-block " ng-click="openModal()">Or create an account</a>
         </form>
     </div>
