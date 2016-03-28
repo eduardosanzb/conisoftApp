@@ -9,9 +9,24 @@ angular
     .factory('Reviews', Reviews)
     .factory('Auth', Auth)
     .factory('UnAuth', UnAuth)
+    .factory('Hours',Hours)
     ;
 
-
+function Hours(){
+    return {
+        0:08,
+        1:09,
+        2:10,
+        3:11,
+        4:12,
+        5:13,
+        6:14,
+        7:15,
+        8:16,
+        9:17
+    }
+}
+Hours.$inject = [];
 function Auth(FirebaseUrl, $firebaseAuth) {
     var ref = new Firebase(FirebaseUrl);
     return $firebaseAuth(ref);

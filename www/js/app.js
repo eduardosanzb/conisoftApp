@@ -155,6 +155,12 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
         }
       }
     })
+
+    .state('detailEvent',{
+      url: "/app/:prevState/event/:eventId",
+      templateUrl:"templates/detail/detailEvent.html",
+      controller:"DetailEventCtrl"
+    })
     
     .state('app.myschedule', {
       url: '/myschedule',
@@ -235,7 +241,7 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
           resolve:{
             "currentAuth":function(Auth,$state,$ionicPopup){
               Auth.$requireAuth().then(function(data){
-                $state.go('app.myschedule');
+                //$state.go('app.register');
               }).catch(function(error){
                 $ionicPopup.confirm({
                   title: 'No login',
