@@ -2,17 +2,40 @@
 
 <ion-header-bar align-title="left" class="bar-positive">
   <div class="buttons">
-    <button class="button" ng-click="goToPrevState()">Left Button</button>
+    <button class="button icon-left ion-chevron-left" ng-click="goToPrevState()"></button>
   </div>
-  <h1 class="title">Title!</h1>
-  <div class="buttons">
-    <button class="button">Right Button</button>
-  </div>
+  <h1 class="title">{{ 'detailEvent.header' | translate}}</h1>
+  
 </ion-header-bar>
 
 
   <ion-content>
-    <h1>detail</h1>
-    {{event.name}}
+  <div class="event-detail-container">
+    <h2>{{event.name}}</h1>
+    <h3>{{event.date | date:'EEEE dd MMMM yyyy'}}</h3>
+    <h4>{{event.location}}</h4>
+  </div>
+  <div class="description-container">
+    {{event.description}}
+  </div>
+  <div class="list">
+     <div class="item item-divider">
+        {{'detail.event.speaker-divider' | translate}}    
+    </div>
+    <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)">
+            <img src="speaker.picture">
+            <h2>{{speaker.name}}</h2>
+            <p>{{speaker.description}}</p>
+    </a>
+  </div>
+ 
+    
+
+    <button class="button icon-right ion-plus" ng-click="addToAgenda(eventId)" ng-if="!user.mySchedule[eventId]">
+      add TO my agenda  
+    </button>
+    <button class="button icon-right ion-minus-round" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]">
+      Remove FROM my agenda  
+    </button>
   </ion-content>
 </ion-view>

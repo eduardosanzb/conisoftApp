@@ -161,6 +161,11 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers','firebase','coni
       templateUrl:"templates/detail/detailEvent.html",
       controller:"DetailEventCtrl"
     })
+    .state('detailSpeaker',{
+      url: "/app/:prevState/speaker/:speakerId",
+      templateUrl:"templates/detail/detailSpeaker.html",
+      controller:"DetailSpeakerCtrl"
+    })
     
     .state('app.myschedule', {
       url: '/myschedule',

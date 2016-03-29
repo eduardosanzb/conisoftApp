@@ -25,29 +25,6 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
      */
 
 
-    // var GetMethod = {
-    //     method: 'POST',
-    //     url: 'http://upaep.mx/micrositios/preregistro/validate.php',
-    //     params: ''
-    // };
-    // var url = 'http://upaep.mx/micrositios/preregistro/validate.php';
-    // var data = {
-    //     ref: '05870000000054EX5', 
-    //     cadena: "e41723625f5ae2514d064f684d79836fd1c1835896a2d143ac30c1ac98b256c9564cee7ee855d4ba5bbf11bd17571795f93682930762f074af356236cdcd01ed638bc6c93a2082ad58f1478b97b97b2a59bc458aa5732dd9e53fe58e507de10f0d2a07c5ada3ae619a7e3393c7ef96a9"
-    // };
-
-    // $http.post(url,data).success(function(data){
-    //     console.log(data);
-    // }).error(function(error){
-    //     console.log(error);
-    // });
-
-    // $http(GetMethod).success(function(data){
-    //     console.log(data);
-    // }).error(function(error){
-    //     console.log(error);
-    // });
-
     /*LOGIN / SIGNUP / RESETPASSWORD SECTION*/
     $scope.resetPassword = function(userEmail) {
         $ionicLoading.show();
