@@ -26,6 +26,7 @@ function DetailSpeakerCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoadin
         
     }
     console.log($stateParams.prevState);
+    
 }
 DetailSpeakerCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage","$stateParams","$ionicViewSwitcher"];
 

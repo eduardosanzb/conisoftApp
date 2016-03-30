@@ -1,9 +1,9 @@
 angular.module('conisoft16.controllers')
     .controller('ScheduleCtrl', ScheduleCtrl);
 
-ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda"];
+ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda","Users"];
 
-function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda) {
+function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda,Users) {
     /*  FUNCTIONS IN THIS CONTROLLER
      *  - NAVIGATION SECTION
      *      + goToPrevState()  -> Will get the prevstate from the $stateParams and create a $state.go() to the previous
@@ -85,6 +85,7 @@ function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
             conferences.forEach( function(conference){
                 conference.speakers = Conferences.getSpeakers(conference.$id);
               });
+          $scope.user = Users.get($localStorage.getObject('userProfile').uid)
           $scope.conferences = conferences
           $ionicLoading.hide();
         });

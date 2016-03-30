@@ -1,5 +1,11 @@
 <ion-view view-title="Speakers">
   <ion-content>
-    <h1>Speakers</h1>
+    <div class="list">
+      <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)">
+        <img src="speaker.jpg">
+        <h2>{{speaker.name}}</h2>
+        <p>{{speaker.description}}</p>
+      </a>
+    </div>
   </ion-content>
 </ion-view>

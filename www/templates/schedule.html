@@ -14,13 +14,20 @@
         <ion-item class="item item-divider" >
         {{hour}}:00 Hrs
         </ion-item>
-        <ion-item ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }"  
-                  
-                  ng-click="goToDetailEvent(conference.$id)">
-            {{conference.name}} 
-            <p ng-repeat="speaker in conference.speakers"> {{'schedule.by_speaker' | translate}} {{speaker.name}} </p>
-            <p> {{conference.location}} </p>
-        </ion-item>
+  
+        <div class="item" ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }"  ng-click="goToDetailEvent(conference.$id)">
+          <div>
+            {{conference.name}}
+            <div class="icon-list-item" ng-if="user.mySchedule[conference.$id]"><i class="ion-checkmark-circled"></i></div>
+          </div>
+          <div ng-repeat="speaker in conference.speakers">
+            <p> {{'schedule.by_speaker' | translate}} {{speaker.name}} </p>
+          </div>
+          <p> {{conference.location}} </p>
+        </div>
+
+
+        
       </div>
       
       

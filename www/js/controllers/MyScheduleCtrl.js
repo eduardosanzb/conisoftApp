@@ -35,6 +35,14 @@ function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
         $scope.$apply()
     };
 
+    $scope.goToDetailEvent = function(eventId) {
+        $ionicViewSwitcher.nextDirection('forward'); // 'forward', 'back', etc.
+        $state.go('detailEvent', {
+            eventId: eventId,
+            prevState: 'schedule'
+        })
+    }
+
     $ionicLoading.show();
     $scope.theDay = 1461733200000; // 04/27/2016
     $scope.hours = Hours;

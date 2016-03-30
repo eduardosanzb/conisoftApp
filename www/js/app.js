@@ -216,8 +216,12 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers', 'firebase', 'co
                         }).catch(function(error) {
                             console.log(error);
                         });
-                    }
+                    },
+                    "speakersList": function(Speakers){
+                  return Speakers.all();
                 }
+                }
+                
             }
         }
     })
