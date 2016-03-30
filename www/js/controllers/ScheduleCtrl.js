@@ -1,9 +1,9 @@
 angular.module('conisoft16.controllers')
     .controller('ScheduleCtrl', ScheduleCtrl);
 
-ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher"];
+ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda"];
 
-function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher) {
+function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda) {
     /*  FUNCTIONS IN THIS CONTROLLER
      *  - NAVIGATION SECTION
      *      + goToPrevState()  -> Will get the prevstate from the $stateParams and create a $state.go() to the previous
@@ -31,12 +31,11 @@ function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
              *  4.- Hide the Spinner
              */
             console.log("using internet to go to Firebase");
-            $scope.conferences = conferences;
             angular.forEach($scope.conferences, function(conference) {
                 conference.speakers = Conferences.getSpeakers(conference.$id);
             });
+            $scope.conferences = conferences;
             $localStorage.setObject('conferences', $scope.conferences);
-            $ionicLoading.hide();
         }, function(error) {
             console.log("Error: ", error)
         });
@@ -80,9 +79,15 @@ function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
     $scope.theDay = 1461733200000; // 04/27/2016
     $scope.hours = Hours;
 
-
     if (true) { //There is internet connection
-        $scope.createTheSchedule();
+        //$scope.createTheSchedule();
+        agenda.$loaded().then(function(conferences){
+            conferences.forEach( function(conference){
+                conference.speakers = Conferences.getSpeakers(conference.$id);
+              });
+          $scope.conferences = conferences
+          $ionicLoading.hide();
+        });
     } else {
         if (JSON.stringify($localStorage.getObject('conferences')) == '{}') {
             //Let know that we dont have internet and any cached data

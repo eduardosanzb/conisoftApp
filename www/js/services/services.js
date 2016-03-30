@@ -148,12 +148,22 @@ Speakers.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootSc
 
 function Users(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
     var ref = new Firebase(FirebaseUrl + "/users");
+    var rootRef = new Firebase(FirebaseUrl);
+    var locale = 'en';
+        if (navigator.language) {
+            if (navigator.language.split('-')[0] == "es" || navigator.language.split('-')[0] == "en") {
+                locale = navigator.language.split('-')[0];
+            }
+        }
     return {
         ref: function() {
             return ref;
         },
         get: function(userId) {
             return $firebaseObject(ref.child(userId));
+        },
+        getMySchedule: function(userId) {
+            return $firebaseArray( rootRef.child("conferences/" + locale).orderByChild("users/" + userId).equalTo(true) );
         }
     }
 }

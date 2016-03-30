@@ -58,6 +58,13 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
             console.log("No events");
             $scope.user.mySchedule = {};
         }
+        Conferences.get(eventId).$loaded().then(function (event){
+            if(!event.users)
+                event.users = {}
+            console.log(event);
+            event.users[$scope.user.$id] = true;
+            event.$save();
+        })
         $scope.user.mySchedule[eventId] = true;
         $scope.user.$save().then(function(data) {
             console.log("Conference added to my agenda" + data);
@@ -66,6 +73,10 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
         });
     }
     $scope.removeFromAgenda = function(eventId) {
+        Conferences.get(eventId).$loaded().then(function (event){
+            event.users[$scope.user.$id] = null;
+            event.$save();
+        })
         $scope.user.mySchedule[eventId] = null;
         $scope.user.$save().then(function(data) {
             console.log("Conference Deleted from my agenda" + data);

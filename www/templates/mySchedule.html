@@ -1,5 +1,33 @@
+
 <ion-view view-title="My Schedule">
   <ion-content>
-    <h1>My Schedule</h1>
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+    </ion-refresher>
+    <h4> {{ 'schedule.month' | translate}} 2016 </h4>
+    <div class="button-bar">
+      <a class="button" ng-click="selectDay(1461733200000)">27</a>
+      <a class="button" ng-click="selectDay(1461819600000)">28</a>
+      <a class="button" ng-click="selectDay(1461906000000)">29</a>
+    </div>
+    <ion-list >
+      <div ng-repeat="hour in hours">
+        <ion-item class="item item-divider" >
+        {{hour}}:00 Hrs
+        </ion-item>
+        <ion-item ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }"  
+                  
+                  ng-click="goToDetailEvent(conference.$id)">
+            {{conference.name}} 
+            <p ng-repeat="speaker in conference.speakers"> {{'schedule.by_speaker' | translate}} {{speaker.name}} </p>
+            <p> {{conference.location}} </p>
+        </ion-item>
+      </div>
+      
+      
+
+    </ion-list>
+    <div ng-repeat-end=""></div>
+
+
   </ion-content>
 </ion-view>
