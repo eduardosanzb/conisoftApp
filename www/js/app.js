@@ -161,12 +161,12 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers', 'firebase', 'co
     })
 
     .state('detailEvent', {
-        url: "/app/:prevState/event/:eventId",
+        url: "/app/:prevState/event/:id",
         templateUrl: "templates/detail/detailEvent.html",
         controller: "DetailEventCtrl"
     })
         .state('detailSpeaker', {
-            url: "/app/:prevState/speaker/:speakerId",
+            url: "/app/:prevState/speaker/:id",
             templateUrl: "templates/detail/detailSpeaker.html",
             controller: "DetailSpeakerCtrl"
         })

@@ -34,6 +34,10 @@ label.item.has-error-red {
   font-size: 35px !important;
   float:right;
 }
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
 /* DETAIL EVENT CSS */
 .event-detail-container{

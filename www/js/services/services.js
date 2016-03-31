@@ -127,19 +127,23 @@ function Speakers(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
             locale = navigator.language.split('-')[0];
         }
     }
+    var rootRef = new Firebase(FirebaseUrl);
     var ref = new Firebase(FirebaseUrl + "speakers/" + locale);
     return {
         ref: function() {
             return ref;
         },
         get: function(speakerId) {
-            return $firebaseObject(ref.child(conferenceId));
+            return $firebaseObject(ref.child(speakerId));
         },
         all: function() {
             return $firebaseArray(ref.orderByChild("order"));
         },
         allObject: function() {
             return $firebaseObject(ref);
+        },
+        allConferences: function(speakerId){
+            return $firebaseArray(rootRef.child("conferences/" + locale).orderByChild("speakers/" + speakerId).equalTo(true));
         }
     }
 }

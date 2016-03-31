@@ -17,9 +17,10 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
      */
 
     /* NAVGAION SECTION */
+    
     $scope.goToPrevState = function() {
         /*
-         *  This Function generate the Agenda by using a service taht connects to Firebase
+         *  This Function generate the Agenda by using a service that connects to Firebase
          *      and also will retrieve the name of the speakers, because we only have the id.
          *  Strategy:
          *  1.- Retrieve all the conferences
@@ -28,20 +29,64 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
          *  4.- Hide the Spinner
          */
         $ionicViewSwitcher.nextDirection('back');
-        $state.go('app.' + $stateParams.prevState)
+        var prevState = $stateParams.prevState.split(".");
+        switch(prevState[0]){
+            case 'app':
+                $state.go("app." + prevState[1]);
+                break;
+            case 'detailEvent':
+                if((prevState[2] == 'detailSpeaker') || (prevState[2] == 'detailEvent')){
+                   $state.go('detailEvent',{
+                        id:prevState[1],
+                        prevState: prevState[2] + '.' + prevState[3]
+                    }); 
+                } else {
+                    $state.go('detailEvent',{
+                        id:prevState[1],
+                        prevState:'app.' + prevState[2]
+                    });
+                }
+                break;
+            case 'detailSpeaker':
+               if((prevState[2] == 'detailSpeaker') || (prevState[2] == 'detailEvent')){
+                   $state.go('detailSpeaker',{
+                        id:prevState[1],
+                        prevState: prevState[2] + '.' + prevState[3]
+                    }); 
+                } else {
+                    $state.go('detailSpeaker',{
+                        id:prevState[1],
+                        prevState:'app.' + prevState[2]
+                    });
+                }
+                break;
+        }
+
     }
+
     $scope.goToDetailSpeaker = function(speakerId) {
-        console.log(speakerId);
         $ionicViewSwitcher.nextDirection('forward'); // 'forward', 'back', etc.
-        $state.go('detailSpeaker', {
-            speakerId: speakerId,
-            prevState: 'detailEvent.' + $stateParams.eventId + "." + $stateParams.prevState
-        })
+        var prevState = $stateParams.prevState.split(".");
+        if(prevState[0] == "app"){
+            $state.go('detailSpeaker', {
+                id: speakerId,
+                prevState: 'detailEvent.' + $stateParams.id + "." + prevState[1]
+            })
+        } else {
+            $state.go('detailSpeaker', {
+                id: speakerId,
+                prevState: 'detailEvent.' + $stateParams.id + "." + prevState[0]+"."+prevState[1]
+            });
+        }
     }
 
     /* RETRIEVE DATA SECTION */
     $ionicLoading.show();
-    $scope.eventId = $stateParams.eventId;
+    var prevState = $stateParams.prevState.split(".");
+    if(prevState[0] != 'app'){
+        $scope.flagStop = true;
+    }
+    $scope.eventId = $stateParams.id;
     Conferences.get($scope.eventId).$loaded().then(function(data) {
         $scope.event = data;
         $scope.speakers = Conferences.getSpeakers($scope.eventId);

@@ -60,11 +60,10 @@ function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
         $scope.theDay = daySelected;
     }
     $scope.goToDetailEvent = function(eventId) {
-        console.log(eventId);
         $ionicViewSwitcher.nextDirection('forward'); // 'forward', 'back', etc.
         $state.go('detailEvent', {
-            eventId: eventId,
-            prevState: 'schedule'
+            id: eventId,
+            prevState: 'app.schedule'
         })
     }
 
@@ -80,7 +79,6 @@ function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
     $scope.hours = Hours;
 
     if (true) { //There is internet connection
-        //$scope.createTheSchedule();
         agenda.$loaded().then(function(conferences){
             conferences.forEach( function(conference){
                 conference.speakers = Conferences.getSpeakers(conference.$id);

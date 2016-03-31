@@ -4,9 +4,26 @@
     <button class="button icon-left ion-chevron-left" ng-click="goToPrevState()"></button>
   </div>
   <h1 class="title">{{ 'detailSpeaker.header' | translate}}</h1>
-  
 </ion-header-bar>
   <ion-content>
-    <h1>Speakers Detail</h1>
+    <div class="speaker-detail-header">
+      <img src="picture.jpg"><br>
+      {{speaker.name}}    
+    </div>
+    <div class="list">
+      <div class="item item-divider">Description</div>
+      {{speaker.description}}
+    </div>
+    <div>
+      <div class="item item-divider">Sessions</div>
+      <div class="item" ng-repeat="conference in speaker.conferences"  ng-click="goToDetailEvent(conference.$id)" ng-class="{disabled: flagStop}">
+          <div>
+            {{conference.name}}
+            <div class="icon-list-item" ng-if="user.mySchedule[conference.$id]"><i class="ion-checkmark-circled"></i></div>
+          </div>
+          <p> {{conference.location}} </p>
+        </div>
+    </div>
+    
   </ion-content>
 </ion-view>

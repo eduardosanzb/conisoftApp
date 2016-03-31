@@ -38,8 +38,8 @@ function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
     $scope.goToDetailEvent = function(eventId) {
         $ionicViewSwitcher.nextDirection('forward'); // 'forward', 'back', etc.
         $state.go('detailEvent', {
-            eventId: eventId,
-            prevState: 'schedule'
+            id: eventId,
+            prevState: 'app.myschedule'
         })
     }
 
