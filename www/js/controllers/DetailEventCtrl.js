@@ -1,8 +1,6 @@
 angular.module('conisoft16.controllers')
     .controller('DetailEventCtrl', DetailEventCtrl);
-
-
-function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $stateParams, $ionicViewSwitcher, Conferences, Users) {
+function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $stateParams, $ionicViewSwitcher, Conferences, Users, Reviews) {
     /*  FUNCTIONS IN THIS CONTROLLER
      *  - NAVIGATION SECTION
      *      + goToPrevState()  -> Will get the prevstate from the $stateParams and create a $state.go() to the previous
@@ -82,6 +80,7 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
 
     /* RETRIEVE DATA SECTION */
     $ionicLoading.show();
+
     var prevState = $stateParams.prevState.split(".");
     if(prevState[0] != 'app'){
         $scope.flagStop = true;
@@ -94,10 +93,31 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
     var userId = $localStorage.getObject('userProfile').uid;
     Users.get(userId).$loaded().then(function(data) {
         $scope.user = data;
+        console.log(data)
         $ionicLoading.hide();
     });
 
     /* MODIFIERS OF USER SECTION */
+    $scope.reviewConference = function(eventId){
+        console.log("Reviewing")
+        console.log($scope.review)
+        $ionicLoading.show();
+        if(!$scope.user.conferencesReviewed)
+            $scope.user.conferencesReviewed = {}
+        $scope.user.conferencesReviewed[eventId] = true;
+        $scope.user.$save();
+        var reviewObject = {
+            user: $scope.user.$id,
+            value: $scope.review.value,
+            comment: $scope.review.comment
+        }
+        var newReview = Reviews.ref().child(eventId).push();
+        var reviewId = newReview.key();
+        Reviews.ref().child(eventId).child(reviewId).set(reviewObject);
+        $scope.reviewModal.hide();
+        $ionicLoading.hide();
+    }
+
     $scope.addToAgenda = function(eventId) {
         if (!$scope.user.mySchedule) {
             console.log("No events");
@@ -129,6 +149,24 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
             console.log("Error deleting event from agenda: " + error);
         });
     }
-
+    
+    /* MODALS SECTION*/
+    $ionicModal.fromTemplateUrl('templates/modals/reviewModal.html',{
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal){
+        $scope.reviewModal = modal;
+    });
+    $scope.openReviewModal = function(){
+        $ionicLoading.show();
+        $scope.review = {}
+        $scope.review.value = null;
+        $scope.review.comment = null;
+        $scope.reviewModal.show();
+        $ionicLoading.hide();
+    }
 }
-DetailEventCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$stateParams", "$ionicViewSwitcher", "Conferences", "Users"];
+DetailEventCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$stateParams", "$ionicViewSwitcher", "Conferences", "Users", "Reviews"];
+
+
+

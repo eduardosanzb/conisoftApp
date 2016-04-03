@@ -27,7 +27,8 @@ label.item.has-error-red {
 
 .form-error-red {
   font-size: small;
-  color: #ef473a; }
+  color: #ef473a; 
+}
 
 /* LIST ITEMS CSS */
 .icon-list-item{
@@ -46,6 +47,77 @@ label.item.has-error-red {
     padding: 15px;
     font-weight: bold !important;
 }
+.event-detail-container h2{
+    color: white !important;
+    font-weight: bold !important;
+}
+.event-detail-container h3{
+    color: white !important;
+    font-weight: bold !important;
+}
+.event-detail-container h4{
+    color: white !important;
+    font-weight: bold !important;
+}
 .description-container{
 
 }
+
+/* SPEAKER DETAIL CSS */
+.speaker-detail-header {
+    background-color: grey;
+    padding: 15px;
+    color: white !important;
+    font-weight: bold;
+}
+
+.speaker-detail-header img{
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.speaker-detail-header h2{
+    color: white !important;
+    font-weight: bold !important;
+    text-align: center;
+    margin-top: -10px;
+}
+.speaker-description-container {
+    font-size: medium;
+    padding: 12px;
+}
+
+/* ABOUT VIEW CSS */
+.the-map-container {
+  height: 210px; 
+  width: 85%; 
+  position: block; 
+  margin-right: auto; 
+  margin-left: auto;
+}
+.buttons-container {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* REGISTER VIEW CSS */
+.qrCode canvas{
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.qr-container {
+  margin: 15px;
+  margin-top: 25px;
+}
+.user-status span{
+  color: red;
+}
+.green {
+  color: green !important;
+}
+

@@ -9,24 +9,24 @@ angular
     .factory('Reviews', Reviews)
     .factory('Auth', Auth)
     .factory('UnAuth', UnAuth)
-    .factory('Hours',Hours)
-    ;
+    .factory('Hours', Hours);
 
-function Hours(){
+function Hours() {
     return {
-        0:08,
-        1:09,
-        2:10,
-        3:11,
-        4:12,
-        5:13,
-        6:14,
-        7:15,
-        8:16,
-        9:17
+        0: 08,
+        1: 09,
+        2: 10,
+        3: 11,
+        4: 12,
+        5: 13,
+        6: 14,
+        7: 15,
+        8: 16,
+        9: 17
     }
 }
 Hours.$inject = [];
+
 function Auth(FirebaseUrl, $firebaseAuth) {
     var ref = new Firebase(FirebaseUrl);
     return $firebaseAuth(ref);
@@ -94,13 +94,7 @@ Conferences.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$roo
 
 
 function References(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
-    var locale = 'en';
-    if (navigator.language) {
-        if (navigator.language.split('-')[0] == "es" || navigator.language.split('-')[0] == "en") {
-            locale = navigator.language.split('-')[0];
-        }
-    }
-    var ref = new Firebase(FirebaseUrl + "references/" + locale);
+    var ref = new Firebase(FirebaseUrl + "references/");
     return {
         ref: function() {
             return ref;
@@ -109,7 +103,7 @@ function References(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
             return $firebaseObject(ref.child(referenceId));
         },
         all: function() {
-            return $firebaseArray(ref.orderByChild("Name"));
+            return $firebaseArray(ref);
         },
         allObject: function() {
             return $firebaseObject(ref);
@@ -142,7 +136,7 @@ function Speakers(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
         allObject: function() {
             return $firebaseObject(ref);
         },
-        allConferences: function(speakerId){
+        allConferences: function(speakerId) {
             return $firebaseArray(rootRef.child("conferences/" + locale).orderByChild("speakers/" + speakerId).equalTo(true));
         }
     }
@@ -154,11 +148,11 @@ function Users(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
     var ref = new Firebase(FirebaseUrl + "/users");
     var rootRef = new Firebase(FirebaseUrl);
     var locale = 'en';
-        if (navigator.language) {
-            if (navigator.language.split('-')[0] == "es" || navigator.language.split('-')[0] == "en") {
-                locale = navigator.language.split('-')[0];
-            }
+    if (navigator.language) {
+        if (navigator.language.split('-')[0] == "es" || navigator.language.split('-')[0] == "en") {
+            locale = navigator.language.split('-')[0];
         }
+    }
     return {
         ref: function() {
             return ref;
@@ -167,13 +161,27 @@ function Users(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
             return $firebaseObject(ref.child(userId));
         },
         getMySchedule: function(userId) {
-            return $firebaseArray( rootRef.child("conferences/" + locale).orderByChild("users/" + userId).equalTo(true) );
+            return $firebaseArray(rootRef.child("conferences/" + locale).orderByChild("users/" + userId).equalTo(true));
         }
     }
 }
 Users.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
 
-function Reviews(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {}
+function Reviews(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
+
+    var ref = new Firebase(FirebaseUrl + "/reviews");
+    return {
+        ref: function(){
+            return ref;
+        },
+        all: function(){
+            return $firebaseArray(ref)
+        },
+        get: function(idEvent){
+            return $firebaseObject(ref.child(idEvent))
+        }
+    }
+}
 Reviews.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
 
 function Countries(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 // 'firebase' will inject all the firebase and angularFire functions to our app
-angular.module('conisoft16', ['ionic', 'conisoft16.controllers', 'firebase', 'conisoft16.services', 'pascalprecht.translate', 'jett.ionic.filter.bar'])
+angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'firebase', 'conisoft16.services', 'pascalprecht.translate', 'jett.ionic.filter.bar','ngMap','angular-clipboard','monospaced.qrcode'])
 
 .constant('FirebaseUrl', "https://conisoft16.firebaseio.com/")
 
@@ -18,13 +18,12 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers', 'firebase', 'co
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
-
         }
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
-
+        
         //Device language
         var locale = 'en';
         if (navigator.language) {
@@ -165,17 +164,18 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers', 'firebase', 'co
         templateUrl: "templates/detail/detailEvent.html",
         controller: "DetailEventCtrl"
     })
-        .state('detailSpeaker', {
-            url: "/app/:prevState/speaker/:id",
-            templateUrl: "templates/detail/detailSpeaker.html",
-            controller: "DetailSpeakerCtrl"
-        })
+
+    .state('detailSpeaker', {
+        url: "/app/:prevState/speaker/:id",
+        templateUrl: "templates/detail/detailSpeaker.html",
+        controller: "DetailSpeakerCtrl"
+    })
 
     .state('app.myschedule', {
         url: '/myschedule',
         views: {
             'menuContent': {
-                templateUrl: 'templates/myschedule.html',
+                templateUrl: 'templates/mySchedule.html',
                 controller: 'MyScheduleCtrl',
                 resolve: {
                     "currentAuth": function(Auth, $state, $ionicPopup) {
@@ -268,10 +268,40 @@ angular.module('conisoft16', ['ionic', 'conisoft16.controllers', 'firebase', 'co
                             $state.go('login');
                             console.log(error);
                         });
+                    },
+                    "referenceNumber": function(Users, $localStorage, $state, $http, $ionicLoading){
+                        $ionicLoading.show();
+                        Users.get($localStorage.getObject('userProfile').uid).$loaded().then(function(user){
+                            if(!user.payment.referenceNumber){
+                                /*There is a new user thus doesnt have a reference number*/
+                                $ionicLoading.hide();
+                                $state.go('uploadReference')
+                            } else {
+                                /* There is a reference number so we should check the status of it in the upaep api
+                                 *
+                                 *  And update the value of user.payment.paymentStatus with the value of the http request
+                                 *  Dont forget to $save()
+                                 */
+                                 $ionicLoading.hide();
+                                 return user
+                            }
+                        });
                     }
                 }
             }
         }
+    })
+
+    .state('uploadReference',{
+        url: '/reference',
+        templateUrl: 'templates/reference.html',
+        controller:'ReferenceCtrl',
+        resolve:{
+            "referencesList":function(References){
+                return References.all();
+            }
+        }
+
     })
 
     .state('app.about', {

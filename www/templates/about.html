@@ -1,5 +1,17 @@
 <ion-view view-title="About">
   <ion-content>
-    <h1>About</h1>
+  <div class="card the-map-container">
+    <ng-map center="[19.0475179,-98.2166959]" zoom='17' disable-default-u-i="true">
+        <marker position="19.047918, -98.216632" title="Hello World!"></marker>
+    </ng-map>
+  </div>
+
+  <div class="buttons-container">
+    <button class="button button-block button-positive icon-left ion-ios-navigate" ng-click="driveToUpaep()">Drive Me to UPAEP</button>
+    <button class="button button-block button-positive icon-left ion-wifi" ng-click="wifiSettings()">Wifi Connection</button>
+    <button class="button button-block button-positive icon-left ion-social-twitter" ng-click="twitter()">#conisoft2016</button>
+    <button class="button button-block button-positive icon-left ion-code" ng-click="developersInfo()">Developers info</button>  
+  </div>
+
   </ion-content>
 </ion-view>

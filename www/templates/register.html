@@ -1,5 +1,16 @@
 <ion-view view-title="Register">
   <ion-content>
-    <h1>Register</h1>
+  <div class="qr-container">
+    <qrcode class="qrCode" data="{{user.$id}}" size="190"></qrcode>
+  </div>
+    
+    <div class="list card user-status">
+      <div class="item">
+        <h2>Payment Status: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.paymentStatus}}</span>
+      </div>
+      <div class="item">
+        <h2>Kit Delivered: </h2><span ng-class="{ 'green': user.payment.kitDelivered }">{{user.payment.kitDelivered}}</span>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

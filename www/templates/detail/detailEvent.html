@@ -33,5 +33,8 @@
     <button class="button icon-right ion-minus-round" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]">
       Remove FROM my agenda  
     </button>
+    <button class="button button-assertive" ng-click="openReviewModal()" ng-hide="user.conferencesReviewed[eventId]">
+      Review this event
+    </button>
   </ion-content>
 </ion-view>

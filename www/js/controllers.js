@@ -1,1 +1,1 @@
-angular.module('conisoft16.controllers', []);
+angular.module('conisoft16.controllers', ['ngCordova']);

@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+      <button class="button" ng-click="reviewModal.hide()">CLOSE</button>
+    </div>
+  <h1 class="title">{{'review.review_header' | translate}}</h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Comment</span>
+        <input type="text" placeholder="Comment" ng-model="review.comment">
+      </label>
+      <div class="item range range-positive">
+        <i class="icon ion-sad-outline"></i>
+        <input type="range" name="volume" min="0" max="5" value="0" ng-model="review.value">
+        <i class="icon ion-happy-outline"></i>
+      </div>
+
+    </div>
+    <button class="button" ng-click="reviewConference(eventId)" ng-disabled="!review.value">Review This conference</button>
+  </ion-content>
+</ion-modal-view>

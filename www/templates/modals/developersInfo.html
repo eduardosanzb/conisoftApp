@@ -1,0 +1,26 @@
+<ion-modal-view>
+  <<ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button" ng-click="closeDevelopersInfoModal()">Close</button>
+    </div>
+    <h1 class="title">{{'aboout.developers_header' | translate}}</h1>
+
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+        
+        <div class="card" onclick="window.open('https://twitter.com/eduardosanzb', '_system', 'location=yes'); return false;">
+          <div class="item item-divider">Team Leader</div>
+          <div class="item item-text-wrap item-icon-left"><i class="icon ion-social-twitter"></i>@eduardosanzb</div>
+        </div>
+        <div class="card" onclick="window.open('https://twitter.com/PacoMS13', '_system', 'location=yes'); return false;">
+          <div class="item item-divider">Team Member</div>
+          <div class="item item-text-wrap item-icon-left"><i class="icon ion-social-twitter"></i>@erickFrancisco</div>
+        </div>
+        <div class="card" onclick="window.open('https://twitter.com/iAlexSanz', '_system', 'location=yes'); return false;">
+          <div class="item item-divider">Design Consultant</div>
+          <div class="item item-text-wrap item-icon-left"><i class="icon ion-social-twitter"></i>@iAlexSanz</div>
+        </div>
+    </div>
+  </ion-content>
+</ion-modal-view>
