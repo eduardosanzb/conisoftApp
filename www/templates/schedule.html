@@ -5,9 +5,9 @@
     </ion-refresher>
     <h4> {{ 'schedule.month' | translate}} 2016 </h4>
     <div class="button-bar">
-      <a class="button" ng-click="selectDay(1461733200000)">27</a>
-      <a class="button" ng-click="selectDay(1461819600000)">28</a>
-      <a class="button" ng-click="selectDay(1461906000000)">29</a>
+      <a class="button" ng-class="{'active': theDay == 1461733200000}" ng-click="selectDay(1461733200000)">27</a>
+      <a class="button" ng-class="{'active': theDay == 1461819600000}" ng-click="selectDay(1461819600000)">28</a>
+      <a class="button" ng-class="{'active': theDay == 1461906000000}" ng-click="selectDay(1461906000000)">29</a>
     </div>
     <ion-list >
       <div ng-repeat="hour in hours">

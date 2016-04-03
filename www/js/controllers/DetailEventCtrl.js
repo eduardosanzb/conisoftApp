@@ -90,12 +90,16 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
         $scope.event = data;
         $scope.speakers = Conferences.getSpeakers($scope.eventId);
     });
-    var userId = $localStorage.getObject('userProfile').uid;
-    Users.get(userId).$loaded().then(function(data) {
-        $scope.user = data;
-        console.log(data)
-        $ionicLoading.hide();
-    });
+    if($localStorage.getObject('userProfile') != null){
+        var userId = $localStorage.getObject('userProfile').uid;
+        Users.get(userId).$loaded().then(function(data) {
+            $scope.user = data;
+            console.log(data)
+            
+        });
+    $ionicLoading.hide();
+    }
+    
 
     /* MODIFIERS OF USER SECTION */
     $scope.reviewConference = function(eventId){

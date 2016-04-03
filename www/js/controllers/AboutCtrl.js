@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
     .controller('AboutCtrl', AboutCtrl);
 
-function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, NgMap, clipboard, $ionicPopup) {
+function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, NgMap, $ionicPopup) {
     NgMap.getMap().then(function(map) {
         console.log(map.getCenter());
         console.log('markers', map.markers);
@@ -12,18 +12,16 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         launchnavigator.navigate([19.047918, -98.216632]);
     }
     $scope.wifiSettings = function() {
+        cordova.plugins.clipboard.copy("wifi_password");
         $ionicPopup.confirm({
             title: 'Connecting to Wifi',
             template: 'The Password is in the clipboard, connect to wifi: UPAEP EVENTOS'
         }).then(function(res) {
             if (res) {
-                cordova.plugins.settings.openSetting("wifi",
-                    function() {
-                        clipboard.copyText('wifi_password')
-                    },
-                    function() {
-                        console.log("failed to open wifi settings")
-                    });
+                if(ionic.Platform.isIOS())
+                    cordova.plugins.settings.open()
+                else
+                    cordova.plugins.settings.openSetting("wifi");
             } else {
 
             }
@@ -60,4 +58,4 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     }
 
 }
-AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap", "clipboard", "$ionicPopup"];
+AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap","$ionicPopup"];

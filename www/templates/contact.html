@@ -1,6 +1,8 @@
 <ion-view view-title="Contact">
   <ion-content>
-    <h1>Contact</h1>
-      <button ng-click="sendFeedback()">send ir</button>
+    <div class="buttons-container">
+      <button class="button button-block button-positive icon-left ion-email" ng-click="sendEmail()">Contact us</button>  
+      <button class="button button-block button-positive icon-left ion-android-call" onclick="window.location.href='tel: +5212225242892' ">Call us</button>
+    </div>
   </ion-content>
 </ion-view>

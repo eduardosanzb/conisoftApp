@@ -2,15 +2,18 @@ angular.module('conisoft16.controllers')
     .controller('ContactCtrl', ContactCtrl);
 
 
-function ContactCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage,$cordovaEmailComposer) {
+function ContactCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage) {
+  $scope.body
+  $scope.sendEmail = function(){
+    cordova.plugins.email.open({
+      to: "eduardosanzb@gmail.com",
+      subject: "Conisfot contact from App"
+    });
+  }
 
-  $cordovaEmailComposer.isAvailable().then(function() {
-   console.log('avaliable');
- }, function () {
-   console.log('not avaliable');
- });
 
-  //cordova.plugins.email.open();
-  $cordovaEmailComposer.open();
+  $scope.makeCall = function(){
+    document.location.href = 'tel:+1-800-555-1234';
+  }
 }
-ContactCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$cordovaEmailComposer"];
+ContactCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage"];
