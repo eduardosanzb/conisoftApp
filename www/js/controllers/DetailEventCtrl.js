@@ -95,10 +95,9 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
         Users.get(userId).$loaded().then(function(data) {
             $scope.user = data;
             console.log(data)
-            
         });
-    $ionicLoading.hide();
     }
+    $ionicLoading.hide();
     
 
     /* MODIFIERS OF USER SECTION */

@@ -27,13 +27,13 @@
     </a>
   </div>
  
-    <button class="button icon-right ion-plus" ng-click="addToAgenda(eventId)" ng-if="!user.mySchedule[eventId]">
+    <button class="button icon-right ion-plus" ng-click="addToAgenda(eventId)" ng-show="user" ng-if="!user.mySchedule[eventId]">
       add TO my agenda  
     </button>
-    <button class="button icon-right ion-minus-round" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]">
+    <button class="button icon-right ion-minus-round" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]" ng-show="user">
       Remove FROM my agenda  
     </button>
-    <button class="button button-assertive" ng-click="openReviewModal()" ng-hide="user.conferencesReviewed[eventId]">
+    <button class="button button-assertive" ng-click="openReviewModal()" ng-if="!user.conferencesReviewed[eventId]" ng-show="user">
       Review this event
     </button>
   </ion-content>

@@ -13,7 +13,7 @@
 
                 <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.login.email.$invalid  && form.login.email.$touched || form.login.email.$invalid && form.login.$submitted}">
                     <span class="input-label">Email</span>
-                    <input name="email" type="text" placeholder="juan@mail.com" ng-model="user.email" required>
+                    <input name="email" type="email" placeholder="juan@mail.com" ng-model="user.email" required>
                     <div class="form-errors" ng-messages="form.login.email.$error" ng-if="form.login.email.$touched && form.login.email.$invalid">
                                 <div class="form-error-red" ng-message="required">Required</div>
                     </div>

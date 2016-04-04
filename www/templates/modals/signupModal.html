@@ -24,7 +24,7 @@
                 
                 <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : (firstPage.email.$invalid  && firstPage.email.$touched) }">
                     <span class="input-label">{{ 'login.email_label' | translate }}</span>
-                    <input name="email" type="text" placeholder="{{ 'login.email_placeholder' | translate }}" ng-model="user.email" required="">
+                    <input name="email" type="email" placeholder="{{ 'login.email_placeholder' | translate }}" ng-model="user.email" required="">
                     <div class="form-errors" ng-messages="firstPage.name.$error" ng-if="firstPage.email.$touched && firstPage.email.$invalid">
                                 <div class="form-error-red" ng-message="required">Required</div>
                     </div>

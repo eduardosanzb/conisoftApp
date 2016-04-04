@@ -15,33 +15,33 @@ function DetailSpeakerCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoadin
          */
         $ionicViewSwitcher.nextDirection('back');
         var prevState = $stateParams.prevState.split(".");
-        switch(prevState[0]){
+        switch (prevState[0]) {
             case 'app':
                 $state.go("app." + prevState[1]);
                 break;
             case 'detailEvent':
-                if((prevState[2] == 'detailSpeaker') || (prevState[2] == 'detailEvent')){
-                   $state.go('detailEvent',{
-                        id:prevState[1],
+                if ((prevState[2] == 'detailSpeaker') || (prevState[2] == 'detailEvent')) {
+                    $state.go('detailEvent', {
+                        id: prevState[1],
                         prevState: prevState[2] + '.' + prevState[3]
-                    }); 
+                    });
                 } else {
-                    $state.go('detailEvent',{
-                        id:prevState[1],
-                        prevState:'app.' + prevState[2]
+                    $state.go('detailEvent', {
+                        id: prevState[1],
+                        prevState: 'app.' + prevState[2]
                     });
                 }
                 break;
             case 'detailSpeaker':
-               if((prevState[2] == 'detailSpeaker') || (prevState[2] == 'detailEvent')){
-                   $state.go('detailSpeaker',{
-                        id:prevState[1],
+                if ((prevState[2] == 'detailSpeaker') || (prevState[2] == 'detailEvent')) {
+                    $state.go('detailSpeaker', {
+                        id: prevState[1],
                         prevState: prevState[2] + '.' + prevState[3]
-                    }); 
+                    });
                 } else {
-                    $state.go('detailSpeaker',{
-                        id:prevState[1],
-                        prevState:'app.' + prevState[2]
+                    $state.go('detailSpeaker', {
+                        id: prevState[1],
+                        prevState: 'app.' + prevState[2]
                     });
                 }
                 break;
@@ -51,23 +51,28 @@ function DetailSpeakerCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoadin
     $scope.goToDetailEvent = function(eventId) {
         $ionicViewSwitcher.nextDirection('forward'); // 'forward', 'back', etc.
         var prevState = $stateParams.prevState.split(".");
-        $state.go('detailEvent',{
-            id:eventId,
-            prevState:'detailSpeaker.'+$stateParams.id + "."+ prevState[1]+"."+prevState[1]
+        $state.go('detailEvent', {
+            id: eventId,
+            prevState: 'detailSpeaker.' + $stateParams.id + "." + prevState[1] + "." + prevState[1]
         })
     }
 
     $ionicLoading.show();
     var prevState = $stateParams.prevState.split(".");
-    if(prevState[0] != 'app'){
+    if (prevState[0] != 'app') {
         $scope.flagStop = true;
     }
     $scope.speaker = Speakers.get($stateParams.id);
-    Speakers.allConferences($scope.speaker.$id).$loaded().then(function(data){
+    Speakers.allConferences($scope.speaker.$id).$loaded().then(function(data) {
         $scope.speaker.conferences = data;
-        $scope.user = Users.get($localStorage.getObject('userProfile').uid);
-        $ionicLoading.hide();
     });
+    if ($localStorage.getObject('userProfile') != null) {
+        Users.get($localStorage.getObject('userProfile').uid).$loaded().then(function(user) {
+            $scope.user = user;
+        })
+    }
+    $ionicLoading.hide();
+
 
 }
-DetailSpeakerCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$stateParams", "$ionicViewSwitcher","Speakers", "Users"];
+DetailSpeakerCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$stateParams", "$ionicViewSwitcher", "Speakers", "Users"];
