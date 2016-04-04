@@ -26,8 +26,6 @@ If you want to see the **mockups** go [ahead](https://github.com/eduardosanzb/co
   - ionic plugin add https://github.com/apache/cordova-plugin-whitelist.git
 - Inappbrowser
   - cordova plugins add https://github.com/bez4pieci/Phonegap-Cookies-Plugin.git
-- phonegap barcodeScanner 
-  - phonegap plugin add phonegap-plugin-barcodescanner
 - ngCordova
   - bower install ngCordova
   - https://github.com/driftyco/ng-cordova
@@ -39,7 +37,17 @@ If you want to see the **mockups** go [ahead](https://github.com/eduardosanzb/co
   - cordova plugin add org.apache.cordova.network-information
 - Searcher bar 
  - bower install ionic-filter-bar
-
+- Crosswalk
+ - add form ionic
+- email composer
+ - **Add this one**
+ - cordova plugin add https://github.com/hypery2k/cordova-email-plugin.git
+- network information
+ - cordova plugin add cordova-plugin-network-information
+- clipboard
+ - cordova plugin add https://github.com/VersoSolutions/CordovaClipboard.git
+- native settings
+ - cordova plugin add https://github.com/deefactorial/Cordova-open-native-settings.git
 
  
 ***
