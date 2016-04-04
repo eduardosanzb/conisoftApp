@@ -4,7 +4,9 @@ angular.module('conisoft16.controllers')
 ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda","Users"];
 
 function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda,Users) {
-    /*  FUNCTIONS IN THIS CONTROLLER
+    /*  Template:   templates/schedule.html
+     *  $state:     app.schedule
+     *  FUNCTIONS IN THIS CONTROLLER
      *  - NAVIGATION SECTION
      *      + goToPrevState()  -> Will get the prevstate from the $stateParams and create a $state.go() to the previous
      *  - RETRIEVE DATA SECTION

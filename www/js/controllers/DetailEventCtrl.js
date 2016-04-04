@@ -1,21 +1,24 @@
 angular.module('conisoft16.controllers')
     .controller('DetailEventCtrl', DetailEventCtrl);
 function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $stateParams, $ionicViewSwitcher, Conferences, Users, Reviews) {
-    /*  FUNCTIONS IN THIS CONTROLLER
+    /*  Template:   templates/detail/detailEvent.html
+     *  $state:     detailEvent
+     *  FUNCTIONS IN THIS CONTROLLER
      *  - NAVIGATION SECTION
-     *      + goToPrevState()  -> Will get the prevstate from the $stateParams and create a $state.go() to the previous
+     *      + goToPrevState()
+     *      + goToDetailSpeaker(speakerId)
      *  - RETRIEVE DATA SECTION
      *      + Will fire a $ionicLoading, afaterwards will get two sections of the data:
-     *        - The Event data -> For filling up the view
-     *        - The User data -> For deciding if we want to add/delete this event
+     *        - The Event data 
+     *        - The User data 
      *          + After success loading data, will hide the spinner
      *  - MODIFIERS OF USER SECTION
-     *      + addToAgenda() -> Will add the event to the agenda of the user
-     *      + removeFromAgenda() -> Will delete the event form the agenda of the user
+     *      + reviewConference(conferenceID)
+     *      + addToAgenda() 
+     *      + removeFromAgenda() 
      */
 
-    /* NAVGAION SECTION */
-    
+    /* NAVGAION SECTION */ 
     $scope.goToPrevState = function() {
         /*
          *  This Function generate the Agenda by using a service that connects to Firebase
@@ -25,6 +28,7 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
          *  2.- ForEach conference append the speakers
          *  3.- Save in LocalStorage
          *  4.- Hide the Spinner
+         *  THIS FUNCTION IS OVER PROGRAMMED, BUT IM TOOO LAZY TO REFACTOR, IS WORKING SO I'LL LEAVE IT.
          */
         $ionicViewSwitcher.nextDirection('back');
         var prevState = $stateParams.prevState.split(".");
@@ -59,10 +63,19 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
                 }
                 break;
         }
-
     }
 
     $scope.goToDetailSpeaker = function(speakerId) {
+        /*  Strategy:
+         *  1. Set the direction of the navigation
+         *  2. Split the parameters of the previos navigation
+         *  3. choose if i have to navigate to a main view (app.something)
+         *      or to a detail view (detailSomething)
+         *  4. go to it, if is detail use a prevstate and an id  
+         *
+         *  AGAIN OVER THINKED, BECAUSE I WANTED TO ACHIEVE SOMETHING MORE COMPELX BUT THEN I JUST STOP
+         *   I NEED THIS ON PRODUCTION ASAP, SO I SHORT THE SCOPE OF THIS
+         */
         $ionicViewSwitcher.nextDirection('forward'); // 'forward', 'back', etc.
         var prevState = $stateParams.prevState.split(".");
         if(prevState[0] == "app"){
@@ -80,16 +93,21 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
 
     /* RETRIEVE DATA SECTION */
     $ionicLoading.show();
-
     var prevState = $stateParams.prevState.split(".");
     if(prevState[0] != 'app'){
+        /*  THIS VARAIBLE WILL TELL IF WE HAVE TO STOP THE NAVIGATION
+         *      IF THE PREVIOUS-PREVIOUS NAVIGATION IS A DETAILSOMETHING THE NAVIGATION WILL STOP
+         */
         $scope.flagStop = true;
     }
+    /* THIS IS THE EVENTID FROM THE PREVIOUS STATE*/
     $scope.eventId = $stateParams.id;
+    /* GET THE CONFERENCE INFO UPDATED AND ALSO ALL HIS SPEAKERS*/
     Conferences.get($scope.eventId).$loaded().then(function(data) {
         $scope.event = data;
         $scope.speakers = Conferences.getSpeakers($scope.eventId);
     });
+    /*IF THE USER IS NOT LOGGED-IN WE HAVE TO BE ABLE TO LET HIM SEE ALL THE INFO.*/
     if($localStorage.getObject('userProfile') != null){
         var userId = $localStorage.getObject('userProfile').uid;
         Users.get(userId).$loaded().then(function(data) {
@@ -98,7 +116,6 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
         });
     }
     $ionicLoading.hide();
-    
 
     /* MODIFIERS OF USER SECTION */
     $scope.reviewConference = function(eventId){
@@ -120,7 +137,6 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
         $scope.reviewModal.hide();
         $ionicLoading.hide();
     }
-
     $scope.addToAgenda = function(eventId) {
         if (!$scope.user.mySchedule) {
             console.log("No events");

@@ -1,14 +1,18 @@
 <ion-modal-view>
-<ion-header-bar align-title="left" class="bar-positive">
-<h1 class="title center">{{'reference.reference_header' | translate}}</h1>
-</ion-header-bar>
-<ion-content>
-<div class="list">
-    <label class="item item-input">
-        <span class="input-label">Reference Number</span>
-        <input type="text" ng-model="referenceNumber">
-    </label>
-    <button class="button button-assertive" ng-click="addReference(referenceNumber)">Add reference</button>
-</div>
-</ion-content>
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button icon-left ion-close" ng-click="cancel()"></button>
+    </div>
+    <h1 class="title center">{{'reference.reference_header' | translate}}</h1>
+  </ion-header-bar>
+  
+  <ion-content>
+    <div class="list">
+        <label class="item item-input">
+            <span class="input-label">Reference Number</span>
+            <input type="text" ng-model="referenceNumber">
+        </label>
+        <button class="button button-assertive" ng-click="addReference(referenceNumber)">Add reference</button>
+    </div>
+  </ion-content>
 </ion-modal-view>

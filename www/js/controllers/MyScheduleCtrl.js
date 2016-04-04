@@ -3,9 +3,23 @@ angular.module('conisoft16.controllers')
 
 
 function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, Users, myAgenda) {
-
+    /*  Template:   templates/mySchedule.html
+     *  $state:     app.myschedule
+     *
+     *  FUNCTIONS IN THIS CONTROLLER
+     *  - NAVIGATION SECTION
+     *      + goToDetailEvent()
+     *  - MODIFIERS
+     *    + selectDay(daySelected)
+     *    + doRefresh
+     *    +createSchedule()
+     *  - DATA LOGIC SECTION
+     */
 
     $scope.createTheSchedule = function() {
+      /*  Strategy:
+       *  1. Create the agenda from firebase
+       */
         Users.getMySchedule($localStorage.getObject('userProfile').uid).$loaded().then( function(mySchedule){
           mySchedule.forEach( function(item){
               item.speakers = Conferences.getSpeakers(item.$id);
@@ -36,6 +50,10 @@ function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
     };
 
     $scope.goToDetailEvent = function(eventId) {
+        /*  Strategy:
+         *  1. Set the direction of the navigation
+         *  4. go to it, if is detail use a prevstate and an id
+         */
         $ionicViewSwitcher.nextDirection('forward'); // 'forward', 'back', etc.
         $state.go('detailEvent', {
             id: eventId,
@@ -44,8 +62,11 @@ function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
     }
 
     $ionicLoading.show();
+    /* THIS IS THE DEFAULT DAY */
     $scope.theDay = 1461733200000; // 04/27/2016
+    /* FOR THE HOURS ITEM-DIVIDERS IN THE VIEW */
     $scope.hours = Hours;
+    /* THIS IS A RESOLVE SERVICE FORM THE APP.JS WITH THE AGENDA */
     myAgenda.$loaded().then( function(data){
       data.forEach( function(item){
         item.speakers = Conferences.getSpeakers(item.$id);

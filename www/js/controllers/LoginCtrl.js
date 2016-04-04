@@ -2,8 +2,9 @@ angular.module('conisoft16.controllers')
     .controller('LoginCtrl', LoginCtrl);
 
 function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users, $http) {
-
-    /*  FUNCTIONS IN THIS CONTROLLER
+    /*  Template:   templates/login.html
+     *  $state:     app.login
+     *  FUNCTIONS IN THIS CONTROLLER
      *  - LOGIN / SIGNUP / RESETPASSWORD SECTION
      *      + resetPassword(userEmail) -> Will fire up a FBAuth object for reset a password and will send an email with a temp pass.
      *      + login(user)   -> with an email & password will create a firebaseAuth connection && AuthObject
