@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 // 'firebase' will inject all the firebase and angularFire functions to our app
 
-angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'firebase', 'conisoft16.services', 'conisoft16.filters', 'pascalprecht.translate', 'jett.ionic.scroll.sista', 'ion-affix', 'ion-sticky', 'ion-floating-menu', 'jett.ionic.filter.bar','ngMap','angular-clipboard','monospaced.qrcode'])
+angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'firebase', 'conisoft16.services', 'conisoft16.filters', 'angular.filter',  'pascalprecht.translate', 'jett.ionic.scroll.sista', 'ion-affix', 'ion-sticky', 'ion-floating-menu', 'jett.ionic.filter.bar','ngMap','angular-clipboard','monospaced.qrcode'])
 
 
 .constant('FirebaseUrl', "https://conisoft16.firebaseio.com/")
@@ -131,6 +131,8 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
     })
 
 
+
+
     .state('resetPassword', {
         url: '/reset',
         templateUrl: 'templates/resetPassword.html',
@@ -210,34 +212,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
         controller: "DetailSpeakerCtrl"
     })
 
-    .state('app.myschedule', {
-        url: '/myschedule',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/mySchedule.html',
-                controller: 'MyScheduleCtrl',
-                resolve: {
-                    "currentAuth": function(Auth, $state, $ionicPopup) {
-                        Auth.$requireAuth().then(function(data) {
-                            console.log(data);
-                        }).catch(function(error) {
-                            $ionicPopup.confirm({
-                                title: 'No login',
-                                content: 'You need to be logged in to access'
-                            });
-                            $state.go('login');
-                            console.log(error);
-                        });
-                    },
-                    "myAgenda": function(Users, $localStorage, Conferences) {
-                        var userId = $localStorage.getObject('userProfile').uid;
-                        var conferences = Users.getMySchedule($localStorage.getObject('userProfile').uid)
-                        return conferences;
-                    }
-                }
-            }
-        }
-    })
+
 
     .state('app.speakers', {
         url: '/speakers',

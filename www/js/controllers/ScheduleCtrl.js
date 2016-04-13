@@ -2,9 +2,9 @@ angular.module('conisoft16.controllers')
     .controller('ScheduleCtrl', ScheduleCtrl);
 
 
-ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$timeout", "$ionicModal", "$ionicLoading", "$ionicScrollDelegate", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda", "Users","$ionicHistory","$ionicPlatform","userAgenda"];
+ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$timeout", "$ionicModal", "$ionicLoading", "$ionicScrollDelegate", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda", "Users","$ionicHistory","$ionicPlatform","userAgenda","currentAuth"];
 
-function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicLoading, $ionicScrollDelegate, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda, Users, $ionicHistory, $ionicPlatform, userAgenda) {
+function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicLoading, $ionicScrollDelegate, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda, Users, $ionicHistory, $ionicPlatform, userAgenda, currentAuth) {
     /*  Template:   templates/schedule.html
      *  $state:     app.schedule
      *  FUNCTIONS IN THIS CONTROLLER
@@ -88,9 +88,8 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
      *  3.- Check if the agenda is in cache memory; If not we will create the agenda with a function
      */
     $ionicLoading.show({
-        template: ' <ion-spinner icon="ripple" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
-    }
-    );
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+    });
     $scope.theDay = 1461733200000; // 04/27/2016
     $scope.hours = Hours;
 
@@ -104,6 +103,7 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
             $scope.user = userAgenda;
           }
           $scope.conferences = conferences
+          $localStorage.setObject('conferences',conferences);
           $ionicLoading.hide();
         });
     } else {
@@ -114,6 +114,10 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
             $ionicLoading.hide();
         }
     }
-
+    $scope.MYMENU =  function(){
+        $state.go('app.myschedule', {
+            prevState: 'app.schedule'
+        })
+    }
 
 } //END CONTROLLER
