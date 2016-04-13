@@ -12,15 +12,76 @@ $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
-$dark:                            #444 !default;
+$dark:                            #444 !default; 004b95
 */
+
+$dark:                          #094982 !default;
+
+.bar-dark .button.active, .bar-dark .button.activated {
+    background-color: #004b95;
+} 
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
-@import "www/lib/ionic/scss/ionic";
+@import "www/lib/ionic/scss/ionic", "www/lib/ionic-scroll-sista/scss/ionic.scroll.sista";
 
+@font-face {
+    font-family: 'ProximaNovaCond Light';
+    src: url('../fonts/ProximaNovaCond-Light.eot?#iefix') format('embedded-opentype'),  url('../fonts/ProximaNovaCond-Light.otf')  format('opentype'),
+    url('../fonts/ProximaNovaCond-Light.woff') format('woff'), url('../fonts/ProximaNovaCond-Light.ttf')  format('truetype'), url('../fonts/ProximaNovaCond-Light.svg#ProximaNovaCond-Light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProximaNovaCond';
+    src: url('../fonts/ProximaNovaCond-Regular.eot?#iefix') format('embedded-opentype'),  url('../fonts/ProximaNovaCond-Regular.otf')  format('opentype'),
+    url('../fonts/ProximaNovaCond-Regular.woff') format('woff'), url('../fonts/ProximaNovaCond-Regular.ttf')  format('truetype'), url('../fonts/ProximaNovaCond-Regular.svg#ProximaNovaCond-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.item .item-content, .menu-close {
+    border:none;
+    background: transparent;
+    color:#000;
+    font-family: "ProximaNovaCond Light";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size:20px;
+    padding:30px 49px 30px 30px;
+}
+
+.menu-close {
+    border:none;
+    background: transparent;
+    color:#fff;
+    font-family: "ProximaNovaCond Light";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size:20px;
+    padding:30px 49px 30px 30px;
+}
+
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: #000;
+    font-weight: 500;
+    font-family: "ProximaNovaCond", sans-serif;
+    line-height: 1.2;
+}
+
+.bar-dark .button {
+    border-color: transparent;
+    background-color: #376D9C;
+    color: #fff;
+}
+
+.bar-dark .button.active, .bar-dark .button.activated {
+    background-color: #094982;
+} 
 
 label.item.has-error-red {
   border-bottom: 3px solid #f53838; }
@@ -30,9 +91,45 @@ label.item.has-error-red {
   color: #ef473a; 
 }
 
+
+#floating-button .icon.menu-icon {
+    color: #fff;
+}
+
+.top-menu-default, .title{
+    color:#fff;
+    font-family: "ProximaNovaCond";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size:18px;
+    margin:2px 0px 0px 0px;
+    text-align:center !important;
+}
+
+.tabs-top > .tabs, .tabs.tabs-top {
+    top: 42px;
+    
+}
+
+.menu-left .arrow {
+    background: url('../img/icon_arrow_right.png') 0px 0px no-repeat;
+    width:47px;
+    height:9px;
+    margin-right:7px;
+    position:relative;
+    top:-2px;
+    display: inline-block;
+}
+
 /* LIST ITEMS CSS */
+
+.conference h2{
+  color: $dark;
+    font-size:20px;
+}
 .icon-list-item{
-  font-size: 35px !important;
+  color: $dark;
+  font-size: 28px !important;
   float:right;
 }
 .disabled {

@@ -1,0 +1,28 @@
+<ion-view>
+    <ion-content delegate-handle="home_items" class="home-bg">
+        <img id="home-cover" src="images/cover1.jpg" class="full-image"/>
+        <div style="margin-top:-45%;" class="text-center">
+            <span style="display:inline-block; padding:0px 45px" ng-click="home_scroll()" href="javascript:void(0);"><img style="width:8px;" src="images/icon_arrow_down.png"/></span>
+        </div>
+        <div id="home-items" class="text-center home-links" style="padding-top:40%; padding-bottom:20px;">
+            <a nav-clear menu-close href="#/news">
+                <span ng-show="isItemActive('/news')" class="arrow"></span> News feed
+            </a>
+            <a nav-clear menu-close href="#/artists">
+                <span ng-show="isItemActive('/artists')" class="arrow"></span> Line-up
+            </a>
+            <a nav-clear menu-close href="#/travel">
+                <span ng-show="isItemActive('/travel')" class="arrow"></span> Travel
+            </a>
+            <a nav-clear menu-close href="#/map">
+                <span ng-show="isItemActive('/map')" class="arrow"></span> Map
+            </a>
+            <a nav-clear menu-close href="#/places">
+                <span ng-show="isItemActive('/places')" class="arrow"></span> Eat And Drink
+            </a>
+            <a nav-clear menu-close href="#/friends">
+                <span ng-show="isItemActive('/friends')" class="arrow"></span> Friends
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
