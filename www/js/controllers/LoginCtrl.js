@@ -69,6 +69,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             email: user.email,
             password: user.password
         }).then(function(data) {
+            console.log("logged with: " + data)
             Users.get(data.auth.uid).$loaded().then(function(data) {
                 console.log(data);
                 var user = {

@@ -1,11 +1,11 @@
 angular.module('conisoft16.controllers')
     .controller('HomeCtrl', HomeCtrl);
 
-HomeCtrl.$inject = ["$location", "$rootScope", "$scope", "$ionicScrollDelegate", "$state", "$ionicModal", "$ionicLoading", "UnAuth", "$localStorage", "$ionicSideMenuDelegate"];
+HomeCtrl.$inject = ["$location", "$rootScope", "$scope", "$state", "$ionicScrollDelegate", "$ionicModal", "$ionicLoading", "UnAuth", "$localStorage", "$ionicSideMenuDelegate"];
 
 function HomeCtrl($location, $rootScope, $scope, $state, $ionicScrollDelegate, $ionicModal, $ionicLoading, UnAuth, $localStorage, $ionicSideMenuDelegate) {
-    /*  Template:   null
-     *  $state:     app
+    /*  Template:   home.html
+     *  $state:     home
      *
      *  FUNCTIONS IN THIS CONTROLLER
      *   - logout()
