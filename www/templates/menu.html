@@ -57,30 +57,30 @@
             <ion-content>
                 <ion-list>
                     <ion-item class="item-icon-left" menu-close href="#/app/schedule">
-                        <i ng-show="isItemActive('/app/schedule')" class="icon ion-ios-arrow-thin-right"></i> Schedule
+                        <i ng-show="isItemActive('/app/schedule')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.schedule' | translate}}
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="#/app/myschedule">
-                        <i ng-show="isItemActive('/app/myschedule')" class="icon ion-ios-arrow-thin-right"></i> Favorites
+                        <i ng-show="isItemActive('/app/myschedule')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.favorites' | translate}}
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="#/app/speakers">
-                        <i ng-show="isItemActive('/app/speakers')" class="icon ion-ios-arrow-thin-right"></i> Speakers
+                        <i ng-show="isItemActive('/app/speakers')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.speakers' | translate}}
                     </ion-item>
                     <ion-item class="item-icon-left" class="item-icon-left" menu-close href="#/app/contact">
-                        <i ng-show="isItemActive('/app/contact')" class="icon ion-ios-arrow-thin-right"></i> Contact
+                        <i ng-show="isItemActive('/app/contact')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.contact' | translate}}
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="#/app/about">
-                        <i ng-show="isItemActive('/app/about')" class="icon ion-ios-arrow-thin-right"></i> About
+                        <i ng-show="isItemActive('/app/about')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.about' | translate}}
                     </ion-item>
-                    <ion-item class="item-icon-left" menu-close href="#/app/register"><i ng-show="isItemActive('/app/register')" class="icon ion-ios-arrow-thin-right"></i> Register
+                    <ion-item class="item-icon-left" menu-close href="#/app/register"><i ng-show="isItemActive('/app/register')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.register' | translate}}
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="#/app/recomendations">
-                        <i ng-show="isItemActive('/app/recomendations')" class="icon ion-ios-arrow-thin-right"></i> Recomendations
+                        <i ng-show="isItemActive('/app/recomendations')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.recomendations' | translate}}
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="javascript:void(0);" ng-click="logout()" ng-show="flag">
                         <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log Out
                     </ion-item>
-                    <ion-item menu-close ng-click="logout()" ng-hide="flag">
-                      Log In
+                    <ion-item class="item-icon-left" menu-close href="javascript:void(0);" ng-click="logout()" ng-hide="flag">
+                      <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log In
                     </ion-item>
                 </ion-list>
             </ion-content>

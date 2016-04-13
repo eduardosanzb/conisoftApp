@@ -1,4 +1,4 @@
-<ion-view view-title="Register">
+<ion-view view-title="{{'register.header' | translate}}">
   <ion-content>
   <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"> </ion-refresher>
   <div class="qr-container">
@@ -8,18 +8,18 @@
     
     <div class="list card user-status" ng-hide="user.scholarship">
       <div class="item">
-        <h2>Reference Number: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.referenceNumber}}</span>
+        <h2>{{'register.number' | translate}}: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.referenceNumber}}</span>
       </div>
       <div class="item">
-        <h2>Payment Status: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.paymentStatus | paymentStatus}}</span>
+        <h2>{{'register.status' | translate}}: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.paymentStatus | paymentStatus}}</span>
       </div>
       <div class="item">
-        <h2>Kit Delivered: </h2><span ng-class="{ 'green': user.payment.kitDelivered }">{{user.payment.kitDelivered | kitStatus}}</span>
+        <h2>{{'register.kit' | translate}}: </h2><span ng-class="{ 'green': user.payment.kitDelivered }">{{user.payment.kitDelivered | kitStatus}}</span>
       </div>
     </div>
     <div class="list card green" ng-show="user.scholarship">
       <div class="item green">
-        <h2>Payment Status: </h2><span>{{'register.scholarship' | translate}}</span>
+        <h2>{{'register.status' | translate}}: </h2><span>{{'register.scholarship' | translate}}</span>
       </div>
     </div>
   </ion-content>

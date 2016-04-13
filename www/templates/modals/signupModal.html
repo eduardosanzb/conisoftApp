@@ -4,7 +4,7 @@
       <i ng-if="selectModalSlider.currentIndex() == 0" class="icon ion-close-round"></i>
       <i ng-if="selectModalSlider.currentIndex() > 0" class="icon ion-chevron-left"></i>
     </button>
-    <h1 class="title">Select something</h1>
+    <h1 class="title">{{'login.first_modal_header' | translate}}</h1>
     <button ng-click="createUser()" class="button button-balanced" ng-disabled=" user.afiliation == null ">
       <i class="icon ion-checkmark-round"></i>
     </button>

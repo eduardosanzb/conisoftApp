@@ -188,6 +188,10 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                     "agenda": function(Conferences) {
                         var conferences = Conferences.all()
                         return conferences;
+                    },
+                    "userAgenda" : function($localStorage, Users) {
+                        if($localStorage.getObject('userProfile') != null)
+                            return Users.get($localStorage.getObject('userProfile').uid);
                     }
                 }
             }
@@ -396,6 +400,15 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
     $urlRouterProvider.otherwise('/login');
 
     $translateProvider.translations('en', {
+        menu:{
+            schedule:"Schedule",
+            favorites:"Favorites",
+            speakers:"Speakers",
+            contact:"Contact",
+            about:"About",
+            register:"Register",
+            recomendations:"Recomendations"
+        },
         login: {
             header_label: "Login",
             close_nutton: "Close",
@@ -420,34 +433,171 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
             modality_placeholder: "Student",
             country_header: "Countries",
             states_header: "States",
-            modality_header: "Modalities"
+            modality_header: "Modalities",
+            recovery_header:"Recover Pass",
+            recovery_button:"Reset pass"
+
+        },
+        reset:{
+            reset_header:"Reset Pass"
         },
         schedule: {
             schedule_header: "Schedule",
             month: "April",
-            by_speaker: "by"
+            by_speaker: "by",
+            wednesday:"Wednesday",
+            thursday:"Thursday",
+            friday:"Friday"
         },
         mySchedule: {
-            myschedule_header: "My Schedule",
+            name:"Favorites",
+            myschedule_header: "Favorites",
             by_speaker: "by"
         },
-        speakers: {},
-        contact: {},
-        about: {},
-        register: {
-            scholarship: "Scholarship"
+        speakers: {
+            header:"Speakers"
         },
-        recomendations: {}
+        detailSpeaker:{
+            header:"Detail Speaker"
+        },
+        detailEvent:{
+            header:"Detail Event",
+            speaker_divider:"Speaker",
+            remove_button:"Remove Favorites",
+            add_button:"Add Favorites",
+            review_button:"Review Event",
+            description:"Description",
+            sessions:"Sessions"
+        },
+        contact: {
+            header:"Contact",
+            button_mail:"Contact Us",
+            button_call:"Call us"
+        },
+        about: {
+            header:"About",
+            button_drive:"Drive to UPAEP",
+            button_wifi:"Wifi Connection",
+            button_devs:"Developers info",
+            developers_header:"Developers",
+            leader:"Team Leader",
+            member:"Team Member",
+            design:"The UX expert"
+        },
+        register: {
+            scholarship: "Scholarship",
+            header:"Register",
+            status:"Payment Status",
+            number:"Reference Number",
+            kit:"Kit Delivered",
+            button:"Agregar"
+        },
+        recomendations: {},
+        review:{
+            header:"Review",
+            comment:"Comment",
+            button:"Review this Conference"
+        }
     });
 
     $translateProvider.translations('es', {
+        menu:{
+            schedule:"Agenda",
+            favorites:"Favoritos",
+            speakers:"Conferencistas",
+            contact:"Contacto",
+            about:"Acerca de",
+            register:"Registro",
+            recomendations:"Recomendaciones"
+        },
         login: {
-            example: "This is an example of the translations.",
-            country_header: "Paises"
+            header_label: "Login",
+            close_nutton: "Cerrar",
+            email_label: "Correo Electronico",
+            email_placeholder: "juan@mail.com",
+            password_label: "Contraseña",
+            password_placeholder: "******",
+            login_button: "Login",
+            register_button: "Crear una cuenta",
+            first_modal_header: "Registro",
+            name_header: "Nombre",
+            name_placeholder: "Juan",
+            surname_header: "Perez",
+            surname_placeholder: "Perez",
+            country_label: "Pais",
+            country_placeholder: "Mexico",
+            state_header: "Estados",
+            state_label: "Estado",
+            afiliation_label: "Organización",
+            afiliation_placeholder: "UPAEP",
+            modality_label: "Modalidad",
+            modality_placeholder: "Estudiante",
+            country_header: "Paises",
+            states_header: "Estados",
+            modality_header: "Modalidades",
+            recovery_header:"Recuperar Contraseña",
+            recovery_button:"Resetear"
+
+        },
+        reset:{
+            reset_header:"Resetear Contraseña"
         },
         schedule: {
+            schedule_header: "Agenda",
             month: "Abril",
-            by_speaker: "Por"
+            by_speaker: "por",
+            wednesday:"Miercoles",
+            thursday:"Jueves",
+            friday:"Viernes"
+        },
+        mySchedule: {
+            name:"Favoritos",
+            myschedule_header: "Favoritos",
+            by_speaker: "por"
+        },
+        speakers: {
+            header:"Conferencistas"
+        },
+        detailSpeaker:{
+            header:"Detalle Conferencistas"
+        },
+        detailEvent:{
+            header:"Detalle Evento",
+            speaker_divider:"Conferencista",
+            add_button:"Agregar Favoritos",
+            remove_button:"Remover Favoritos",
+            review_button:"Calificar",
+            description:"Descripción",
+            sessions:"Sesiones"
+        },
+        contact: {
+            header:"Contacto",
+            button_mail:"Contactanos",
+            button_call:"Llamanos"
+        },
+        about: {
+            header:"Acerca",
+            button_drive:"Navega a UPAEP",
+            button_wifi:"Wifi Configuración",
+            button_devs:"Desarrolladores",
+            developers_header:"Desarrolladores",
+            leader:"Lider Equipo",
+            memnber:"Miembro Equipo",
+            design:"Experto en UX"
+        },
+        register: {
+            scholarship: "Becas",
+            header:"Registro",
+            status:"Estado del Pago",
+            number:"Numero Referencia",
+            kit:"Kit entregado",
+            button:"Agregar"
+        },
+        recomendations: {},
+        review:{
+            header:"Calificar",
+            comment:"Comentario",
+            button:"Califica esta conferencia"
         }
     });
 

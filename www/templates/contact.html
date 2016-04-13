@@ -1,8 +1,8 @@
-<ion-view view-title="Contact">
+<ion-view view-title="{{'contact.header' | translate}}">
   <ion-content>
     <div class="buttons-container">
-      <button class="button button-block button-positive icon-left ion-email" ng-click="sendEmail()">Contact us</button>  
-      <button class="button button-block button-positive icon-left ion-android-call" onclick="window.location.href='tel: +5212225242892' ">Call us</button>
+      <button class="button button-block button-positive icon-left ion-email" ng-click="sendEmail()">{{'contact.button_mail' | translate}}</button>  
+      <button class="button button-block button-positive icon-left ion-android-call" onclick="window.location.href='tel: +5212225242892' ">{{'contact.button_call' | translate}}</button>
     </div>
   </ion-content>
 </ion-view>

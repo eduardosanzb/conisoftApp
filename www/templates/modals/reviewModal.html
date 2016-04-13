@@ -3,12 +3,12 @@
   <div class="buttons">
       <button class="button" ng-click="reviewModal.hide()">CLOSE</button>
     </div>
-  <h1 class="title">{{'review.review_header' | translate}}</h1>
+  <h1 class="title">{{'review.header' | translate}}</h1>
   </ion-header-bar>
   <ion-content class="padding">
     <div class="list">
       <label class="item item-input item-floating-label">
-        <span class="input-label">Comment</span>
+        <span class="input-label">{{'review.comment' | translate}}</span>
         <input type="text" placeholder="Comment" ng-model="review.comment">
       </label>
       <div class="item range range-positive">
@@ -18,6 +18,6 @@
       </div>
 
     </div>
-    <button class="button" ng-click="reviewConference(eventId)" ng-disabled="!review.value">Review This conference</button>
+    <button class="button" ng-click="reviewConference(eventId)" ng-disabled="!review.value">{{'review.button' | translate}}</button>
   </ion-content>
 </ion-modal-view>

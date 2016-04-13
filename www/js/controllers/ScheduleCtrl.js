@@ -2,9 +2,9 @@ angular.module('conisoft16.controllers')
     .controller('ScheduleCtrl', ScheduleCtrl);
 
 
-ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$timeout", "$ionicModal", "$ionicLoading", "$ionicScrollDelegate", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda", "Users","$ionicHistory","$ionicPlatform"];
+ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$timeout", "$ionicModal", "$ionicLoading", "$ionicScrollDelegate", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda", "Users","$ionicHistory","$ionicPlatform","userAgenda"];
 
-function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicLoading, $ionicScrollDelegate, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda, Users, $ionicHistory, $ionicPlatform) {
+function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicLoading, $ionicScrollDelegate, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda, Users, $ionicHistory, $ionicPlatform, userAgenda) {
     /*  Template:   templates/schedule.html
      *  $state:     app.schedule
      *  FUNCTIONS IN THIS CONTROLLER
@@ -99,13 +99,12 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
             conferences.forEach(function(conference) {
                 conference.speakers = Conferences.getSpeakers(conference.$id);
               });
-          if($localStorage.getObject('userProfile') != null){
-            console.log($localStorage.getObject('userProfile'))
-            $scope.user = Users.get($localStorage.getObject('userProfile').uid)
+          if(userAgenda){
+            console.log(userAgenda)
+            $scope.user = userAgenda;
           }
           $scope.conferences = conferences
           $ionicLoading.hide();
-
         });
     } else {
         if (JSON.stringify($localStorage.getObject('conferences')) == '{}') {

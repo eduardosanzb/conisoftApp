@@ -28,7 +28,7 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
     $state.go('login');
   }
 
-  if($localStorage.getObject('userProfile'))
+  if($localStorage.getObject('userProfile') != null)
     $scope.flag = true;
   else
     $scope.flag = false;
