@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 // 'firebase' will inject all the firebase and angularFire functions to our app
 
-angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'firebase', 'conisoft16.services', 'conisoft16.filters', 'angular.filter',  'pascalprecht.translate', 'jett.ionic.scroll.sista', 'ion-affix', 'ion-sticky', 'ion-floating-menu', 'jett.ionic.filter.bar','ngMap','angular-clipboard','monospaced.qrcode'])
+angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'firebase', 'conisoft16.services', 'conisoft16.filters', 'angular.filter',  'pascalprecht.translate', 'jett.ionic.scroll.sista', 'ion-affix', 'ion-sticky', 'ion-floating-menu', 'jett.ionic.filter.bar','ngMap','angular-clipboard','monospaced.qrcode', 'angularMoment'])
 
 
 .constant('FirebaseUrl', "https://conisoft16.firebaseio.com/")

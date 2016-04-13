@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "angular-clipboard": "^1.3.0",
-    "ion-sticky": "^1.0.5"
+    "ion-sticky": "^1.0.5",
+    "moment": "^2.12.0"
   }
 }

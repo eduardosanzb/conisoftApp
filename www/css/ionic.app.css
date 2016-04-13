@@ -9840,8 +9840,9 @@ label.item.has-error-red {
   background-color: transparent;
   border: none; }
 
-.home-items a {
-  color: #fff !important; }
+.home-items > a {
+  color: #fff !important;
+  font-size: 20px; }
 
 .home-links a,
 .home-links a:visited,
@@ -9854,10 +9855,21 @@ label.item.has-error-red {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 20px;
-  padding: 30px 49px 30px 30px;
   text-decoration: none; }
 
 /* LIST ITEMS CSS */
+.group .item, .group .item-divider, .group h2 {
+  color: #fff;
+  background-color: transparent;
+  border: none; }
+
+.group h2 {
+  color: #fff;
+  font-weight: bold; }
+
+.conference .item {
+  padding: 10px; }
+
 .conference h2 {
   color: #094982;
   font-size: 20px;
@@ -9866,8 +9878,7 @@ label.item.has-error-red {
 .icon-list-item {
   color: #094982;
   font-size: 28px !important;
-  float: right;
-  padding: 0px 0px 0px 0px; }
+  float: right; }
 
 .disabled {
   cursor: not-allowed;

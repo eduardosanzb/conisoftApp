@@ -145,8 +145,10 @@ label.item.has-error-red {
     border: none;
 }
 
-.home-items a{
+.home-items > a{
   color: #fff !important;
+      font-size: 20px;
+
 }
 
 .home-links a,
@@ -160,12 +162,26 @@ label.item.has-error-red {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 20px;
-    padding: 30px 49px 30px 30px;
     text-decoration: none;
 }
 
 
 /* LIST ITEMS CSS */
+.group .item, .group .item-divider, .group h2{
+    color: $light;
+    background-color: transparent;
+    border: none;
+
+}
+
+.group h2,{
+    color: $light;
+    font-weight: bold;
+}
+
+.conference .item{
+        padding: 10px;
+}
 
 .conference h2 {
     color: $calm;
@@ -177,7 +193,6 @@ label.item.has-error-red {
     color: $calm;
     font-size: 28px !important;
     float: right;
-    padding: 0px 0px 0px 0px;
 }
 
 .disabled {

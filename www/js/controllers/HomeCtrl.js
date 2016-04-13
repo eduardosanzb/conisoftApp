@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
     .controller('HomeCtrl', HomeCtrl);
 
-HomeCtrl.$inject = ["$location", "$rootScope", "$scope", "$ionicScrollDelegate", "$state", "$ionicModal", "$ionicLoading", "UnAuth", "$localStorage", "$ionicSideMenuDelegate"];
+HomeCtrl.$inject = ["$location", "$rootScope", "$scope", "$state", "$ionicScrollDelegate", "$ionicModal", "$ionicLoading", "UnAuth", "$localStorage", "$ionicSideMenuDelegate"];
 
 function HomeCtrl($location, $rootScope, $scope, $state, $ionicScrollDelegate, $ionicModal, $ionicLoading, UnAuth, $localStorage, $ionicSideMenuDelegate) {
     /*  Template:   null
@@ -14,7 +14,7 @@ function HomeCtrl($location, $rootScope, $scope, $state, $ionicScrollDelegate, $
 
     $rootScope.home_scroll = function() {
         //$ionicScrollDelegate.$getByHandle('home_items').scrollBottom();
-        $ionicScrollDelegate.scrollBy(0, document.getElementById("home-cover").height + 30, true);
+        $ionicScrollDelegate.scrollBy(0, document.getElementById("home-cover").height, true);
     }
 
     $scope.isItemActive = function(item) {
