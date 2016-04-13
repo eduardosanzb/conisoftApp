@@ -1,28 +1,39 @@
-<ion-view>
+<ion-view view-title="Agenda" class="top-menu-default">
     <ion-content delegate-handle="home_items" class="home-bg">
-        <img id="home-cover" src="images/cover1.jpg" class="full-image"/>
+        <img id="home-cover" src="img/cover1.jpg" class="full-image"/>
         <div style="margin-top:-45%;" class="text-center">
-            <span style="display:inline-block; padding:0px 45px" ng-click="home_scroll()" href="javascript:void(0);"><img style="width:8px;" src="images/icon_arrow_down.png"/></span>
+               <a class="button button-icon icon ion-ios-arrow-thin-down light" ng-click="home_scroll()" href="javascript:void(0);"></a>
+
         </div>
-        <div id="home-items" class="text-center home-links" style="padding-top:40%; padding-bottom:20px;">
-            <a nav-clear menu-close href="#/news">
-                <span ng-show="isItemActive('/news')" class="arrow"></span> News feed
-            </a>
-            <a nav-clear menu-close href="#/artists">
-                <span ng-show="isItemActive('/artists')" class="arrow"></span> Line-up
-            </a>
-            <a nav-clear menu-close href="#/travel">
-                <span ng-show="isItemActive('/travel')" class="arrow"></span> Travel
-            </a>
-            <a nav-clear menu-close href="#/map">
-                <span ng-show="isItemActive('/map')" class="arrow"></span> Map
-            </a>
-            <a nav-clear menu-close href="#/places">
-                <span ng-show="isItemActive('/places')" class="arrow"></span> Eat And Drink
-            </a>
-            <a nav-clear menu-close href="#/friends">
-                <span ng-show="isItemActive('/friends')" class="arrow"></span> Friends
-            </a>
+        <div id="home-items" class="text-center home-links" style="padding-top:40%; padding-bottom:10px;">
+            
+                    <ion-item class="home-items" menu-close href="#/app/schedule">
+                        <i ng-show="isItemActive('/app/schedule')" class="icon ion-ios-arrow-thin-right"></i> Schedule
+                    </ion-item>
+                    <ion-item class="home-items" menu-close href="#/app/myschedule">
+                        <i ng-show="isItemActive('/app/myschedule')" class="icon ion-ios-arrow-thin-right"></i> Favorites
+                    </ion-item>
+                    <ion-item class="home-items" menu-close href="#/app/speakers">
+                        <i ng-show="isItemActive('/app/speakers')" class="icon ion-ios-arrow-thin-right"></i> Speakers
+                    </ion-item>
+                    <ion-item class="home-items" class="item-icon-left" menu-close href="#/app/contact">
+                        <i ng-show="isItemActive('/app/contact')" class="icon ion-ios-arrow-thin-right"></i> Contact
+                    </ion-item>
+                    <ion-item class="home-items" menu-close href="#/app/about">
+                        <i ng-show="isItemActive('/app/about')" class="icon ion-ios-arrow-thin-right"></i> About
+                    </ion-item>
+                    <ion-item class="home-items" menu-close href="#/app/register"><i ng-show="isItemActive('/app/register')" class="icon ion-ios-arrow-thin-right"></i> Register
+                    </ion-item>
+                    <ion-item class="home-items" menu-close href="#/app/recomendations">
+                        <i ng-show="isItemActive('/app/recomendations')" class="icon ion-ios-arrow-thin-right"></i> Recomendations
+                    </ion-item>
+                    <ion-item class="home-items" menu-close href="javascript:void(0);" ng-click="logout()" ng-show="flag" style="color: #fff !important;">
+                        <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log Out
+                    </ion-item>
+                    <ion-item class="home-items" menu-close ng-click="logout()" ng-hide="flag" style="color: #fff !important;">
+                        Log In
+                    </ion-item>
+               
         </div>
     </ion-content>
 </ion-view>

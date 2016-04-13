@@ -87,7 +87,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
                 $localStorage.setObject('userProfile', user);
                 $scope.selectModal.hide();
                 $ionicLoading.hide();
-                $state.go('app.schedule');
+                $state.go('home');
             });
 
         }).catch(function(error) {
@@ -137,7 +137,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         });
     };
     $scope.closeLogin = function() {
-        $state.go('app.schedule');
+        $state.go('home');
     }
 
 

@@ -17,8 +17,9 @@
     },
     "cordova-plugin-whitelist": {
         "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist"
+            "type": "git",
+            "url": "https://github.com/apache/cordova-plugin-whitelist.git",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
@@ -128,6 +129,15 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-crosswalk-webview"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.bez4pieci.cookies": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bez4pieci/Phonegap-Cookies-Plugin.git",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}

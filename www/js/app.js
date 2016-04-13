@@ -131,6 +131,13 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
        
     })
 
+    .state('home', {
+        url: '/home',
+        templateUrl: 'templates/home.html',
+        controller: 'HomeCtrl'
+       
+    })
+
 
     .state('resetPassword', {
         url: '/reset',

@@ -16,6 +16,7 @@ $dark:                            #444 !default; 004b95
 */
 
 $calm: #094982 !default;
+$dark: #001733 !default;
 .bar-calm .button.active,
 .bar-calm .button.activated {
     background-color: #004b95;
@@ -133,21 +134,50 @@ label.item.has-error-red {
 }
 
 
+/* HOME CSS */
+
+.home-bg {
+    background: $dark;
+}
+
+.home-items {
+    background-color: transparent;
+    border: none;
+}
+
+.home-items a{
+  color: #fff !important;
+}
+
+.home-links a,
+.home-links a:visited,
+.home-links a:focus {
+    display: block;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-family: "ProximaNovaCond Light";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+    padding: 30px 49px 30px 30px;
+    text-decoration: none;
+}
+
 
 /* LIST ITEMS CSS */
 
 .conference h2 {
     color: $calm;
     font-size: 20px;
-        font-weight: bold;
+    font-weight: bold;
 }
 
 .icon-list-item {
     color: $calm;
     font-size: 28px !important;
     float: right;
-        padding: 0px 0px 0px 0px;
-
+    padding: 0px 0px 0px 0px;
 }
 
 .disabled {
