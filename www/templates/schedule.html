@@ -1,40 +1,44 @@
-
-<ion-view view-title="Schedule">
-  <ion-content>
-    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
-    </ion-refresher>
-    <h4> {{ 'schedule.month' | translate}} 2016 </h4>
-    <div class="button-bar">
-      <a class="button" ng-class="{'active': theDay == 1461733200000}" ng-click="selectDay(1461733200000)">27</a>
-      <a class="button" ng-class="{'active': theDay == 1461819600000}" ng-click="selectDay(1461819600000)">28</a>
-      <a class="button" ng-class="{'active': theDay == 1461906000000}" ng-click="selectDay(1461906000000)">29</a>
-    </div>
-    <ion-list >
-      <div ng-repeat="hour in hours">
-        <ion-item class="item item-divider" >
-        {{hour}}:00 Hrs
-        </ion-item>
-  
-        <div class="item" ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }"  ng-click="goToDetailEvent(conference.$id)">
-          <div>
-            {{conference.name}}
-            <div class="icon-list-item" ng-if="user.mySchedule[conference.$id]"><i class="ion-checkmark-circled"></i></div>
-          </div>
-          <div ng-repeat="speaker in conference.speakers">
-            <p> {{'schedule.by_speaker' | translate}} {{speaker.name}} </p>
-          </div>
-          <p> {{conference.location}} </p>
+<ion-view view-title="Agenda" class="top-menu-default">
+    <div class="tabs-striped tabs-top tabs-background-dark tabs-color-light">
+        <div class="tabs">
+            <a class="tab-item" ng-class="{'active': theDay == 1461733200000}" ng-click="selectDay(1461733200000); scrollTop()">
+            Miercoles
+            </a>
+            <a class="tab-item" ng-class="{'active': theDay == 1461819600000}" ng-click="selectDay(1461819600000); scrollTop()">
+            Jueves
+            </a>
+            <a class="tab-item" ng-class="{'active': theDay == 1461906000000}" ng-click="selectDay(1461906000000); scrollTop()">
+            Viernes
+            </a>
         </div>
-
-
-        
-      </div>
-      
-      
-
-    </ion-list>
-    <div ng-repeat-end=""></div>
-
-
-  </ion-content>
+    </div>
+    <ion-floating-button click="myEvent()" has-footer="false" button-color="#094982" icon="ion-ios-heart" iconColor="#fff" menu-toggle="right">
+    </ion-floating-button>
+    <ion-content class="has-subheader" delegate-handle="homeScroll">
+        <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="lines" pulling-icon="ion-ios-arrow-thin-down">
+        </ion-refresher>
+        <div ng-repeat="hour in hours">
+            <div class="group-list">
+                <ion-list>
+                    <ion-item class="item item-divider" ion-affix data-affix-within-parent-with-class="group-list">
+                        {{hour}}:00 Hrs.
+                    </ion-item>
+                    <div class="item" ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }" ng-click="goToDetailEvent(conference.$id)">
+                        <div class="row conference">
+                            <div class="col col-75">
+                                <h2>{{conference.name}}</h2>
+                                <div ng-repeat="speaker in conference.speakers">
+                                    <p> {{'schedule.by_speaker' | translate}} {{speaker.name}} </p>
+                                </div>
+                                <p> {{conference.location}} </p>
+                            </div>
+                            <div class="col icon-list-item">
+                                <i ng-class="user.mySchedule[conference.$id] ? 'ion-ios-heart' : 'ion-ios-heart-outline'"></i>
+                            </div>
+                        </div>
+                    </div>
+                    </>
+            </div>
+            <div ng-repeat-end=""></div>
+    </ion-content>
 </ion-view>

@@ -1,15 +1,21 @@
 angular.module('conisoft16.controllers')
 .controller('AppCtrl', AppCtrl);
 
-
-function AppCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth, $localStorage){
+AppCtrl.$inject = ["$location", "$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading","UnAuth","$localStorage", "$ionicSideMenuDelegate"];
+function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth, $localStorage, $ionicSideMenuDelegate){
   /*  Template:   null
      *  $state:     app
      *
      *  FUNCTIONS IN THIS CONTROLLER
      *   - logout()
      */
-     
+
+
+    $scope.isItemActive = function(item) {
+        return $location.path().indexOf(item) > -1;
+    };
+
+
   $scope.logout = function(){
     /*  STRATEGY:
      *  1. Destroy the authorization object of firebase
@@ -21,9 +27,14 @@ function AppCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth,
     $localStorage.setObject('userProfile',null);
     $state.go('login');
   }
+
   if($localStorage.getObject('userProfile'))
     $scope.flag = true;
   else
     $scope.flag = false;
+
+
+      $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
+
+
 }
-AppCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading","UnAuth","$localStorage"];
