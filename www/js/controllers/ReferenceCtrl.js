@@ -16,12 +16,10 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
         $state.go('app.schedule');
     }
     $scope.number = {};
-    $scope.addScholarship = function(scholarshipNumber) {
-       var theScholarship = Scholarships.get(scholarshipNumber);
-       
-       
+    $scope.addScholarship = function(scholarshipNumber) {       
        Scholarships.get(scholarshipNumber).$loaded()
        .then(function(data){
+            console.log(data)
             if(data.status != null){
                 if(data.status){
                     Scholarships.ref().child(scholarshipNumber).child("status").set(false);
