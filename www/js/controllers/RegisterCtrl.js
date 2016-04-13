@@ -31,7 +31,7 @@ function RegisterCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
     });
   };
 
-  $ionicLoading.show();
+  //$ionicLoading.show();
   $scope.getData();
   
 }

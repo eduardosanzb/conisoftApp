@@ -292,6 +292,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                 resolve: {
                     "currentAuth": function(Auth, $state, $ionicPopup) {
                         Auth.$requireAuth().then(function(data) {
+                            console.log("WE have");
                             //$state.go('app.register');
                         }).catch(function(error) {
                             $ionicPopup.confirm({
@@ -302,11 +303,16 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                             console.log(error);
                         });
                     },
-                    "referenceNumber": function(Users, $localStorage, $state, $http, $ionicLoading) {
-                        $ionicLoading.show();
+                    "referenceNumber": function(Users, $localStorage, $state, $ionicLoading) {
+                        console.log("wtf");
+                        console.log(Users.get($localStorage.getObject('userProfile').uid) );
+                        //$ionicLoading.show();
                         Users.get($localStorage.getObject('userProfile').uid).$loaded().then(function(user) {
+                            console.log(user)
+                            console.log("Looking for the user info");
                             if (!user.payment.referenceNumber) {
                                 /*There is a new user thus doesnt have a reference number*/
+                                console.log("=(");
                                 $ionicLoading.hide();
                                 $state.go('uploadReference')
                             } else {
@@ -315,8 +321,9 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                                  *  And update the value of user.payment.paymentStatus with the value of the http request
                                  *  Dont forget to $save()
                                  */
+                                console.log("we have reference");
                                 $ionicLoading.hide();
-                                return user
+                                return user;
                             }
                             $ionicLoading.hide();
                         });
