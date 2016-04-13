@@ -5,13 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 // 'firebase' will inject all the firebase and angularFire functions to our app
-angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'firebase', 'conisoft16.services', 'pascalprecht.translate', 'jett.ionic.filter.bar','ngMap','angular-clipboard','monospaced.qrcode'])
+angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'firebase', 'conisoft16.services', 'conisoft16.filters', 'pascalprecht.translate', 'jett.ionic.filter.bar', 'ngMap', 'angular-clipboard', 'monospaced.qrcode'])
 
 .constant('FirebaseUrl', "https://conisoft16.firebaseio.com/")
 
 
 
-.run(function($ionicPlatform, $localStorage, $rootScope, $ionicPopup, Auth) {
+.run(function($ionicPlatform, $localStorage, $rootScope, $ionicPopup, Auth, $state, $ionicHistory) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -23,7 +23,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
-        
+
         //Device language
         var locale = 'en';
         if (navigator.language) {
@@ -34,6 +34,25 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
 
             }
         }
+
+
+    //     var backButton = $ionicPlatform.registerBackButtonAction(function(event) {
+    //     if (true) {
+    //         switch($state.current.name){
+    //             case "app.schedule":
+    //                 ionic.Platform.exitApp();
+    //             break;
+    //             case "app.mySchedule":
+    //                 $state.go('app.schedule');
+    //             break;
+    //             case "detailEvent":
+
+    //             break;
+    //         }
+    //     }
+    // }, 100);
+    //$scope.$on('$destroy', backButton);
+        
 
     });
 })
@@ -49,6 +68,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
             /* controller will not be loaded until $waitForAuth resolves*/
             "currentAuth": function(Auth, $localStorage, Users, $state) {
                 /* $waitForAuth returns a promise so the resolve waits for it to complete */
+
                 return Auth.$requireAuth().then(function(data) {
                     /*  In the existence of a valid Auth in the phone.
                      *  1. We will create/update the $localStorage userProfile
@@ -58,7 +78,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                     if (data.password.isTemporaryPassword) {
                         $state.go('resetPassword');
                     }
-                    if (!($localStorage.get('userProfile'))) {
+                    if (($localStorage.get('userProfile')) == null) {
                         Users.get(data.auth.uid).$loaded().then(function(data) {
                             console.log(data);
                             var user = {
@@ -82,7 +102,20 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                     $state.go('app.schedule');
 
                 }, function(error) {
-                    console.log(error);
+                    console.log("Error from app.js resolve login: " + error);
+                    if ($localStorage.getObject('userProfile') != null) {
+                        var user = $localStorage.getObject('userProfile');
+                        console.log(user);
+                        Auth.$authWithPassword({
+                            email: user.email,
+                            password: user.password
+                        }).then(function(authData) {
+                            console.log("Logged in as:", authData.uid);
+                            $state.go('app.schedule');
+                        }).catch(function(error) {
+                            console.error("Authentication failed:", error);
+                        });
+                    }
                 });
             }
         }
@@ -150,9 +183,9 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                             console.log(error);
                         });
                     },
-                    "agenda" : function(Conferences){
-                      var conferences = Conferences.all()
-                      return conferences;
+                    "agenda": function(Conferences) {
+                        var conferences = Conferences.all()
+                        return conferences;
                     }
                 }
             }
@@ -190,10 +223,10 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                             console.log(error);
                         });
                     },
-                    "myAgenda": function(Users,$localStorage,Conferences){
-                      var userId = $localStorage.getObject('userProfile').uid;
-                      var conferences = Users.getMySchedule($localStorage.getObject('userProfile').uid)
-                      return conferences;
+                    "myAgenda": function(Users, $localStorage, Conferences) {
+                        var userId = $localStorage.getObject('userProfile').uid;
+                        var conferences = Users.getMySchedule($localStorage.getObject('userProfile').uid)
+                        return conferences;
                     }
                 }
             }
@@ -217,11 +250,11 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                             console.log(error);
                         });
                     },
-                    "speakersList": function(Speakers){
-                  return Speakers.all();
+                    "speakersList": function(Speakers) {
+                        return Speakers.all();
+                    }
                 }
-                }
-                
+
             }
         }
     })
@@ -269,10 +302,10 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                             console.log(error);
                         });
                     },
-                    "referenceNumber": function(Users, $localStorage, $state, $http, $ionicLoading){
+                    "referenceNumber": function(Users, $localStorage, $state, $http, $ionicLoading) {
                         $ionicLoading.show();
-                        Users.get($localStorage.getObject('userProfile').uid).$loaded().then(function(user){
-                            if(!user.payment.referenceNumber){
+                        Users.get($localStorage.getObject('userProfile').uid).$loaded().then(function(user) {
+                            if (!user.payment.referenceNumber) {
                                 /*There is a new user thus doesnt have a reference number*/
                                 $ionicLoading.hide();
                                 $state.go('uploadReference')
@@ -282,9 +315,10 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                                  *  And update the value of user.payment.paymentStatus with the value of the http request
                                  *  Dont forget to $save()
                                  */
-                                 $ionicLoading.hide();
-                                 return user
+                                $ionicLoading.hide();
+                                return user
                             }
+                            $ionicLoading.hide();
                         });
                     }
                 }
@@ -292,12 +326,12 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
         }
     })
 
-    .state('uploadReference',{
+    .state('uploadReference', {
         url: '/reference',
         templateUrl: 'templates/reference.html',
-        controller:'ReferenceCtrl',
-        resolve:{
-            "referencesList":function(References){
+        controller: 'ReferenceCtrl',
+        resolve: {
+            "referencesList": function(References) {
                 return References.all();
             }
         }
@@ -391,7 +425,9 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
         speakers: {},
         contact: {},
         about: {},
-        register: {},
+        register: {
+            scholarship: "Scholarship"
+        },
         recomendations: {}
     });
 

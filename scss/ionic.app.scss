@@ -21,6 +21,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+/*ProfilePic*/
+.profile-pic {
+  height: 200px;
+  widht: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 
 label.item.has-error-red {
   border-bottom: 3px solid #f53838; }

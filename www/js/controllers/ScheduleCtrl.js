@@ -1,9 +1,9 @@
 angular.module('conisoft16.controllers')
     .controller('ScheduleCtrl', ScheduleCtrl);
 
-ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda","Users"];
+ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda","Users", "$ionicHistory","$ionicPlatform"];
 
-function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda,Users) {
+function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda,Users, $ionicHistory,$ionicPlatform) {
     /*  Template:   templates/schedule.html
      *  $state:     app.schedule
      *  FUNCTIONS IN THIS CONTROLLER
@@ -21,6 +21,7 @@ function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
 
 
     /* Functions Declarations */
+
     $scope.createTheSchedule = function() {
         Conferences.all().$loaded(function(conferences) {
             /*
@@ -86,6 +87,7 @@ function ScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
                 conference.speakers = Conferences.getSpeakers(conference.$id);
               });
           if($localStorage.getObject('userProfile') != null){
+            console.log($localStorage.getObject('userProfile'))
             $scope.user = Users.get($localStorage.getObject('userProfile').uid)
           }
           $scope.conferences = conferences

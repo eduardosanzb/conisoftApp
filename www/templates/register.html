@@ -1,15 +1,25 @@
 <ion-view view-title="Register">
   <ion-content>
+  <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"> </ion-refresher>
   <div class="qr-container">
-    <qrcode class="qrCode" data="{{user.$id}}" size="190"></qrcode>
+    <qrcode class="qrCode" data="{{user.$id}}" size="190" ng-hide="user.profilePicture"></qrcode>
+    <img class="profile-pic" data-ng-src="data:image/png;base64,{{user.profilePicture}}" ng-show="user.profilePicture" >
   </div>
     
-    <div class="list card user-status">
+    <div class="list card user-status" ng-hide="user.scholarship">
       <div class="item">
-        <h2>Payment Status: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.paymentStatus}}</span>
+        <h2>Reference Number: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.referenceNumber}}</span>
       </div>
       <div class="item">
-        <h2>Kit Delivered: </h2><span ng-class="{ 'green': user.payment.kitDelivered }">{{user.payment.kitDelivered}}</span>
+        <h2>Payment Status: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.paymentStatus | paymentStatus}}</span>
+      </div>
+      <div class="item">
+        <h2>Kit Delivered: </h2><span ng-class="{ 'green': user.payment.kitDelivered }">{{user.payment.kitDelivered | kitStatus}}</span>
+      </div>
+    </div>
+    <div class="list card green" ng-show="user.scholarship">
+      <div class="item green">
+        <h2>Payment Status: </h2><span>{{'register.scholarship' | translate}}</span>
       </div>
     </div>
   </ion-content>

@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; *; style-src  &apos;self&apos; &apos;unsafe-inline&apos; *">
+
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://* http://*      'unsafe-inline' 'unsafe-eval'">
     <title></title>
 
 
@@ -29,6 +30,7 @@
 
     <!-- www/libs -->
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyBUq0SrkozQPtJE3SEruSSPXnFEP9I9RDQ"></script>
+
     <script src="lib/ngmap/build/scripts/ng-map.min.js"></script>
     <script src="lib/angular-clipboard/angular-clipboard.js"></script>
     <script src="lib/angular-qrcode/angular-qrcode.js"></script>
@@ -59,6 +61,8 @@
 
     <!-- services -->
     <script src="js/services/services.js"></script>
+    <!-- filters -->
+    <script src="js/filters/filters.js"></script>
 
    
   </head>

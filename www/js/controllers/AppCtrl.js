@@ -9,6 +9,7 @@ function AppCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth,
      *  FUNCTIONS IN THIS CONTROLLER
      *   - logout()
      */
+     
   $scope.logout = function(){
     /*  STRATEGY:
      *  1. Destroy the authorization object of firebase
@@ -20,5 +21,9 @@ function AppCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth,
     $localStorage.setObject('userProfile',null);
     $state.go('login');
   }
+  if($localStorage.getObject('userProfile'))
+    $scope.flag = true;
+  else
+    $scope.flag = false;
 }
 AppCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading","UnAuth","$localStorage"];

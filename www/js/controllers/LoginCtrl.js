@@ -2,7 +2,7 @@ angular.module('conisoft16.controllers')
     .controller('LoginCtrl', LoginCtrl);
 
 function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users, $http) {
-    /*  Template:   templates/login.html
+ /*  Template:   templates/login.html
      *  $state:     app.login
      *  FUNCTIONS IN THIS CONTROLLER
      *  - LOGIN / SIGNUP / RESETPASSWORD SECTION
@@ -25,8 +25,16 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
      *      + ResetPassword
      */
 
+     console.log($localStorage.getObject('userProfile'));
+     var test = $localStorage.getObject('userProfile');
+     if(test == null)
+        console.log("it is null");
+    if(test == '{}')
+        console.log('{}')
+    if(test == {})
+        console.log('wtf')
 
-    /*LOGIN / SIGNUP / RESETPASSWORD SECTION*/
+ /*LOGIN / SIGNUP / RESETPASSWORD SECTION*/
     $scope.resetPassword = function(userEmail) {
         $ionicLoading.show();
         Auth.$resetPassword({
@@ -109,7 +117,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
                 referenceNumber: false,
                 registerFlag: false
             },
-            my_conferences: {}
+            my_conferences: {},
+            diploma: false
         }
 
         Auth.$createUser(newUser).then(function(userData) {
@@ -132,7 +141,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     }
 
 
-    /*FILTER BAR SECTION*/
+ /*FILTER BAR SECTION*/
     var filterBarInstance;
     $scope.showFilterBar = function() {
         filterBarInstance = $ionicFilterBar.show({

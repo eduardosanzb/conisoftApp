@@ -40,7 +40,10 @@
         <ion-item menu-close href="#/app/recomendations">
           Recomendations
         </ion-item>
-        <ion-item menu-close ng-click="logout()">
+        <ion-item menu-close ng-click="logout()" ng-hide="flag">
+          Log In
+        </ion-item>
+        <ion-item menu-close ng-click="logout()" ng-show="flag">
           Log Out
         </ion-item>
 

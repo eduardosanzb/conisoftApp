@@ -3,6 +3,7 @@ angular
     .factory('$localStorage', $localStorage)
     .factory('Conferences', Conferences)
     .factory('References', References)
+    .factory('Scholarships', Scholarships)
     .factory('Speakers', Speakers)
     .factory('Countries', Countries)
     .factory('Users', Users)
@@ -52,7 +53,7 @@ function $localStorage($window) {
             $window.localStorage[key] = JSON.stringify(value);
         },
         getObject: function(key) {
-            return JSON.parse($window.localStorage[key] || '{}');
+            return JSON.parse($window.localStorage[key] || 'null');
         }
     }
 }
@@ -196,3 +197,24 @@ function Countries(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
     }
 }
 Countries.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject', '$rootScope'];
+
+
+function Scholarships(FirebaseUrl, $firebaseArray, $firebaseObject){
+    var ref = new Firebase(FirebaseUrl + "scholarships/");
+    return {
+        all: function(){
+            return $firebaseArray(ref);
+        },
+        get: function(id){
+            return $firebaseObject(ref.child(id));
+        },
+        ref : function(){
+            return ref;
+        }
+    }
+}
+Scholarships.$inject = ['FirebaseUrl', '$firebaseArray', '$firebaseObject'];
+
+
+
+

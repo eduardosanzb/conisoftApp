@@ -7,12 +7,21 @@
   </ion-header-bar>
   
   <ion-content>
+  <div class="list">
+        <label class="item item-input">
+            <span class="input-label">Scholarsip</span>
+            <input type="text" ng-model="number.scholarship">
+        </label>
+        <button class="button button-assertive" ng-click="addScholarship(number.scholarship)" ng-disabled="!number.scholarship">Add Scholarship</button>
+    </div>
     <div class="list">
         <label class="item item-input">
             <span class="input-label">Reference Number</span>
-            <input type="text" ng-model="referenceNumber">
+            <input type="text" ng-model="number.referenceNumber">
         </label>
-        <button class="button button-assertive" ng-click="addReference(referenceNumber)">Add reference</button>
+        <button class="button button-assertive" ng-click="addReference(number.referenceNumber)" ng-disabled="!number.referenceNumber">Add reference</button>
     </div>
+
+
   </ion-content>
 </ion-modal-view>

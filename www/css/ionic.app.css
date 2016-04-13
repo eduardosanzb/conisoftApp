@@ -9731,6 +9731,14 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+/*ProfilePic*/
+.profile-pic {
+  height: 200px;
+  widht: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
+
 label.item.has-error-red {
   border-bottom: 3px solid #f53838; }
 
