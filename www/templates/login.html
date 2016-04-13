@@ -30,11 +30,11 @@
             
             <div>
                 <button class="button button-stable button-block " ng-click="login(user)" ng-disabled="form.login.$invalid">Log in</button>
-                <a  class="button button-positive button-clear button-block " style="font-size: small;!important" ng-click="openRecoveryPasswordModal()">I Forgot my password</a>    
+                <a  class="button button-positive button-clear button-block " style="font-size: small;!important" ng-click="openRecoveryPasswordModal()">{{'login.recovery_button' | translate}}</a>    
             </div>
             <div class="spacer" style="height: 10px;"></div>
 
-            <a href="#/signup" class="button button-positive button-clear button-block " ng-click="openModal()">Or create an account</a>
+            <a href="#/signup" class="button button-positive button-clear button-block " ng-click="openModal()">{{'login.recovery_register_button' | translate}}</a>
         </form>
     </div>
   </ion-content>

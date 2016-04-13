@@ -18,23 +18,24 @@
   </div>
   <div class="list">
      <div class="item item-divider">
-        {{'detail.event.speaker-divider' | translate}}    
+        {{'detailEvent.speaker_divider' | translate}}    
     </div>
     <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
-            <img src="speaker.picture">
+            <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
+            <img src="/img/default-profile.png" ng-if="!speaker.picture">
             <h2>{{speaker.name}}</h2>
             <p>{{speaker.description}}</p>
     </a>
   </div>
  
     <button class="button icon-right ion-plus" ng-click="addToAgenda(eventId)" ng-show="user" ng-if="!user.mySchedule[eventId]">
-      add TO my agenda  
+      {{'detailEvent.add_button' | translate}}    
     </button>
     <button class="button icon-right ion-minus-round" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]" ng-show="user">
-      Remove FROM my agenda  
+      {{'detailEvent.remove_button' | translate}}    
     </button>
     <button class="button button-assertive" ng-click="openReviewModal()" ng-if="!user.conferencesReviewed[eventId]" ng-show="user">
-      Review this event
+      {{'detailEvent.review_button' | translate}}    
     </button>
   </ion-content>
 </ion-view>

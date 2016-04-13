@@ -20,7 +20,9 @@ function SpeakersCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
         })
     }
 
-    $ionicLoading.show();
+    $ionicLoading.show({
+        template: ' <ion-spinner icon="ripple" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+    });
     speakersList.$loaded().then(function(data) {
         $scope.speakers = data;
         $ionicLoading.hide();

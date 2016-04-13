@@ -1,14 +1,15 @@
+<!-- 
 <ion-view view-title="My Favorites">
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
             <div class="group" ng-repeat="(key, value) in conferences | groupBy:'date'">
-                <!--======================= Group Day =====================-->
+                <!--======================= Group Day =====================
                 <div class="item item-divider dark-bg" ion-affix data-affix-within-parent-with-class="group">
                     {{key}}
                 </div>
-                <!--======================= Item List =====================-->
+                <!--======================= Item List =====================
                 <div class="item conference" ng-repeat="conference in value | orderBy:{startTime:hour }">
                     
                             <div class="row ">
@@ -24,4 +25,36 @@
             </div>
             <div ng-repeat-end=""></div>
     </ion-content>
-</ion-view>
+
+</ion-view> -->
+
+
+<!--Menu Right-->
+    <ion-side-menu side="right" style="background-color: #444;">
+        <ion-header-bar class="bar-dark">
+            <h1 class="title">Favoritos</h1>
+        </ion-header-bar>
+        <ion-content>
+            <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+            </ion-refresher>
+            <ion-list>
+                <div class="group" ng-repeat="(key, value) in conferences | groupBy:'date'">
+                    <!--======================= Group Day =====================-->
+                    <div class="item item-divider dark-bg" ion-affix data-affix-within-parent-with-class="group">
+                        {{key}}
+                    </div>
+                    <!--======================= Item List =====================-->
+                    <div class="item conference" ng-repeat="conference in value | orderBy:{startTime:hour }">
+                        <div class="row ">
+                            <div class="col col-75">
+                                {{conference.name}}
+                            </div>
+                            <div class="col icon-list-item">
+                                <i ng-class="'ion-ios-heart'"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-repeat-end=""></div>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

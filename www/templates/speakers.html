@@ -2,8 +2,8 @@
   <ion-content>
     <div class="list">
       <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)">
-        <img data-ng-src="data:image/png;base64,{{speaker.picture}}">
-
+        <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
+        <img src="/img/default-profile.png" ng-if="!speaker.picture">
         <h2>{{speaker.name}}</h2>
         <p>{{speaker.description}}</p>
       </a>
