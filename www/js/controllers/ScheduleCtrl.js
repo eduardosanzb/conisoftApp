@@ -88,9 +88,8 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
      *  3.- Check if the agenda is in cache memory; If not we will create the agenda with a function
      */
     $ionicLoading.show({
-        template: ' <ion-spinner icon="ripple" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
-    }
-    );
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+    });
     $scope.theDay = 1461733200000; // 04/27/2016
     $scope.hours = Hours;
 
@@ -116,5 +115,10 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
         }
     }
 
+    $scope.MYMENU =  function(){
+        $state.go('app.myschedule', {
+            prevState: 'app.schedule'
+        })
+    }
 
 } //END CONTROLLER

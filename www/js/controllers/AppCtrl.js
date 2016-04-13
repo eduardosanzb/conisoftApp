@@ -1,9 +1,10 @@
 angular.module('conisoft16.controllers')
-.controller('AppCtrl', AppCtrl);
+    .controller('AppCtrl', AppCtrl);
 
-AppCtrl.$inject = ["$location", "$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading","UnAuth","$localStorage", "$ionicSideMenuDelegate"];
-function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth, $localStorage, $ionicSideMenuDelegate){
-  /*  Template:   null
+AppCtrl.$inject = ["$location", "$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "UnAuth", "$localStorage", "$ionicSideMenuDelegate"];
+
+function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth, $localStorage, $ionicSideMenuDelegate) {
+    /*  Template:   null
      *  $state:     app
      *
      *  FUNCTIONS IN THIS CONTROLLER
@@ -16,25 +17,25 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
     };
 
 
-  $scope.logout = function(){
-    /*  STRATEGY:
-     *  1. Destroy the authorization object of firebase
-     *  2. Clear the $locaStorage object of the userProfile
-     *  3. Redirect the app to the login state
-     */
-    console.log("Good bye");
-    UnAuth.unauth();
-    $localStorage.setObject('userProfile',null);
-    $state.go('login');
-  }
+    $scope.logout = function() {
+        /*  STRATEGY:
+         *  1. Destroy the authorization object of firebase
+         *  2. Clear the $locaStorage object of the userProfile
+         *  3. Redirect the app to the login state
+         */
+        console.log("Good bye");
+        UnAuth.unauth();
+        $localStorage.setObject('userProfile', null);
+        $state.go('login');
+    }
 
-  if($localStorage.getObject('userProfile'))
-    $scope.flag = true;
-  else
-    $scope.flag = false;
+    if ($localStorage.getObject('userProfile'))
+        $scope.flag = true;
+    else
+        $scope.flag = false;
 
 
-      $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
+    $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
 
 
 }

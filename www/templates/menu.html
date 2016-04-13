@@ -19,7 +19,6 @@
     position: absolute;
 }
 
-
 #ios-background {
     filter: blur(10px) brightness(0.90);
     -webkit-filter: blur(10px) brightness(0.90);
@@ -36,7 +35,7 @@
 </style>
 <ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
-        <ion-nav-bar class="bar-dark">
+        <ion-nav-bar class="bar-calm">
             <ion-nav-back-button>
             </ion-nav-back-button>
             <ion-nav-buttons side="left">
@@ -80,11 +79,38 @@
                         <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log Out
                     </ion-item>
                     <ion-item menu-close ng-click="logout()" ng-hide="flag">
-                      Log In
+                        Log In
                     </ion-item>
                 </ion-list>
             </ion-content>
-            <ion-side-menu side="right">
-            </ion-side-menu>
+        </div>
+    </ion-side-menu>
+    <!--Menu Right-->
+    <ion-side-menu side="right" style="background-color: #444;" ng-controller="MyScheduleCtrl">
+        <ion-header-bar class="bar-dark">
+            <h1 class="title">Favoritos</h1>
+        </ion-header-bar>
+        <ion-content>
+            <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+            </ion-refresher>
+            <ion-list>
+                <div class="group" ng-repeat="(key, value) in conferences | groupBy:'date'">
+                    <!--======================= Group Day =====================-->
+                    <div class="item item-divider dark-bg" ion-affix data-affix-within-parent-with-class="group">
+                        {{key}}
+                    </div>
+                    <!--======================= Item List =====================-->
+                    <div class="item conference" ng-repeat="conference in value | orderBy:{startTime:hour }">
+                        <div class="row ">
+                            <div class="col col-75">
+                                {{conference.name}}
+                            </div>
+                            <div class="col icon-list-item">
+                                <i ng-class="'ion-ios-heart'"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-repeat-end=""></div>
+        </ion-content>
     </ion-side-menu>
 </ion-side-menus>

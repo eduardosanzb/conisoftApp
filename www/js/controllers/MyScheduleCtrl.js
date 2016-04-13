@@ -25,15 +25,8 @@ function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
               item.speakers = Conferences.getSpeakers(item.$id);
             });
         $scope.conferences = mySchedule
-        });
-    };
 
-    $scope.selectDay = function(daySelected) {
-        /*
-         *  This function will set the variable that we will use to filter the
-         *      events of the day
-         */
-        $scope.theDay = daySelected;
+        });
     };
 
     $scope.doRefresh = function() {
@@ -61,7 +54,9 @@ function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
         })
     }
 
-    $ionicLoading.show();
+    $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+    });
     /* THIS IS THE DEFAULT DAY */
     $scope.theDay = 1461733200000; // 04/27/2016
     /* FOR THE HOURS ITEM-DIVIDERS IN THE VIEW */
@@ -72,6 +67,8 @@ function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
         item.speakers = Conferences.getSpeakers(item.$id);
       });
       $scope.conferences = data
+
+      console.log("data: ", $scope.conferences);
       $ionicLoading.hide();
     });
 

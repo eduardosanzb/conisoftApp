@@ -15,161 +15,176 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default; 004b95
 */
 
-$dark:                          #094982 !default;
-
-.bar-dark .button.active, .bar-dark .button.activated {
+$calm: #094982 !default;
+.bar-calm .button.active,
+.bar-calm .button.activated {
     background-color: #004b95;
-} 
+}
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-
 // Include all of Ionic
-@import "www/lib/ionic/scss/ionic", "www/lib/ionic-scroll-sista/scss/ionic.scroll.sista";
-
+@import "www/lib/ionic/scss/ionic",
+"www/lib/ionic-scroll-sista/scss/ionic.scroll.sista";
 @font-face {
     font-family: 'ProximaNovaCond Light';
-    src: url('../fonts/ProximaNovaCond-Light.eot?#iefix') format('embedded-opentype'),  url('../fonts/ProximaNovaCond-Light.otf')  format('opentype'),
-    url('../fonts/ProximaNovaCond-Light.woff') format('woff'), url('../fonts/ProximaNovaCond-Light.ttf')  format('truetype'), url('../fonts/ProximaNovaCond-Light.svg#ProximaNovaCond-Light') format('svg');
+    src: url('../fonts/ProximaNovaCond-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/ProximaNovaCond-Light.otf') format('opentype'), url('../fonts/ProximaNovaCond-Light.woff') format('woff'), url('../fonts/ProximaNovaCond-Light.ttf') format('truetype'), url('../fonts/ProximaNovaCond-Light.svg#ProximaNovaCond-Light') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'ProximaNovaCond';
-    src: url('../fonts/ProximaNovaCond-Regular.eot?#iefix') format('embedded-opentype'),  url('../fonts/ProximaNovaCond-Regular.otf')  format('opentype'),
-    url('../fonts/ProximaNovaCond-Regular.woff') format('woff'), url('../fonts/ProximaNovaCond-Regular.ttf')  format('truetype'), url('../fonts/ProximaNovaCond-Regular.svg#ProximaNovaCond-Regular') format('svg');
+    src: url('../fonts/ProximaNovaCond-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/ProximaNovaCond-Regular.otf') format('opentype'), url('../fonts/ProximaNovaCond-Regular.woff') format('woff'), url('../fonts/ProximaNovaCond-Regular.ttf') format('truetype'), url('../fonts/ProximaNovaCond-Regular.svg#ProximaNovaCond-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
-.item .item-content, .menu-close {
-    border:none;
+.item .item-content,
+.menu-close {
+    border: none;
     background: transparent;
-    color:#000;
+    color: #000;
     font-family: "ProximaNovaCond Light";
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size:20px;
-    padding:30px 49px 30px 30px;
+    font-size: 20px;
+    padding: 30px 49px 30px 30px;
 }
 
 .menu-close {
-    border:none;
+    border: none;
     background: transparent;
-    color:#fff;
+    color: #fff;
     font-family: "ProximaNovaCond Light";
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size:20px;
-    padding:30px 49px 30px 30px;
+    font-size: 20px;
+    padding: 30px 49px 30px 30px;
 }
 
-
-body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
     color: #000;
     font-weight: 500;
     font-family: "ProximaNovaCond", sans-serif;
-    line-height: 1.2;
 }
+
 
 /*ProfilePic*/
+
 .profile-pic {
-  height: 200px;
-  widht: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+    height: 200px;
+    widht: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
-.bar-dark .button {
+.bar-calm .button {
     border-color: transparent;
     background-color: #376D9C;
     color: #fff;
 }
 
-.bar-dark .button.active, .bar-dark .button.activated {
+.bar-calm .button.active,
+.bar-calm .button.activated {
     background-color: #094982;
-} 
-
-label.item.has-error-red {
-  border-bottom: 3px solid #f53838; }
-
-.form-error-red {
-  font-size: small;
-  color: #ef473a; 
 }
 
+label.item.has-error-red {
+    border-bottom: 3px solid #f53838;
+}
+
+.form-error-red {
+    font-size: small;
+    color: #ef473a;
+}
 
 #floating-button .icon.menu-icon {
     color: #fff;
 }
 
-.top-menu-default, .title{
-    color:#fff;
+.top-menu-default,
+.title {
+    color: #fff;
     font-family: "ProximaNovaCond";
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size:18px;
-    margin:2px 0px 0px 0px;
-    text-align:center !important;
+    font-size: 18px;
+    margin: 2px 0px 0px 0px;
+    text-align: center !important;
 }
 
-.tabs-top > .tabs, .tabs.tabs-top {
+.tabs-top > .tabs,
+.tabs.tabs-top {
     top: 42px;
-    
 }
 
-.menu-left .arrow {
-    background: url('../img/icon_arrow_right.png') 0px 0px no-repeat;
-    width:47px;
-    height:9px;
-    margin-right:7px;
-    position:relative;
-    top:-2px;
-    display: inline-block;
-}
+
 
 /* LIST ITEMS CSS */
 
-.conference h2{
-  color: $dark;
-    font-size:20px;
-}
-.icon-list-item{
-  color: $dark;
-  font-size: 28px !important;
-  float:right;
-}
-.disabled {
-  cursor: not-allowed;
-  pointer-events: none;
+.conference h2 {
+    color: $calm;
+    font-size: 20px;
+        font-weight: bold;
 }
 
+.icon-list-item {
+    color: $calm;
+    font-size: 28px !important;
+    float: right;
+        padding: 0px 0px 0px 0px;
+
+}
+
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
 /* DETAIL EVENT CSS */
-.event-detail-container{
+
+.event-detail-container {
     background-color: rgb(128, 128, 128);
     color: white !important;
     padding: 15px;
     font-weight: bold !important;
 }
-.event-detail-container h2{
-    color: white !important;
-    font-weight: bold !important;
-}
-.event-detail-container h3{
-    color: white !important;
-    font-weight: bold !important;
-}
-.event-detail-container h4{
-    color: white !important;
-    font-weight: bold !important;
-}
-.description-container{
 
+.event-detail-container h2 {
+    color: white !important;
+    font-weight: bold !important;
 }
+
+.event-detail-container h3 {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.event-detail-container h4 {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.description-container {}
+
 
 /* SPEAKER DETAIL CSS */
+
 .speaker-detail-header {
     background-color: grey;
     padding: 15px;
@@ -177,32 +192,37 @@ label.item.has-error-red {
     font-weight: bold;
 }
 
-.speaker-detail-header img{
+.speaker-detail-header img {
     width: 100px;
     height: 100px;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
-.speaker-detail-header h2{
+
+.speaker-detail-header h2 {
     color: white !important;
     font-weight: bold !important;
     text-align: center;
     margin-top: -10px;
 }
+
 .speaker-description-container {
     font-size: medium;
     padding: 12px;
 }
 
+
 /* ABOUT VIEW CSS */
+
 .the-map-container {
-  height: 210px; 
-  width: 85%; 
-  position: block; 
-  margin-right: auto; 
-  margin-left: auto;
+    height: 210px;
+    width: 85%;
+    position: block;
+    margin-right: auto;
+    margin-left: auto;
 }
+
 .buttons-container {
     width: 80%;
     display: block;
@@ -210,20 +230,24 @@ label.item.has-error-red {
     margin-right: auto;
 }
 
+
 /* REGISTER VIEW CSS */
-.qrCode canvas{
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-.qr-container {
-  margin: 15px;
-  margin-top: 25px;
-}
-.user-status span{
-  color: red;
-}
-.green {
-  color: green !important;
+
+.qrCode canvas {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
+.qr-container {
+    margin: 15px;
+    margin-top: 25px;
+}
+
+.user-status span {
+    color: red;
+}
+
+.green {
+    color: green !important;
+}

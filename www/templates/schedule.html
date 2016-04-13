@@ -1,5 +1,5 @@
 <ion-view view-title="Agenda" class="top-menu-default">
-    <div class="tabs-striped tabs-top tabs-background-dark tabs-color-light">
+    <div class="tabs-striped tabs-top tabs-background-calm tabs-color-light">
         <div class="tabs">
             <a class="tab-item" ng-class="{'active': theDay == 1461733200000}" ng-click="selectDay(1461733200000); scrollTop()">
             Miercoles
@@ -12,7 +12,7 @@
             </a>
         </div>
     </div>
-    <ion-floating-button click="myEvent()" has-footer="false" button-color="#094982" icon="ion-ios-heart" iconColor="#fff" menu-toggle="right">
+    <ion-floating-button click="myEvent()" has-footer="false" button-color="#094982" icon="ion-ios-heart" menu-toggle="right" iconColor="#fff" click="" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : 'ion-ios-heart'">
     </ion-floating-button>
     <ion-content class="has-subheader" delegate-handle="homeScroll">
         <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="lines" pulling-icon="ion-ios-arrow-thin-down">
@@ -23,10 +23,10 @@
                     <ion-item class="item item-divider" ion-affix data-affix-within-parent-with-class="group-list">
                         {{hour}}:00 Hrs.
                     </ion-item>
-                    <div class="item" ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }" ng-click="goToDetailEvent(conference.$id)">
-                        <div class="row conference">
+                    <div class="item conference" ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }" ng-click="goToDetailEvent(conference.$id)">
+                        <h2>{{conference.name}}</h2>
+                        <div class="row ">
                             <div class="col col-75">
-                                <h2>{{conference.name}}</h2>
                                 <div ng-repeat="speaker in conference.speakers">
                                     <p> {{'schedule.by_speaker' | translate}} {{speaker.name}} </p>
                                 </div>
@@ -37,8 +37,9 @@
                             </div>
                         </div>
                     </div>
-                    </>
+                </ion-list>
             </div>
-            <div ng-repeat-end=""></div>
+        </div>
+        <div ng-repeat-end=""></div>
     </ion-content>
 </ion-view>
