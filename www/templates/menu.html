@@ -94,8 +94,8 @@
             <ion-list>
                 <div class="group" ng-repeat="(key, value) in conferences | groupBy:'date'">
                     <!--======================= Group Day =====================-->
-                    <div class="item item-divider dark-bg light" ion-affix data-affix-within-parent-with-class="group">
-                        {{key}}
+                    <div class="item item-divider dark-bg light date-divider" ion-affix data-affix-within-parent-with-class="group">
+                        {{key | date:'mediumDate'}}
                     </div>
                     <!--======================= Item List =====================-->
                     <div class="item conference" ng-repeat="conference in value | orderBy:{startTime:hour }" ng-click="goToDetailEvent(conference.$id)">
