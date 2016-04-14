@@ -86,17 +86,16 @@
         </div>
     </ion-side-menu>
     <!--Menu Right-->
-    <ion-side-menu side="right" class="home-bg">
+    <ion-side-menu side="right" class="menu-bg">
         <!--  <ion-header-bar class="bar-dark">
             <h1 class="title">Favoritos</h1>
         </ion-header-bar> -->
         <ion-content>
-        <br>
-        <br>
-            <ion-list>
-                <div class="group" ng-repeat="(key, value) in conferences | groupBy:'date'">
+        
+            <ion-list class="group">
+                <div  ng-repeat="(key, value) in conferences | groupBy:'date'">
                     <!--======================= Group Day =====================-->
-                    <div class="item item-divider dark-bg light date-divider" ion-affix data-affix-within-parent-with-class="group">
+                    <div class="item item-divider date-divider" ion-affix data-affix-within-parent-with-class="group">
                         {{key | date:'mediumDate'}}
                     </div>
                     <!--======================= Item List =====================-->

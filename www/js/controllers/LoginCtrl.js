@@ -36,7 +36,9 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
 
  /*LOGIN / SIGNUP / RESETPASSWORD SECTION*/
     $scope.resetPassword = function(userEmail) {
-        $ionicLoading.show();
+        $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+    });
         Auth.$resetPassword({
             email: userEmail
         }).then(function() {
@@ -62,8 +64,9 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         return newPass;
     }
     $scope.login = function(user) {
-        $ionicLoading.show();
-        $scope.authData = null;
+$ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+    });        $scope.authData = null;
         $scope.error = null;
         Auth.$authWithPassword({
             email: user.email,
@@ -101,7 +104,9 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         });
     };
     $scope.createUser = function() {
-        $ionicLoading.show();
+        $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+    });
         console.log($scope.user);
         var newUser = {
             email: $scope.user.email,
@@ -207,7 +212,9 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         $scope.selectCountryModal.hide();
     };
     $scope.openCountryModal = function() {
-        $ionicLoading.show();
+        $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+    });
         Countries.all().$loaded().then(function(data) {
             console.log(data);
             $scope.countries = data;
@@ -235,7 +242,9 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         $scope.selectStateModal.hide();
     };
     $scope.openStateModal = function() {
-        $ionicLoading.show();
+        $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+    });
         Countries.mx().$loaded().then(function(data) {
             $scope.states = data;
             $ionicLoading.hide();

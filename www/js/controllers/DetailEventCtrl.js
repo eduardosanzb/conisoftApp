@@ -1,6 +1,6 @@
 angular.module('conisoft16.controllers')
     .controller('DetailEventCtrl', DetailEventCtrl);
-function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $stateParams, $ionicViewSwitcher, Conferences, Users, Reviews) {
+function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicScrollDelegate, $ionicLoading, $localStorage, $stateParams, $ionicViewSwitcher, Conferences, Users, Reviews) {
     /*  Template:   templates/detail/detailEvent.html
      *  $state:     detailEvent
      *  FUNCTIONS IN THIS CONTROLLER
@@ -17,6 +17,9 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
      *      + addToAgenda() 
      *      + removeFromAgenda() 
      */
+
+$ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+
 
     /* NAVGAION SECTION */ 
     $scope.goToPrevState = function() {
@@ -92,8 +95,9 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
     }
 
     /* RETRIEVE DATA SECTION */
-    $ionicLoading.show();
-    var prevState = $stateParams.prevState.split(".");
+    $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+    });    var prevState = $stateParams.prevState.split(".");
     if(prevState[0] != 'app'){
         /*  THIS VARAIBLE WILL TELL IF WE HAVE TO STOP THE NAVIGATION
          *      IF THE PREVIOUS-PREVIOUS NAVIGATION IS A DETAILSOMETHING THE NAVIGATION WILL STOP
@@ -121,7 +125,9 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
     $scope.reviewConference = function(eventId){
         console.log("Reviewing")
         console.log($scope.review)
-        $ionicLoading.show();
+        $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+    });
         if(!$scope.user.conferencesReviewed)
             $scope.user.conferencesReviewed = {}
         $scope.user.conferencesReviewed[eventId] = true;
@@ -177,7 +183,9 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
         $scope.reviewModal = modal;
     });
     $scope.openReviewModal = function(){
-        $ionicLoading.show();
+        $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+    });
         $scope.review = {}
         $scope.review.value = null;
         $scope.review.comment = null;
@@ -185,7 +193,7 @@ function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading,
         $ionicLoading.hide();
     }
 }
-DetailEventCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$stateParams", "$ionicViewSwitcher", "Conferences", "Users", "Reviews"];
+DetailEventCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicScrollDelegate", "$ionicLoading", "$localStorage", "$stateParams", "$ionicViewSwitcher", "Conferences", "Users", "Reviews"];
 
 
 

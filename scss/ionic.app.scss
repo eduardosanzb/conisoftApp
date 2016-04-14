@@ -17,6 +17,8 @@ $dark:                            #444 !default; 004b95
 
 $calm: #094982 !default;
 $dark: #001733 !default;
+$balanced: #129E3A !default;
+
 .bar-calm .button.active,
 .bar-calm .button.activated {
     background-color: #004b95;
@@ -53,7 +55,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding: 30px 49px 30px 30px;
 }
 
-.button{
+.button {
     border-color: #094982;
     background: transparent;
     color: #094982;
@@ -138,9 +140,17 @@ label.item.has-error-red {
     text-align: center !important;
 }
 
+.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top{
+      top: 44px !important;
+}
+
 .tabs-top > .tabs,
 .tabs.tabs-top {
     top: 42px;
+}
+
+.menu-bg {
+    background-color: #0B213C;
 }
 
 
@@ -155,10 +165,9 @@ label.item.has-error-red {
     border: none;
 }
 
-.home-items > a{
-  color: #fff !important;
-      font-size: 20px;
-
+.home-items > a {
+    color: #fff !important;
+    font-size: 20px;
 }
 
 .home-links a,
@@ -177,20 +186,23 @@ label.item.has-error-red {
 
 
 /* LIST ITEMS CSS */
-.group .item, .group .item-divider, .group h2{
+
+.group .item,
+.group .item-divider,
+.group h2 {
     color: $light;
     background-color: transparent;
     border: none;
-
 }
 
-.group h2,{
+.group h2,
+{
     color: $light;
     font-weight: bold;
 }
 
-.conference .item{
-        padding: 10px;
+.conference .item {
+    padding: 10px;
 }
 
 .conference h2 {
@@ -215,6 +227,7 @@ label.item.has-error-red {
 
 .event-detail-container {
     background-color: rgb(128, 128, 128);
+    background-image: url('../img/bg-2.jpg');
     color: white !important;
     padding: 15px;
     font-weight: bold !important;
@@ -235,7 +248,13 @@ label.item.has-error-red {
     font-weight: bold !important;
 }
 
-.description-container {}
+.description-container {
+    color: #094982;
+    overflow: hidden;
+    border: none;
+}
+
+
 
 
 /* SPEAKER DETAIL CSS */
@@ -256,7 +275,7 @@ label.item.has-error-red {
 }
 
 .speaker-detail-header h2 {
-    color: white !important;
+    color: #094982 !important;
     font-weight: bold !important;
     text-align: center;
     margin-top: -10px;
@@ -265,6 +284,11 @@ label.item.has-error-red {
 .speaker-description-container {
     font-size: medium;
     padding: 12px;
+}
+
+.spk-p {
+    overflow: auto !important;
+        white-space: inherit;
 }
 
 
@@ -307,7 +331,7 @@ label.item.has-error-red {
     color: green !important;
 }
 
-.date-divider{
-    background-color: #F5F5F5 !important;
-    color: #001733 !important;
+.date-divider {
+    background-color: #001733 !important;
+    color: $light !important;
 }

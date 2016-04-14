@@ -23,7 +23,8 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
         }
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
+            StatusBar.overlaysWebView( false );
+            StatusBar.styleLight();
         }
 
         //Device language
@@ -59,9 +60,10 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
-    $stateProvider
+.config(function($stateProvider, $ionicConfigProvider, $urlRouterProvider, $translateProvider) {
+    $ionicConfigProvider.backButton.text('').icon('ion-ios-arrow-thin-left');
 
+    $stateProvider
     .state('login', {
         url: '/login',
         templateUrl: 'templates/login.html',

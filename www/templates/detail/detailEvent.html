@@ -1,41 +1,42 @@
-<ion-view view-title="DetailEvent">
-
-<ion-header-bar align-title="left" class="bar-positive">
-  <div class="buttons">
-    <button class="button icon-left ion-chevron-left" ng-click="goToPrevState()"></button>
-  </div>
-  <h1 class="title">{{ 'detailEvent.header' | translate}}</h1>
-  
-</ion-header-bar>
-  <ion-content>
-  <div class="event-detail-container">
-    <h2>{{event.name}}</h1>
-    <h3>{{event.date | date:'EEEE dd MMMM yyyy'}}</h3>
-    <h4>{{event.location}}</h4>
-  </div>
-  <div class="description-container">
-    {{event.description}}
-  </div>
-  <div class="list">
-     <div class="item item-divider">
-        {{'detailEvent.speaker_divider' | translate}}    
-    </div>
-    <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
-            <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
-            <img src="/img/default-profile.png" ng-if="!speaker.picture">
-            <h2>{{speaker.name}}</h2>
-            <p>{{speaker.description}}</p>
-    </a>
-  </div>
- 
-    <button class="button icon-right ion-plus" ng-click="addToAgenda(eventId)" ng-show="user" ng-if="!user.mySchedule[eventId]">
-      {{'detailEvent.add_button' | translate}}    
-    </button>
-    <button class="button icon-right ion-minus-round" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]" ng-show="user">
-      {{'detailEvent.remove_button' | translate}}    
-    </button>
-    <button class="button button-assertive" ng-click="openReviewModal()" ng-if="!user.conferencesReviewed[eventId]" ng-show="user">
-      {{'detailEvent.review_button' | translate}}    
-    </button>
-  </ion-content>
+<ion-view>
+    <ion-header-bar class="bar bar-calm header-item">
+        <button class="button button-icon icon ion-ios-arrow-thin-left" ng-click="goToPrevState()"></button>
+        <h1 class="title">{{ 'detailEvent.header' | translate}}</h1>
+    </ion-header-bar>
+    <ion-content scroll-sista >
+        <div class="event-detail-container">
+            <h2>{{event.name}}</h2>
+            <h3>{{event.date | date:'EEEE dd MMMM yyyy'}}</h3>
+            <h4>{{event.location}}</h4>
+        </div>
+        <div class="item item-body description-container">
+            {{event.description}}
+        </div>
+        <div class="padding">
+                <button class="button button-block button-balanced" ng-click="addToAgenda(eventId)" ng-show="user" ng-if="!user.mySchedule[eventId]">
+                    {{'detailEvent.add_button' | translate}}
+                </button>
+                <button class="button button-block button-outline button-assertive" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]" ng-show="user">
+                    {{'detailEvent.remove_button' | translate}}
+                </button>
+            </div>
+        <div class="list">
+            <div class="item item-divider">
+                {{'detailEvent.speaker_divider' | translate}}
+            </div>
+            <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
+                <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
+                <img src="/img/default-profile.png" ng-if="!speaker.picture">
+                <h2 style="    color: #094982 !important;">{{speaker.name}}</h2>
+                <p class="spk-p">{{speaker.description}}</p>
+            </a>
+        </div>
+        
+            <div class="padding">
+                <button class="button button-block" ng-click="openReviewModal()" ng-if="!user.conferencesReviewed[eventId]" ng-show="user">
+                    {{'detailEvent.review_button' | translate}}
+                </button>
+            </div>
+        
+    </ion-content>
 </ion-view>
