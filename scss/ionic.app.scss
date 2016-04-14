@@ -53,6 +53,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding: 30px 49px 30px 30px;
 }
 
+.button{
+    border-color: #094982;
+    background: transparent;
+    color: #094982;
+    font-family: "ProximaNovaCond Light";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
 .menu-close {
     border: none;
     background: transparent;
@@ -298,6 +308,6 @@ label.item.has-error-red {
 }
 
 .date-divider{
-    background-color: #FFFFFF !important;
+    background-color: #F5F5F5 !important;
     color: #001733 !important;
 }

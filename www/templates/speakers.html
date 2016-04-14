@@ -1,5 +1,7 @@
 <ion-view view-title="Speakers">
   <ion-content>
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="lines" pulling-icon="ion-ios-arrow-thin-down">
+    </ion-refresher>
     <div class="list">
       <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)">
         <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">

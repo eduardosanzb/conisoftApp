@@ -1,6 +1,6 @@
 <ion-view view-title="{{'register.header' | translate}}">
   <ion-content>
-  <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()"> </ion-refresher>
+  <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="lines" pulling-icon="ion-ios-arrow-thin-down"> </ion-refresher>
   <div class="qr-container">
     <qrcode class="qrCode" data="{{user.$id}}" size="190" ng-hide="user.profilePicture"></qrcode>
     <img class="profile-pic" data-ng-src="data:image/png;base64,{{user.profilePicture}}" ng-show="user.profilePicture" >
@@ -8,10 +8,10 @@
     
     <div class="list card user-status" ng-hide="user.scholarship">
       <div class="item">
-        <h2>{{'register.number' | translate}}: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.referenceNumber}}</span>
+        <h2>{{'register.number' | translate}}: </h2><span ng-class="{ 'green': user.payment.referenceNumber }">{{user.payment.referenceNumber}}</span>
       </div>
       <div class="item">
-        <h2>{{'register.status' | translate}}: </h2><span ng-class="{ 'green': user.payment.paymentStatus }">{{user.payment.paymentStatus | paymentStatus}}</span>
+        <h2>{{'register.status' | translate}}: </h2><span ng-class="{ 'green': user.payment.paymentStatus ==1 }">{{user.payment.paymentStatus | paymentStatus}}</span>
       </div>
       <div class="item">
         <h2>{{'register.kit' | translate}}: </h2><span ng-class="{ 'green': user.payment.kitDelivered }">{{user.payment.kitDelivered | kitStatus}}</span>

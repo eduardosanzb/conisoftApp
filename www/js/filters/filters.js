@@ -11,7 +11,7 @@ angular
           }
       }
       return function(status){
-        if (status == 0){
+        if (status == 3){
           if(locale == 'en')
             return "Without Payment"
           else
@@ -21,7 +21,7 @@ angular
             return "Paid"
           else
             return "Pagado"
-        } else if( status == 3){
+        } else if( status == 2){
           if(locale == 'en')
             return "Over Payment"
           else

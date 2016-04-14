@@ -65,11 +65,14 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
         var url2 = "http://upaep.mx/micrositios/preregistro/validate2.php?ref=05700003343889ID1&&cadena=00bfbad873a34daa1f46cc1af772873e534af2ea38e28b2a10044dea3bba1724419457abd26ebfd7ff5f47ebcba14b87"
         console.log(referenceNumber);
         //05840000094436ID9
-        //$ionicLoading.show();
+        $ionicLoading.show({
+            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        });
         $http.get(url).then(function(data){
             console.log("the data is: ");
             console.log(data)
             if(data.data == ""){
+                $ionicLoading.hide();
                  $ionicPopup.alert({
                     title: "This Reference does not exist",
                     template: "Try again please"
@@ -93,6 +96,7 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
             console.log("The error is: ");
             console.log(error)
         });
+
             }
 
     var validatingTheReference = function(referenceNumber, status) {
@@ -100,9 +104,13 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
 
         angular.forEach(referencesList, function(reference) {
             if (reference.value == referenceNumber) {
-                var user = Users.get(reference.user)
-                console.log("The reference is already used by: " + user.name);
-                $scope.referenceNumber = {};
+                console.log("The reference is already used by: ");
+                $ionicPopup.alert({
+                    title: "The reference is already used",
+                    template: "Try again please"
+                }).then(function(res){
+                    $scope.number = {};
+                });
                 used = true;
                 $ionicLoading.hide();
             }
