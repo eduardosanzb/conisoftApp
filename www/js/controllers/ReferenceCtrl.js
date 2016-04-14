@@ -61,7 +61,7 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
          *  5. If no, check the value of the reference, if exist save it to the firebase
          *  6.
          */
-        var url = "http://upaep.mx/micrositios/preregistro/validate2.php?ref=" + referenceNumber + "&&cadena=e41723625f5ae2514d064f684d79836fd1c1835896a2d143ac30c1ac98b256c9564cee7ee855d4ba5bbf11bd17571795f93682930762f074af356236cdcd01ed638bc6c93a2082ad58f1478b97b97b2a59bc458aa5732dd9e53fe58e507de10f0d2a07c5ada3ae619a7e3393c7ef96a9"
+        var url = "http://upaep.mx/micrositios/preregistro/validate2.php?ref=" + referenceNumber + "&&cadena=46f8f95bb187c536d5aa6de4ea28a0d9af5866f194e5775243539ac7e2591ffe6beec5c14ac9e571c3ff6ce21d93496a67a346e09f95b9d11fc45e9fc2812a5b498376a395fc785aeeedd4c14c73ea368301d161320089d6a36a04d1355ab71de011bd28a7b22b586df1dd6e64f02faf"
         var url2 = "http://upaep.mx/micrositios/preregistro/validate2.php?ref=05700003343889ID1&&cadena=00bfbad873a34daa1f46cc1af772873e534af2ea38e28b2a10044dea3bba1724419457abd26ebfd7ff5f47ebcba14b87"
         console.log(referenceNumber);
         //05840000094436ID9

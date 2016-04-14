@@ -71,6 +71,7 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
          *      events of the day
          */
         $scope.theDay = daySelected;
+        console.log($scope.user);
     }
     $scope.goToDetailEvent = function(eventId) {
         $ionicViewSwitcher.nextDirection('forward'); // 'forward', 'back', etc.

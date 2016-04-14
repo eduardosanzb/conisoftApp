@@ -101,7 +101,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
 
                         });
                     }
-                    $state.go('app.schedule');
+                    $state.go('home');
 
                 }, function(error) {
                     console.log("Error from app.js resolve login: " + error);
@@ -113,7 +113,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                             password: user.password
                         }).then(function(authData) {
                             console.log("Logged in as:", authData.uid);
-                            $state.go('app.schedule');
+                            $state.go('home');
                         }).catch(function(error) {
                             console.error("Authentication failed:", error);
                         });
