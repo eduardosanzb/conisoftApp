@@ -64,6 +64,7 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
               item.speakers = Conferences.getSpeakers(item.$id);
         });
         $scope.conferences = mySchedule;
+        console.log(moment().format());
       }).catch(function(error){
         console.log(error);
       });

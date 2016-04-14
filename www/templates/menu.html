@@ -79,8 +79,7 @@
                         <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log Out
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="javascript:void(0);" ng-click="logout()" ng-hide="flag">
-                      <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log In
-
+                        <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log In
                     </ion-item>
                 </ion-list>
             </ion-content>
@@ -88,31 +87,25 @@
     </ion-side-menu>
     <!--Menu Right-->
     <ion-side-menu side="right" class="home-bg">
-
-        <ion-header-bar class="bar-dark">
+        <!--  <ion-header-bar class="bar-dark">
             <h1 class="title">Favoritos</h1>
-        </ion-header-bar>
+        </ion-header-bar> -->
         <ion-content>
-            <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
-            </ion-refresher>
             <ion-list>
                 <div class="group" ng-repeat="(key, value) in conferences | groupBy:'date'">
                     <!--======================= Group Day =====================-->
-                    <div class="item item-divider dark-bg" ion-affix data-affix-within-parent-with-class="group">
+                    <div class="item item-divider dark-bg light" ion-affix data-affix-within-parent-with-class="group">
                         {{key}}
                     </div>
                     <!--======================= Item List =====================-->
                     <div class="item conference" ng-repeat="conference in value | orderBy:{startTime:hour }" ng-click="goToDetailEvent(conference.$id)">
-                        <div class="row ">
-                            <div class="col col-75">
-                                {{conference.name}}
-                            </div>
-                            <div class="col icon-list-item">
-                                <i ng-class="'ion-ios-heart'"></i>
-                            </div>
-                        </div>
+                        <a class="item item-icon-right" href="#">
+                            {{conference.name}}
+                            <i class="icon ion-ios-heart"></i>
+                        </a>
                     </div>
-                    <div ng-repeat-end=""></div>
+                </div>
+                <div ng-repeat-end=""></div>
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>
