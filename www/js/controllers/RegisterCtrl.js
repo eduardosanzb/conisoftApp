@@ -1,6 +1,6 @@
 angular.module('conisoft16.controllers')
 .controller('RegisterCtrl', RegisterCtrl);
-function RegisterCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Users, $http){
+function RegisterCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, Users, $http, referenceNumber){
   /*  Template:   templates/register.html
      *  $state:     app.register
      *
@@ -22,22 +22,30 @@ function RegisterCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
   $scope.getData = function() {
     
     Users.get($localStorage.getObject('userProfile').uid).$loaded().then(function(user){
-      var url = "http://upaep.mx/micrositios/preregistro/validate2.php?ref=" + user.payment.referenceNumber + "&&cadena=46f8f95bb187c536d5aa6de4ea28a0d9af5866f194e5775243539ac7e2591ffe6beec5c14ac9e571c3ff6ce21d93496a67a346e09f95b9d11fc45e9fc2812a5b498376a395fc785aeeedd4c14c73ea368301d161320089d6a36a04d1355ab71de011bd28a7b22b586df1dd6e64f02faf"
-      $http.get(url).then(function(data){
-            console.log("the data is: ");
-            data.data.map(function(e){
-                console.log(e.RESULTADO)
-                user.payment.paymentStatus = e.RESULTADO;
-                user.$save();
-            })
+      console.log(user)
+      if(user.scholarship){
           $scope.user = user;
           $ionicLoading.hide();
-            
-        },function(error){
-            console.log("The error is: ");
-            console.log(error)
+      } else {
+        var url = "http://upaep.mx/micrositios/preregistro/validate2.php?ref=" + user.payment.referenceNumber + "&&cadena=46f8f95bb187c536d5aa6de4ea28a0d9af5866f194e5775243539ac7e2591ffe6beec5c14ac9e571c3ff6ce21d93496a67a346e09f95b9d11fc45e9fc2812a5b498376a395fc785aeeedd4c14c73ea368301d161320089d6a36a04d1355ab71de011bd28a7b22b586df1dd6e64f02faf"
+        $http.get(url).then(function(data){
+              console.log("the data is: ");
+              console.log(data)
+              data.data.map(function(e){
+                  console.log(e.RESULTADO)
+                  user.payment.paymentStatus = e.RESULTADO;
+                  user.$save();
+              })
+            $scope.user = user;
             $ionicLoading.hide();
-        });
+              
+          },function(error){
+              console.log("The error is: ");
+              console.log(error)
+              $ionicLoading.hide();
+          });
+      }
+      
       
     });
   };
@@ -45,7 +53,8 @@ function RegisterCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
   $ionicLoading.show({
         template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
     });
-  $scope.getData();
+  $scope.user = $scope.getData();
+  //$ionicLoading.hide();
   
 }
 RegisterCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "Users","$http"];
