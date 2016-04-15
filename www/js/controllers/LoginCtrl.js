@@ -2,7 +2,7 @@ angular.module('conisoft16.controllers')
     .controller('LoginCtrl', LoginCtrl);
 
 function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users, $http) {
- /*  Template:   templates/login.html
+    /*  Template:   templates/login.html
      *  $state:     app.login
      *  FUNCTIONS IN THIS CONTROLLER
      *  - LOGIN / SIGNUP / RESETPASSWORD SECTION
@@ -25,20 +25,23 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
      *      + ResetPassword
      */
 
-     console.log($localStorage.getObject('userProfile'));
-     var test = $localStorage.getObject('userProfile');
-     if(test == null)
+
+
+
+    console.log($localStorage.getObject('userProfile'));
+    var test = $localStorage.getObject('userProfile');
+    if (test == null)
         console.log("it is null");
-    if(test == '{}')
+    if (test == '{}')
         console.log('{}')
-    if(test == {})
+    if (test == {})
         console.log('wtf')
 
- /*LOGIN / SIGNUP / RESETPASSWORD SECTION*/
+    /*LOGIN / SIGNUP / RESETPASSWORD SECTION*/
     $scope.resetPassword = function(userEmail) {
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
-    });
+            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+        });
         Auth.$resetPassword({
             email: userEmail
         }).then(function() {
@@ -46,7 +49,11 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             // An alert dialog
             $ionicPopup.alert({
                 title: 'Password Reset',
-                template: 'We sent u an email with the new password'
+                template: 'We sent u an email with the new password',
+                buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
             });
             $ionicLoading.hide();
             $scope.closeRecoveryPasswordModal();
@@ -54,7 +61,11 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             console.log("Error: " + error);
             $ionicPopup.confirm({
                 title: 'Cant recover',
-                content: error
+                content: error,
+                buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
             });
             $ionicLoading.hide();
         });
@@ -64,9 +75,10 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         return newPass;
     }
     $scope.login = function(user) {
-$ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
-    });        $scope.authData = null;
+        $ionicLoading.show({
+            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+        });
+        $scope.authData = null;
         $scope.error = null;
         Auth.$authWithPassword({
             email: user.email,
@@ -98,15 +110,19 @@ $ionicLoading.show({
             console.log("Error login the user,  " + error);
             $ionicPopup.confirm({
                 title: 'No login',
-                content: error
+                content: error,
+                buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
             });
             $ionicLoading.hide();
         });
     };
     $scope.createUser = function() {
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
-    });
+            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+        });
         console.log($scope.user);
         var newUser = {
             email: $scope.user.email,
@@ -147,7 +163,7 @@ $ionicLoading.show({
     }
 
 
- /*FILTER BAR SECTION*/
+    /*FILTER BAR SECTION*/
     var filterBarInstance;
     $scope.showFilterBar = function() {
         filterBarInstance = $ionicFilterBar.show({
@@ -213,8 +229,8 @@ $ionicLoading.show({
     };
     $scope.openCountryModal = function() {
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
-    });
+            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+        });
         Countries.all().$loaded().then(function(data) {
             console.log(data);
             $scope.countries = data;
@@ -243,8 +259,8 @@ $ionicLoading.show({
     };
     $scope.openStateModal = function() {
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
-    });
+            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+        });
         Countries.mx().$loaded().then(function(data) {
             $scope.states = data;
             $ionicLoading.hide();

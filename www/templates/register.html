@@ -6,7 +6,7 @@
     <img class="profile-pic" data-ng-src="data:image/png;base64,{{user.profilePicture}}" ng-show="user.profilePicture" >
   </div>
     
-    <div class="list card user-status" ng-hide="user.scholarship">
+    <div class="list padding user-status" ng-hide="user.scholarship">
       <div class="item">
         <h2>{{'register.number' | translate}}: </h2><span ng-class="{ 'green': user.payment.referenceNumber }">{{user.payment.referenceNumber}}</span>
       </div>
@@ -17,7 +17,7 @@
         <h2>{{'register.kit' | translate}}: </h2><span ng-class="{ 'green': user.payment.kitDelivered }">{{user.payment.kitDelivered | kitStatus}}</span>
       </div>
     </div>
-    <div class="list card green" ng-show="user.scholarship">
+    <div class="list padding green" ng-show="user.scholarship">
       <div class="item green">
         <h2>{{'register.status' | translate}}: </h2><span>{{'register.scholarship' | translate}}</span>
       </div>

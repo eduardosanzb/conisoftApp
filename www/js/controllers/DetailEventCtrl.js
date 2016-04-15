@@ -187,7 +187,7 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
         template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         $scope.review = {}
-        $scope.review.value = null;
+        $scope.review.value = 3;
         $scope.review.comment = null;
         $scope.reviewModal.show();
         $ionicLoading.hide();

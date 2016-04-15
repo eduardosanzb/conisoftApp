@@ -9818,11 +9818,11 @@ h6,
   background-color: #094982; }
 
 label.item.has-error-red {
-  border-bottom: 3px solid #f53838; }
+  border-bottom: 3px solid #D2544A; }
 
 .form-error-red {
   font-size: small;
-  color: #ef473a; }
+  color: #D2544A; }
 
 #floating-button .icon.menu-icon {
   color: #fff; }
@@ -9835,6 +9835,36 @@ label.item.has-error-red {
   letter-spacing: 2px;
   font-size: 18px;
   text-align: center !important; }
+
+.or {
+  color: #fff;
+  font-family: "ProximaNovaCond";
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: small !important;
+  text-align: center !important; }
+
+.input-login {
+  background-color: transparent;
+  width: 95% !important;
+  color: #fff !important;
+  font-family: "ProximaNovaCond";
+  font-size: 18px; }
+
+.input-reset {
+  background-color: transparent;
+  width: 95% !important;
+  color: #001733 !important;
+  font-family: "ProximaNovaCond";
+  font-size: 18px; }
+
+.in-label {
+  background-color: transparent;
+  border-color: #fff; }
+
+.stk-label {
+  background-color: transparent;
+  border-color: #094982; }
 
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs,
 .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
@@ -9959,7 +9989,8 @@ label.item.has-error-red {
   width: 100%;
   height: 100% !important; }
 
-.scroll, .mapWrap {
+.scroll,
+.mapWrap {
   height: 100%; }
 
 .the-map-container {
