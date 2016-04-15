@@ -230,17 +230,8 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                 templateUrl: 'templates/speakers.html',
                 controller: 'SpeakersCtrl',
                 resolve: {
-                    "currentAuth": function(Auth, $state, $ionicPopup) {
-                        Auth.$requireAuth().then(function(data) {
-                            console.log(data);
-                            if (data.password.isTemporaryPassword) {
-                                $state.go('resetPassword');
-                            }
-                        }).catch(function(error) {
-                            console.log(error);
-                        });
-                    },
-                    "speakersList": function(Speakers) {
+                    "speakersList": function(Speakers, $ionicLoading) {
+                        
                         return Speakers.all();
                     }
                 }
@@ -296,7 +287,6 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                     "referenceNumber": function(Users, $localStorage, $state, $ionicLoading) {
                         console.log("wtf");
                         console.log(Users.get($localStorage.getObject('userProfile').uid) );
-                        //$ionicLoading.show();
                         Users.get($localStorage.getObject('userProfile').uid).$loaded().then(function(user) {
                             console.log(user)
                             console.log("Looking for the user info");
@@ -312,10 +302,11 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
                                  *  Dont forget to $save()
                                  */
                                 console.log("we have reference");
-                                $ionicLoading.hide();
-                                return user;
+                                //$ionicLoading.hide();
+                                console.log(user)
+                                return user;    
                             }
-                            $ionicLoading.hide();
+                            
                         });
                     }
                 }

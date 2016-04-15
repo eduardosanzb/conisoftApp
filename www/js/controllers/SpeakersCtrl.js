@@ -10,7 +10,7 @@ function SpeakersCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
      */
     /*Controlling the back button*/
     
-
+    
     $scope.doRefresh = function() {
         /*
          *  This Function will create the refreshing stage and eventually close ir when the schedule is recreated
@@ -34,14 +34,16 @@ function SpeakersCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
     $scope.createSpeakers = function(){
             speakersList.$loaded().then(function(data) {
             $scope.speakers = data;
+            $ionicLoading.hide();
         });
     }
-
+    
     $ionicLoading.show({
+        
         template: ' <ion-spinner icon="ripple" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+
     });
     $scope.createSpeakers();
-    $ionicLoading.hide();
     
 
 }
