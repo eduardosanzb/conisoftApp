@@ -1,7 +1,6 @@
 
-<ion-view view-title="Log in">
+<ion-view view-title="{{'login.header' | translate}}">
   <ion-header-bar>
-    <h1 class="title">asdfasdfasdf</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="closeLogin()">Close</button>
     </div>
@@ -28,7 +27,7 @@
 
             </ion-list>
             
-            <div>
+             <div class="buttons-container">
                 <button class="button button-stable button-block " ng-click="login(user)" ng-disabled="form.login.$invalid">Log in</button>
                 <a  class="button button-positive button-clear button-block " style="font-size: small;!important" ng-click="openRecoveryPasswordModal()">{{'login.recovery_button' | translate}}</a>    
             </div>

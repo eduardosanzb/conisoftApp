@@ -66,7 +66,7 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
         console.log(referenceNumber);
         //05840000094436ID9
         $ionicLoading.show({
-            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
         });
         $http.get(url).then(function(data){
             console.log("the data is: ");

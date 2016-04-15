@@ -37,7 +37,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
  /*LOGIN / SIGNUP / RESETPASSWORD SECTION*/
     $scope.resetPassword = function(userEmail) {
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         Auth.$resetPassword({
             email: userEmail
@@ -65,7 +65,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     }
     $scope.login = function(user) {
 $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });        $scope.authData = null;
         $scope.error = null;
         Auth.$authWithPassword({
@@ -105,7 +105,7 @@ $ionicLoading.show({
     };
     $scope.createUser = function() {
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         console.log($scope.user);
         var newUser = {
@@ -213,7 +213,7 @@ $ionicLoading.show({
     };
     $scope.openCountryModal = function() {
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         Countries.all().$loaded().then(function(data) {
             console.log(data);
@@ -243,7 +243,7 @@ $ionicLoading.show({
     };
     $scope.openStateModal = function() {
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Loading...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         Countries.mx().$loaded().then(function(data) {
             $scope.states = data;

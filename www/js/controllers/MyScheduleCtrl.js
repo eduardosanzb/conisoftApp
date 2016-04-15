@@ -55,7 +55,7 @@ function MyScheduleCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, 
     }
 
     $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
     /* THIS IS THE DEFAULT DAY */
     $scope.theDay = 1461733200000; // 04/27/2016

@@ -394,6 +394,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
             recomendations:"Recomendations"
         },
         login: {
+            loading: "Loading",
             header_label: "Login",
             close_nutton: "Close",
             email_label: "Email",
@@ -447,9 +448,9 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
         detailEvent:{
             header:"Detail Event",
             speaker_divider:"Speaker",
-            remove_button:"Remove Favorites",
-            add_button:"Add Favorites",
-            review_button:"Review Event",
+            remove_button:"Remove from Favorites",
+            add_button:"Add to Favorites",
+            review_button:"Review this Event",
             description:"Description",
             sessions:"Sessions"
         },
@@ -495,6 +496,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
             recomendations:"Recomendaciones"
         },
         login: {
+            loading: "Cargando",
             header_label: "Login",
             close_nutton: "Cerrar",
             email_label: "Correo Electronico",

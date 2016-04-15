@@ -96,7 +96,7 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 
     /* RETRIEVE DATA SECTION */
     $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });    var prevState = $stateParams.prevState.split(".");
     if(prevState[0] != 'app'){
         /*  THIS VARAIBLE WILL TELL IF WE HAVE TO STOP THE NAVIGATION
@@ -126,7 +126,7 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
         console.log("Reviewing")
         console.log($scope.review)
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         if(!$scope.user.conferencesReviewed)
             $scope.user.conferencesReviewed = {}
@@ -184,7 +184,7 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
     });
     $scope.openReviewModal = function(){
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         $scope.review = {}
         $scope.review.value = null;

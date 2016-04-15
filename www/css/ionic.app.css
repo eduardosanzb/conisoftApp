@@ -9796,14 +9796,14 @@ h6,
 .h4,
 .h5,
 .h6 {
-  color: #000;
+  color: #094982;
   font-weight: 500;
   font-family: "ProximaNovaCond", sans-serif; }
 
 /*ProfilePic*/
 .profile-pic {
   height: 200px;
-  widht: 200px;
+  width: 200px;
   margin-left: auto;
   margin-right: auto;
   display: block; }
@@ -9834,11 +9834,11 @@ label.item.has-error-red {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 18px;
-  margin: 2px 0px 0px 0px;
   text-align: center !important; }
 
-.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  top: 44px !important; }
+.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs,
+.platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
+  top: 62px !important; }
 
 .tabs-top > .tabs,
 .tabs.tabs-top {
@@ -9955,10 +9955,15 @@ label.item.has-error-red {
   white-space: inherit; }
 
 /* ABOUT VIEW CSS */
+#map {
+  width: 100%;
+  height: 100% !important; }
+
+.scroll, .mapWrap {
+  height: 100%; }
+
 .the-map-container {
-  height: 210px;
-  width: 85%;
-  position: block;
+  width: 100%;
   margin-right: auto;
   margin-left: auto; }
 

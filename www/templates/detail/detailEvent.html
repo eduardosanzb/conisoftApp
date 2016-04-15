@@ -3,7 +3,7 @@
         <button class="button button-icon icon ion-ios-arrow-thin-left" ng-click="goToPrevState()"></button>
         <h1 class="title">{{ 'detailEvent.header' | translate}}</h1>
     </ion-header-bar>
-    <ion-content scroll-sista >
+    <ion-content class="has-header">
         <div class="event-detail-container">
             <h2>{{event.name}}</h2>
             <h3>{{event.date | date:'EEEE dd MMMM yyyy'}}</h3>
@@ -12,19 +12,20 @@
         <div class="item item-body description-container">
             {{event.description}}
         </div>
-        <div class="padding">
-                <button class="button button-block button-balanced" ng-click="addToAgenda(eventId)" ng-show="user" ng-if="!user.mySchedule[eventId]">
+        <div class="buttons-container">
+                <button class="button button-block button-calm icon-right ion-ios-heart-outline" ng-click="addToAgenda(eventId)" ng-show="user" ng-if="!user.mySchedule[eventId]">
                     {{'detailEvent.add_button' | translate}}
                 </button>
-                <button class="button button-block button-outline button-assertive" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]" ng-show="user">
+                <button class="button button-block button-outline button-assertive icon-right ion-ios-close-outline" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]" ng-show="user">
                     {{'detailEvent.remove_button' | translate}}
                 </button>
             </div>
         <div class="list">
+            
+            <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
             <div class="item item-divider">
                 {{'detailEvent.speaker_divider' | translate}}
             </div>
-            <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
                 <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
                 <img src="/img/default-profile.png" ng-if="!speaker.picture">
                 <h2 style="    color: #094982 !important;">{{speaker.name}}</h2>
@@ -32,8 +33,11 @@
             </a>
         </div>
         
-            <div class="padding">
-                <button class="button button-block" ng-click="openReviewModal()" ng-if="!user.conferencesReviewed[eventId]" ng-show="user">
+            <div class="buttons-container">
+                <button class="button button-block icon-right ion-ios-star" ng-click="openReviewModal()" ng-if="!user.conferencesReviewed[eventId]" ng-show="user">
+                    {{'detailEvent.review_button' | translate}}
+                </button>
+                <button class="button button-stable button-outline  button-block icon-right ion-ios-star-outline" ng-click="openReviewModal()" ng-if="user.conferencesReviewed[eventId]" ng-show="user" disabled>
                     {{'detailEvent.review_button' | translate}}
                 </button>
             </div>
