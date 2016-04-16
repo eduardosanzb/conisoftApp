@@ -7,8 +7,10 @@
   </div>
     
     <div class="list padding user-status" ng-hide="user.scholarship">
+    
       <div class="item">
-        <h2>{{'register.number' | translate}}: </h2><span ng-class="{ 'green': user.payment.referenceNumber }">{{user.payment.referenceNumber}}</span>
+        <h2>{{'register.number' | translate}}: </h2>
+        <span ng-class="{ 'green': user.payment.referenceNumber }">{{user.payment.referenceNumber}}</span>
       </div>
       <div class="item">
         <h2>{{'register.status' | translate}}: </h2><span ng-class="{ 'green': user.payment.paymentStatus ==1 }">{{user.payment.paymentStatus | paymentStatus}}</span>

@@ -3,11 +3,12 @@
     <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="lines" pulling-icon="ion-ios-arrow-thin-down">
     </ion-refresher>
     <div class="list">
-      <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)">
+      <a class="item item-avatar icon-right" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)">
         <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
         <img src="/img/default-profile.png" ng-if="!speaker.picture">
         <h2>{{speaker.name}}</h2>
         <p>{{speaker.description}}</p>
+        <i class="icon ion-ios-arrow-thin-right pull-right"></i>
       </a>
     </div>
   </ion-content>

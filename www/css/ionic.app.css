@@ -9764,6 +9764,9 @@ a.button {
   font-size: 20px;
   padding: 30px 49px 30px 30px; }
 
+.popup-buttons .button {
+  background-color: #094982; }
+
 .button {
   border-color: #094982;
   background: transparent;

@@ -31,10 +31,12 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
                     $ionicPopup.alert({
                         title: "This scholarship is already in use",
                         template: "Try again please",
-                        buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                        buttons: [
+                                    {
+                                        text: '<b>OK</b>',
+                                        type: 'button-calm'
+                                    }
+                                ]
                     }).then(function(res){
                         $scope.number = {};
                     });

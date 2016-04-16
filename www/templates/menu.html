@@ -73,7 +73,8 @@
                     <ion-item class="item-icon-left" menu-close href="#/app/about">
                         <i ng-show="isItemActive('/app/about')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.about' | translate}}
                     </ion-item>
-                    <ion-item class="item-icon-left" menu-close href="#/app/register"><i ng-show="isItemActive('/app/register')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.register' | translate}}
+                    <ion-item class="item-icon-left" menu-close href="#/app/register">
+                        <i ng-show="isItemActive('/app/register') || sItemActive('/reference')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.register' | translate}}
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="#/app/recomendations">
                         <i ng-show="isItemActive('/app/recomendations')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.recomendations' | translate}}

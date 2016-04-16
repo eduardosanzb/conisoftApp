@@ -1,27 +1,24 @@
 <ion-modal-view>
-  <ion-header-bar align-title="left" class="bar-positive">
-    <div class="buttons">
-      <button class="button icon-left ion-close" ng-click="cancel()"></button>
-    </div>
-    <h1 class="title center">{{'reference.reference_header' | translate}}</h1>
-  </ion-header-bar>
-  
-  <ion-content>
-  <div class="list">
-        <label class="item item-input">
-            <span class="input-label">{{'register.scholarship' | translate}}</span>
-            <input type="text" ng-model="number.scholarship">
-        </label>
-        <button class="button button-assertive" ng-click="addScholarship(number.scholarship)" ng-disabled="!number.scholarship">{{'register.button' | translate}}</button>
-    </div>
-    <div class="list">
-        <label class="item item-input">
-            <span class="input-label">{{'register.number' | translate}}</span>
-            <input type="text" ng-model="number.referenceNumber">
-        </label>
-        <button class="button button-assertive" ng-click="addReference(number.referenceNumber)" ng-disabled="!number.referenceNumber">{{'register.button' | translate}}</button>
-    </div>
-
-
-  </ion-content>
+    <ion-header-bar class="bar bar-calm header-item">
+        <button class="button button-clear button-light pull-right" ng-click="cancel()">Close</button>
+        <h1 class="title center">{{'register.reference' | translate}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list padding">
+            <div class="item item-divider">{{'register.scholarship' | translate}}</div>
+            <div class="item item-button-right">
+                <input class="input-reset" type="text" placeholder="{{'register.scholarship' | translate}}" ng-model="number.scholarship">
+                <button class="button button-calm" ng-click="addScholarship(number.scholarship)" ng-disabled="!number.scholarship" style="top: 15px;">
+                    <i class="icon ion-ios-plus-empty"></i>
+                </button>
+            </div>
+            <div class="item item-divider">{{'register.number' | translate}}</div>
+            <div class="item item-button-right">
+                <input class="input-reset" type="text" placeholder="{{'register.number' | translate}}" ng-model="number.referenceNumber">
+                <button class="button button-calm" ng-click="addReference(number.referenceNumber)" ng-disabled="!number.referenceNumber" style="top: 15px;">
+                    <i class="icon ion-ios-plus-empty"></i>
+                </button>
+            </div>
+        </div>
+    </ion-content>
 </ion-modal-view>

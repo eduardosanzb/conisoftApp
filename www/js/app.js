@@ -466,6 +466,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             design: "The UX expert"
         },
         register: {
+            reference : "Reference",
             scholarship: "Scholarship",
             header: "Register",
             status: "Payment Status",
@@ -574,6 +575,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             design: "Experto en UX"
         },
         register: {
+            reference: "Referencia",
             scholarship: "Becas",
             header: "Registro",
             status: "Estado del Pago",

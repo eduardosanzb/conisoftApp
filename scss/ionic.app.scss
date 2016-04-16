@@ -54,6 +54,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding: 30px 49px 30px 30px;
 }
 
+.popup-buttons .button {
+    background-color: $calm;
+}
+
+.popup-head {
+
+    // background-color: $dark;
+
+}
+
 .button {
     border-color: #094982;
     background: transparent;
