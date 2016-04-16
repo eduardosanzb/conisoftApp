@@ -44,7 +44,11 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
          */
         $ionicPopup.confirm({
             title: 'Connecting to Wifi',
-            template: 'The Password is in the clipboard, connect to wifi: UPAEP EVENTOS'
+            template: 'The Password is in the clipboard,</br> connect to wifi: UPAEP EVENTOS',
+            buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
         }).then(function(res) {
             if (res) {
                 cordova.plugins.clipboard.copy("wifi_password");

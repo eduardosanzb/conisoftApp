@@ -30,7 +30,11 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
                 else{
                     $ionicPopup.alert({
                         title: "This scholarship is already in use",
-                        template: "Try again please"
+                        template: "Try again please",
+                        buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
                     }).then(function(res){
                         $scope.number = {};
                     });
@@ -39,7 +43,11 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
             } else {
                 $ionicPopup.alert({
                         title: "This scholarship does not exist",
-                        template: "Try again please"
+                        template: "Try again please",
+                        buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
                     }).then(function(res){
                         $scope.number = {};
                     });

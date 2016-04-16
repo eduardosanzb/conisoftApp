@@ -9958,6 +9958,7 @@ label.item.has-error-red {
 
 /* SPEAKER DETAIL CSS */
 .speaker-detail-header {
+  background-image: url("../img/bg-4.jpg");
   background-color: grey;
   padding: 15px;
   color: white !important;
@@ -9971,10 +9972,10 @@ label.item.has-error-red {
   display: block; }
 
 .speaker-detail-header h2 {
-  color: #094982 !important;
+  color: #fff !important;
   font-weight: bold !important;
   text-align: center;
-  margin-top: -10px; }
+  margin-top: 20px; }
 
 .speaker-description-container {
   font-size: medium;

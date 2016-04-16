@@ -292,6 +292,7 @@ border-color: $calm;
 /* SPEAKER DETAIL CSS */
 
 .speaker-detail-header {
+    background-image: url('../img/bg-4.jpg');
     background-color: grey;
     padding: 15px;
     color: white !important;
@@ -307,10 +308,10 @@ border-color: $calm;
 }
 
 .speaker-detail-header h2 {
-    color: #094982 !important;
+    color: #fff !important;
     font-weight: bold !important;
     text-align: center;
-    margin-top: -10px;
+    margin-top: 20px;
 }
 
 .speaker-description-container {

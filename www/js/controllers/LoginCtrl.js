@@ -119,6 +119,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             $ionicLoading.hide();
         });
     };
+
     $scope.createUser = function() {
         $ionicLoading.show({
             template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
@@ -153,7 +154,11 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             console.log("Error creating the user, " + error);
             $ionicPopup.confirm({
                 title: 'Cant Register',
-                content: error
+                content: error,
+                buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
             });
             $ionicLoading.hide();
         });
