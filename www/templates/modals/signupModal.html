@@ -42,11 +42,11 @@
                 <form role="form" name="secondPage" novalidate="">
                     <label class="item item-input  item-input-label in-label" ng-click="openCountryModal()">
                         <span class="input-label" style="color: #fff !important">{{ 'login.country_label' | translate }}</span>
-                        <a ng-model="user.country" required>{{user.country}}</a>
+                        <a ng-model="user.country" required style="color: #fff">{{user.country}}</a>
                     </label>
                     <label class="item item-input  item-floating-label in-label" ng-if="mxFlag" ng-click="openStateModal()">
                         <span class="input-label">{{ 'login.state_label' | translate }}</span>
-                        <a ng-show="mxFlag" ng-model="user.state"> {{user.state}} </a>
+                        <a ng-show="mxFlag" ng-model="user.state" style="color: #fff"> {{user.state}} </a>
                     </label>
                     <label class="item item-input  item-floating-label in-label" ng-class="{ 'has-error-red' : (secondPage.afiliation.$invalid  && secondPage.afiliation.$touched )}">
 
