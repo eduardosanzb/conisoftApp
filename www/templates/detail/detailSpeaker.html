@@ -10,10 +10,10 @@
       <h2>{{speaker.name}}</h2>
     </div>
     <div class="list">
-      <div class="item item-divider">Description</div>
+      <div class="item item-divider">{{ 'speakers.descritption' | translate}}</div>
       <div class="speaker-description-container">{{speaker.description}}</div>
    
-      <div class="item item-divider">Sessions</div>
+      <div class="item item-divider">{{ 'speakers.sessions' | translate}}</div>
       <div class="item" ng-repeat="conference in speaker.conferences"  ng-click="goToDetailEvent(conference.$id)" ng-class="{disabled: flagStop}">
           <div>
             {{conference.name}}

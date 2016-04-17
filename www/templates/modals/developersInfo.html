@@ -1,26 +1,26 @@
 <ion-modal-view>
-  <ion-header-bar class="bar bar-calm header-item">
-    
-      <button class="button button-clear button-light pull-right" ng-click="closeDevelopersInfoModal()">Close</button>
-   
-    <h1 class="title">{{'about.developers_header' | translate}}</h1>
+    <ion-header-bar class="bar bar-calm header-item">
+        <button class="button button-clear button-light button-icon icon ion-ios-close-empty pull-right" ng-click="closeDevelopersInfoModal()"></button>
+        <h1 class="title">{{'about.developers_header' | translate}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list padding">
+            <div class="item item-icon-right" onclick="window.open('https://twitter.com/eduardosanzb', '_system', 'location=yes'); return false;">
+                <h2>{{'about.leader' | translate}}</h2>
+                <i class="icon ion-social-twitter calm"></i> @eduardosanzb
+            </div>
 
-  </ion-header-bar>
-  <ion-content>
-    <div class="list">
-        
-        <div class="padding" onclick="window.open('https://twitter.com/eduardosanzb', '_system', 'location=yes'); return false;">
-          <div class="item item-divider">{{'about.leader' | translate}}</div>
-          <div class="item item-text-wrap item-icon-left"><i class="icon ion-social-twitter"></i>@eduardosanzb</div>
+            <div class="item item-icon-right" onclick="window.open('https://twitter.com/eduardPacoMS13osanzb', '_system', 'location=yes'); return false;">
+                <h2>{{'about.member' | translate}}</h2>
+                <i class="icon ion-social-twitter calm"></i> @erickFrancisco
+            </div>
+
+            <div class="item item-icon-right" onclick="window.open('https://twitter.com/iAlexSanz', '_system', 'location=yes'); return false;">
+                <h2>{{'about.design' | translate}}</h2>
+                <i class="icon ion-social-twitter calm"></i> @iAlexSanz
+            </div>
+            
+           
         </div>
-        <div class="padding" onclick="window.open('https://twitter.com/PacoMS13', '_system', 'location=yes'); return false;">
-          <div class="item item-divider">{{'about.member' | translate}}</div>
-          <div class="item item-text-wrap item-icon-left"><i class="icon ion-social-twitter"></i>@erickFrancisco</div>
-        </div>
-        <div class="padding" onclick="window.open('https://twitter.com/iAlexSanz', '_system', 'location=yes'); return false;">
-          <div class="item item-divider">{{'about.design' | translate}}</div>
-          <div class="item item-text-wrap item-icon-left"><i class="icon ion-social-twitter"></i>@iAlexSanz</div>
-        </div>
-    </div>
-  </ion-content>
+    </ion-content>
 </ion-modal-view>

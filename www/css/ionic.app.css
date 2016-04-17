@@ -9753,6 +9753,10 @@ a.button {
   font-weight: normal;
   font-style: normal; }
 
+.button:hover {
+  color: #094982;
+  text-decoration: none; }
+
 .item .item-content,
 .menu-close {
   border: none;

@@ -47,5 +47,30 @@ function ContactCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $lo
          */
         document.location.href = 'tel:+1-800-555-1234';
     }
+
+     $scope.developersInfo = function() {
+        /*  Strategy:
+         *  1. Open the modal for the developers info
+         */
+        $scope.openDevelopersInfoModal();
+    }
+
+    /*MODALS CONFIGURATION && TRIGGERS SECTION*/
+    $ionicModal.fromTemplateUrl('templates/modals/developersInfo.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.developersInfoModal = modal;
+    });
+    $scope.openDevelopersInfoModal = function() {
+        $ionicLoading.show({
+            template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+        });
+        $scope.developersInfoModal.show();
+        $ionicLoading.hide();
+    }
+    $scope.closeDevelopersInfoModal = function() {
+        $scope.developersInfoModal.hide();
+    }
 }
 ContactCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$cordovaEmailComposer"];

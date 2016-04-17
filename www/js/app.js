@@ -436,7 +436,9 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             by_speaker: "by"
         },
         speakers: {
-            header: "Speakers"
+            header: "Speakers",
+            descritption: "Description",
+            sessions: "Sessions"
         },
         detailSpeaker: {
             header: "Detail Speaker"
@@ -487,7 +489,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
         menu: {
             schedule: "Agenda",
             favorites: "Favoritos",
-            speakers: "Conferencistas",
+            speakers: "Ponente",
             contact: "Contacto",
             about: "Acerca de",
             register: "Registro",
@@ -545,14 +547,16 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             by_speaker: "por"
         },
         speakers: {
-            header: "Conferencistas"
+            header: "Ponentes",
+            descritption: "Descripción",
+            sessions: "Sesiones"
         },
         detailSpeaker: {
-            header: "Detalle Conferencistas"
+            header: "Acerca del Ponente"
         },
         detailEvent: {
-            header: "Detalle Evento",
-            speaker_divider: "Conferencista",
+            header: "Detalle  del Evento",
+            speaker_divider: "Ponente",
             add_button: "Agregar Favoritos",
             remove_button: "Remover Favoritos",
             review_button: "Calificar",
@@ -571,7 +575,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             button_devs: "Desarrolladores",
             developers_header: "Desarrolladores",
             leader: "Lider Equipo",
-            memnber: "Miembro Equipo",
+            member: "Miembro Equipo",
             design: "Experto en UX"
         },
         register: {

@@ -1,8 +1,11 @@
 <ion-view view-title="{{'contact.header' | translate}}">
-  <ion-content>
-    <div class="buttons-container">
-      <button class="button button-block icon-right ion-ios-email" ng-click="sendEmail()">{{'contact.button_mail' | translate}}</button>  
-      <button class="button button-block icon-right ion-ios-telephone" onclick="window.location.href='tel: +5212225242892' ">{{'contact.button_call' | translate}}</button>
-    </div>
-  </ion-content>
+    <ion-content>
+        <div class="padding">
+            <button class="button button-block icon-right ion-ios-telephone" onclick="window.location.href='tel: +5212225242892' ">{{'contact.button_call' | translate}}</button>
+                            <button class="button button-block icon-right ion-ios-email" ng-click="sendEmail()">{{'contact.button_mail' | translate}}</button>
+
+            <button class="button button-block icon-right ion-code" ng-click="developersInfo()">{{'about.button_devs' | translate}}</button>
+        </div>
+        
+    </ion-content>
 </ion-view>

@@ -1,4 +1,4 @@
-angular.module('conisoft16.controllers')
+    angular.module('conisoft16.controllers')
     .controller('DetailEventCtrl', DetailEventCtrl);
 function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicScrollDelegate, $ionicLoading, $localStorage, $stateParams, $ionicViewSwitcher, Conferences, Users, Reviews) {
     /*  Template:   templates/detail/detailEvent.html
@@ -110,6 +110,7 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
     Conferences.get($scope.eventId).$loaded().then(function(data) {
         $scope.event = data;
         $scope.speakers = Conferences.getSpeakers($scope.eventId);
+        console.log(Conferences.getSpeakers($scope.eventId));
     });
     /*IF THE USER IS NOT LOGGED-IN WE HAVE TO BE ABLE TO LET HIM SEE ALL THE INFO.*/
     if($localStorage.getObject('userProfile') != null){

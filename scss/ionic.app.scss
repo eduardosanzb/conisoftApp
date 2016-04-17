@@ -42,6 +42,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     font-style: normal;
 }
 
+$font-family-base: "ProximaNovaCond", sans-serif !default;
+
+.button:hover {
+    color: $calm;
+    text-decoration: none;
+}
+
 .item .item-content,
 .menu-close {
     border: none;
