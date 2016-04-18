@@ -375,14 +375,14 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
     $urlRouterProvider.otherwise('/login');
 
     $translateProvider.translations('en', {
-        menu: {
-            schedule: "Schedule",
-            favorites: "Favorites",
-            speakers: "Speakers",
-            contact: "Contact",
-            about: "About",
-            register: "Register",
-            recomendations: "Recomendations"
+        menu:{ //menu.schedule ==
+            schedule:"Schedule",
+            favorites:"Favorites",
+            speakers:"Speakers",
+            contact:"Contact",
+            about:"About",
+            register:"Register",
+            recomendations:"Recomendations"
         },
         login: {
             loading: "Loading",
