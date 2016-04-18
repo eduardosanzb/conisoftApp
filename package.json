@@ -23,7 +23,8 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "uk.co.workingedge.phonegap.plugin.launchnavigator",
-    "org.apache.cordova.console"
+    "org.apache.cordova.console",
+    "org.apache.cordova.geolocation"
   ],
   "cordovaPlatforms": [
     "android"

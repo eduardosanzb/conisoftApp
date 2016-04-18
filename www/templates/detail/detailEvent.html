@@ -19,19 +19,6 @@
             <button class="button button-block button-outline button-assertive icon-right ion-ios-close-outline" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]" ng-show="user">
                 {{'detailEvent.remove_button' | translate}}
             </button>
-        </div>
-        <div class="list padding">
-            <div class="item item-divider">
-                {{'detailEvent.speaker_divider' | translate}}
-            </div>
-            <a class="item item-thumbnail-left" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
-                <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
-                <img src="/img/default-profile.png" ng-if="!speaker.picture">
-                <h2 style="color: #094982 !important;">{{speaker.name}}</h2>
-                <p class="spk-p">{{speaker.description}}</p>
-            </a>
-        </div>
-        <div class="padding">
             <button class="button button-block icon-right ion-ios-star" ng-click="openReviewModal()" ng-if="!user.conferencesReviewed[eventId]" ng-show="user">
                 {{'detailEvent.review_button' | translate}}
             </button>
@@ -39,5 +26,20 @@
                 {{'detailEvent.review_button' | translate}}
             </button>
         </div>
+    
+        <div class="list padding">
+            <div class="item speake-divider">
+                {{'detailEvent.speaker_divider' | translate}}
+            </div>
+            <div class="item item-thumbnail-left border-none" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
+            <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
+                <img src="/img/default-profile.png" ng-if="!speaker.picture">
+                <h2>{{speaker.name}}</h2>
+                <div class="spk">{{speaker.description}}</div>
+            </div>
+            
+           
+        </div>
+       
     </ion-content>
 </ion-view>

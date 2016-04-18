@@ -1,7 +1,7 @@
 <ion-modal-view>
     <ion-header-bar class="bar bar-dark header-item">
         <button ng-click="closeModal()" class="button button-clear button-light" ng-class="{ 'pull-right' : (selectModalSlider.currentIndex() == 0) }">
-            <span ng-if="selectModalSlider.currentIndex() == 0" >close</span>
+            <span ng-if="selectModalSlider.currentIndex() == 0">close</span>
             <i ng-if="selectModalSlider.currentIndex() > 0" class="button button-icon icon ion-ios-arrow-thin-left"></i>
         </button>
         <h1 class="title">{{'login.first_modal_header' | translate}}</h1>
@@ -13,22 +13,19 @@
         <ion-slide-box delegate-handle="modalSlider" show-pager="false">
             <ion-slide class="padding">
                 <form role="form" name="firstPage" novalidate="">
-                    <label class="item item-input  item-floating-label in-label" ng-class="{ 'has-error-red' : (firstPage.name.$invalid  && firstPage.name.$touched) }">
-                        
+                    <label class="item item-input  item-input-label in-label" ng-class="{ 'has-error-red' : (firstPage.name.$invalid  && firstPage.name.$touched) }">
                         <input class="input-login" name="name" type="text" placeholder="{{ 'login.name_placeholder' | translate }}" ng-model="user.name" required="">
                         <div class="form-errors" ng-messages="firstPage.name.$error" ng-if="firstPage.name.$touched && firstPage.name.$invalid">
                             <div class="form-error-red" ng-message="required">{{'login.required' | translate}}</div>
                         </div>
                     </label>
-                    <label class="item item-input  item-floating-label in-label" ng-class="{ 'has-error-red' : (firstPage.email.$invalid  && firstPage.email.$touched) }">
-                       
+                    <label class="item item-input  item-input-label in-label" ng-class="{ 'has-error-red' : (firstPage.email.$invalid  && firstPage.email.$touched) }">
                         <input class="input-login" name="email" type="email" placeholder="{{ 'login.email_placeholder' | translate }}" ng-model="user.email" required="">
                         <div class="form-errors" ng-messages="firstPage.name.$error" ng-if="firstPage.email.$touched && firstPage.email.$invalid">
                             <div class="form-error-red" ng-message="required">{{'login.required' | translate}}</div>
                         </div>
                     </label>
-                    <label class="item item-input  item-floating-label in-label" ng-class="{ 'has-error-red' : (firstPage.password.$invalid  && firstPage.password.$touched) }">
-                        
+                    <label class="item item-input  item-input-label in-label" ng-class="{ 'has-error-red' : (firstPage.password.$invalid  && firstPage.password.$touched) }">
                         <input class="input-login" name="password" type="password" placeholder="{{ 'login.password_placeholder' | translate }}" ng-model="user.password" required="">
                         <div class="form-errors" ng-messages="firstPage.name.$error" ng-if="firstPage.password.$touched && firstPage.password.$invalid">
                             <div class="form-error-red" ng-message="required">{{'login.required' | translate}}</div>
@@ -37,19 +34,22 @@
                     <button class="button button-block button-light icon-right ion-ios-arrow-thin-right" ng-click="nextPage(user)" ng-disabled="firstPage.$invalid">Next Page</button>
                 </form>
             </ion-slide>
-
             <ion-slide class="padding">
                 <form role="form" name="secondPage" novalidate="">
                     <label class="item item-input  item-input-label in-label" ng-click="openCountryModal()">
-                        <span class="input-label" style="color: #fff !important">{{ 'login.country_label' | translate }}</span>
-                        <a ng-model="user.country" required style="color: #fff">{{user.country}}</a>
+                        <!--                         <span class="input-label" style="color: #fff !important">{{ 'login.country_label' | translate }}</span>
+ -->
+                        <input class="input-login" type="text" placeholder="{{ 'login.country_label' | translate }}" ng-model="user.country" required>
                     </label>
-                    <label class="item item-input  item-floating-label in-label" ng-if="mxFlag" ng-click="openStateModal()">
-                        <span class="input-label">{{ 'login.state_label' | translate }}</span>
-                        <a ng-show="mxFlag" ng-model="user.state" style="color: #fff"> {{user.state}} </a>
-                    </label>
-                    <label class="item item-input  item-floating-label in-label" ng-class="{ 'has-error-red' : (secondPage.afiliation.$invalid  && secondPage.afiliation.$touched )}">
 
+                    <label class="item item-input  item-input-label in-label" ng-if="mxFlag" ng-click="openStateModal()">
+<!--                         <span class="input-label">{{ 'login.state_label' | translate }}</span>
+
+ --> 
+                    <input class="input-login" type="text" placeholder="{{ 'login.state_label' | translate }}" ng-model="user.state" required ng-show="mxFlag" >
+                    </label>
+
+                    <label class="item item-input  item-input-label in-label" ng-class="{ 'has-error-red' : (secondPage.afiliation.$invalid  && secondPage.afiliation.$touched )}">
                         <input class="input-login" name="afiliation" type="text" placeholder="{{ 'login.afiliation_label' | translate }}" ng-model="user.afiliation" required>
                         <div class="form-errors" ng-messages="secondPage.afiliation.$error" ng-if="secondPage.afiliation.$touched && secondPage.afiliation.$invalid">
                             <div class="form-error-red" ng-message="required">{{'login.required' | translate}}</div>

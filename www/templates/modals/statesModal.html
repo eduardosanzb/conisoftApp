@@ -1,21 +1,17 @@
-<ion-modal-view>
-  <ion-header-bar align-title="left" class="bar-positive">
-    <div class="buttons">
-      <button class="button button-icon ion-ios-arrow-back" ng-click="closeCountryModal()"></button>
-    </div>
-    <h1 class="title">{{'login.state_header' | translate}}</h1>
-    
 
-  </ion-header-bar>
-  <ion-content>
-    <div class="list card" ng-repeat="state in states">
-    
-      <a ng-click="stateSelected(state)" class="item item-icon-left">
-        <i class="icon ion-home"></i>
-        {{state.nombre}}
-      </a>
-    
-    
-    </div>
-  </ion-content>
+<ion-modal-view>
+    <ion-header-bar class="bar-calm">
+        <button class="button button-icon icon ion-ios-arrow-thin-left" ng-click="closeStateModal()"></button>
+        <h1 class="title center">{{'login.state_header' | translate}}</h1>
+        <!--         <button class="button button-icon icon ion-ios-search" ng-click="showFilterBar()"></button>
+ -->
+        </div>
+    </ion-header-bar>
+    <ion-content delegate-handle="stateScroll">
+        <div class="list padding">
+            <a class="item item-icon-right border-none" id="{{state.nombre}}" ng-repeat="state in states"ng-click="stateSelected(state)"
+                <i class="icon ion-ios-arrow-thin-right"></i> {{state.nombre}}
+            </a>
+        </div>
+    </ion-content>
 </ion-modal-view>

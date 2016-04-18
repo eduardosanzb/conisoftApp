@@ -28,7 +28,7 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
                     $state.go('app.register');
                 }
                 else{
-                    $ionicPopup.alert({
+                    $ionicPopup.confirm({
                         title: "This scholarship is already in use",
                         template: "Try again please",
                         buttons: [
@@ -43,7 +43,7 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
                 }
 
             } else {
-                $ionicPopup.alert({
+                $ionicPopup.confirm({
                         title: "This scholarship does not exist",
                         template: "Try again please",
                         buttons: [{
@@ -83,9 +83,13 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
             console.log(data)
             if(data.data == ""){
                 $ionicLoading.hide();
-                 $ionicPopup.alert({
+                 $ionicPopup.confirm({
                     title: "This Reference does not exist",
-                    template: "Try again please"
+                    template: "Try again please",
+                          buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
                 }).then(function(res){
                     $scope.number = {};
                 });
@@ -115,9 +119,13 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
         angular.forEach(referencesList, function(reference) {
             if (reference.value == referenceNumber) {
                 console.log("The reference is already used by: ");
-                $ionicPopup.alert({
+                $ionicPopup.confirm({
                     title: "The reference is already used",
-                    template: "Try again please"
+                    template: "Try again please",
+                          buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
                 }).then(function(res){
                     $scope.number = {};
                 });

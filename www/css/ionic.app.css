@@ -9790,6 +9790,38 @@ a.button {
   font-size: 20px;
   padding: 30px 49px 30px 30px; }
 
+.speake-divider {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  min-height: 30px;
+  background-color: #fff;
+  color: #094982;
+  font-weight: 500;
+  font-family: "ProximaNovaCond";
+  text-transform: uppercase;
+  border-right: 0;
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 1px solid #ddd; }
+
+.border-none {
+  border-style: none;
+  background: transparent; }
+
+.item-thumbnail-left, .item-thumbnail-left .item-content {
+  padding-top: 8px;
+  padding-left: 106px;
+  min-height: 100px;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0; }
+
+.item-thumbnail-left h2 {
+  color: #094982;
+  font-weight: 600;
+  font-family: "ProximaNovaCond Light";
+  text-transform: uppercase; }
+
 body,
 h1,
 h2,
@@ -9988,9 +10020,21 @@ label.item.has-error-red {
   font-size: medium;
   padding: 12px; }
 
-.spk-p {
-  overflow: auto !important;
-  white-space: inherit; }
+.spk {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: 58.8px;
+  /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; }
 
 /* ABOUT VIEW CSS */
 #map {

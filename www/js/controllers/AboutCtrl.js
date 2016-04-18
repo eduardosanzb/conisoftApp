@@ -29,22 +29,24 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     /*MAP SECTION*/
     NgMap.getMap().then(function(map) {}); //-> This is the instance of the map in this view
     /*NAVIGATION SECTION*/
-    $scope.driveToUpaep = function() {
+    $scope.s = function() {
         /*  Strategy:
          *  1. Will trigger the navigator to the coordinates (Sala Francisco Vittoria UPAEP Puebla)
          */
         launchnavigator.navigate([19.047918, -98.216632]);
     }
 
+
     $scope.launchNavigator = function() {
-    var destination = [19.047918, -98.216632];
-    var start = "Trento";
-    $cordovaLaunchNavigator.navigate(destination, start).then(function() {
-      console.log("Navigator launched");
-    }, function (err) {
-      console.error(err);
-    });
-  };
+        var destination = [19.047918, -98.216632];
+        
+        $cordovaLaunchNavigator.navigate(destination).then(function() {
+            console.log("Navigator launched");
+        }, function(err) {
+            console.error(err);
+        });
+    };
+
     $scope.wifiSettings = function() {
         /*  Strategy:
          *  1. First will display a confirm popup, in the case of Ok
@@ -56,9 +58,9 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             title: '<b>CONNECT WIFI</b>',
             template: 'The password is in the clipboard, connect to wifi: </br><p style="text-align: center;"><b>UPAEP EVENTOS</b></p>',
             buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                text: '<b>OK</b>',
+                type: 'button-calm'
+            }]
         }).then(function(res) {
             if (res) {
                 cordova.plugins.clipboard.copy("wifi_password");
@@ -79,7 +81,7 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         window.open('https://twitter.com/hashtag/conisoft2016', '_system', 'location=yes');
         return false;
     }
-   
+
 
 }
 AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap", "$ionicPopup", "$cordovaLaunchNavigator"];
