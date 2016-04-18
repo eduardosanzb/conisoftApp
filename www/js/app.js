@@ -375,7 +375,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova','conisoft16.controllers', 'fi
     $urlRouterProvider.otherwise('/login');
 
     $translateProvider.translations('en', {
-        menu:{
+        menu:{ //menu.schedule ==
             schedule:"Schedule",
             favorites:"Favorites",
             speakers:"Speakers",
