@@ -7,22 +7,9 @@
         <form class="" name="form.login" novalidate>
             <div class="list list-inset input-login">
 
-<ion-view view-title="Log in">
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    <div class="list">
-      <form class="list" name="form.login" novalidate>
-            <ion-list >
-
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.login.email.$invalid  && form.login.email.$touched || form.login.email.$invalid && form.login.$submitted}">
-                    <span class="input-label">Email</span>
-                    <input name="email" type="email" placeholder="juan@mail.com" ng-model="user.email" required>
-
+                <label class="item item-input item-floating-label in-label" ng-class="{ 'has-error-red' : form.login.email.$invalid  && form.login.email.$touched || form.login.email.$invalid && form.login.$submitted}">
+                    
+                    <input class="input-login" name="email" type="email" placeholder="{{'login.email_label' | translate}}" ng-model="user.email" required>
                     <div class="form-errors" ng-messages="form.login.email.$error" ng-if="form.login.email.$touched && form.login.email.$invalid">
                         <div class="form-error-red" ng-message="required">{{'login.required' | translate}}</div>
                     </div>
