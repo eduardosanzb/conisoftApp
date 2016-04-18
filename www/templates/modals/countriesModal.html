@@ -1,28 +1,16 @@
 <ion-modal-view>
-  <ion-header-bar align-title="left" class="bar-positive">
-   
-    <div class="buttons">
-      <button class="button button-icon ion-ios-arrow-back" ng-click="closeCountryModal()"></button>
-    </div>
-    <h1 class="title center">{{'login.country_header' | translate}}</h1>
-    <div class="buttons">
-      <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()"></button>
-    </div>
-
-
-
-  </ion-header-bar>
-  <ion-content>
-    <div class="list card" ng-repeat="country in countries">
-    
-      <a ng-click="countrySelected(country.$id,country)" class="item item-icon-left">
-        <i class="icon ion-home"></i>
-        {{country.name.common}}
-      </a>
-    
-    
-    </div>
-
-    
-  </ion-content>
+    <ion-header-bar align-title="left" class="bar-calm">
+        <button class="button button-icon icon ion-ios-arrow-thin-left" ng-click="closeCountryModal()"></button>
+        <h1 class="title center">{{'login.country_header' | translate}}</h1>
+        <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+    <ion-list ng-repeat="country in countries">
+            <a class="item item-icon-right" ng-click="countrySelected(country.$id,country)">
+                <i class="icon ion-ios-arrow-thin-right"></i> {{country.name.common}}
+            </a>
+        
+        </ion-list>
+    </ion-content>
 </ion-modal-view>

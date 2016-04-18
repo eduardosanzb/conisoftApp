@@ -9753,6 +9753,10 @@ a.button {
   font-weight: normal;
   font-style: normal; }
 
+.button:hover {
+  color: #094982;
+  text-decoration: none; }
+
 .item .item-content,
 .menu-close {
   border: none;
@@ -9763,6 +9767,9 @@ a.button {
   letter-spacing: 2px;
   font-size: 20px;
   padding: 30px 49px 30px 30px; }
+
+.popup-buttons .button {
+  background-color: #094982; }
 
 .button {
   border-color: #094982;
@@ -9796,14 +9803,14 @@ h6,
 .h4,
 .h5,
 .h6 {
-  color: #000;
+  color: #094982;
   font-weight: 500;
   font-family: "ProximaNovaCond", sans-serif; }
 
 /*ProfilePic*/
 .profile-pic {
   height: 200px;
-  widht: 200px;
+  width: 200px;
   margin-left: auto;
   margin-right: auto;
   display: block; }
@@ -9818,11 +9825,11 @@ h6,
   background-color: #094982; }
 
 label.item.has-error-red {
-  border-bottom: 3px solid #f53838; }
+  border-bottom: 3px solid #D2544A; }
 
 .form-error-red {
   font-size: small;
-  color: #ef473a; }
+  color: #D2544A; }
 
 #floating-button .icon.menu-icon {
   color: #fff; }
@@ -9834,11 +9841,41 @@ label.item.has-error-red {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 18px;
-  margin: 2px 0px 0px 0px;
   text-align: center !important; }
 
-.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  top: 44px !important; }
+.or {
+  color: #fff;
+  font-family: "ProximaNovaCond";
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: small !important;
+  text-align: center !important; }
+
+.input-login {
+  background-color: transparent;
+  width: 95% !important;
+  color: #fff !important;
+  font-family: "ProximaNovaCond";
+  font-size: 18px; }
+
+.input-reset {
+  background-color: transparent;
+  width: 95% !important;
+  color: #001733 !important;
+  font-family: "ProximaNovaCond";
+  font-size: 18px; }
+
+.in-label {
+  background-color: transparent;
+  border-color: #fff; }
+
+.stk-label {
+  background-color: transparent;
+  border-color: #094982; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs,
+.platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
+  top: 62px !important; }
 
 .tabs-top > .tabs,
 .tabs.tabs-top {
@@ -9928,6 +9965,7 @@ label.item.has-error-red {
 
 /* SPEAKER DETAIL CSS */
 .speaker-detail-header {
+  background-image: url("../img/bg-4.jpg");
   background-color: grey;
   padding: 15px;
   color: white !important;
@@ -9941,10 +9979,10 @@ label.item.has-error-red {
   display: block; }
 
 .speaker-detail-header h2 {
-  color: #094982 !important;
+  color: #fff !important;
   font-weight: bold !important;
   text-align: center;
-  margin-top: -10px; }
+  margin-top: 20px; }
 
 .speaker-description-container {
   font-size: medium;
@@ -9955,10 +9993,16 @@ label.item.has-error-red {
   white-space: inherit; }
 
 /* ABOUT VIEW CSS */
+#map {
+  width: 100%;
+  height: 100% !important; }
+
+.scroll,
+.mapWrap {
+  height: 100%; }
+
 .the-map-container {
-  height: 210px;
-  width: 85%;
-  position: block;
+  width: 100%;
   margin-right: auto;
   margin-left: auto; }
 

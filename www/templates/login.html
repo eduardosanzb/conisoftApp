@@ -1,3 +1,11 @@
+<ion-view>
+    <ion-header-bar class="bar bar-dark header-item">
+        <h1 class="title">{{'login.header_label' | translate}}</h1>
+        <button class="button button-clear button-light button-icon icon ion-ios-close-empty" ng-click="closeLogin()"></button>
+    </ion-header-bar>
+    <ion-content class="menu-bg">
+        <form class="" name="form.login" novalidate>
+            <div class="list list-inset input-login">
 
 <ion-view view-title="Log in">
   <ion-header-bar>
@@ -14,29 +22,29 @@
                 <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.login.email.$invalid  && form.login.email.$touched || form.login.email.$invalid && form.login.$submitted}">
                     <span class="input-label">Email</span>
                     <input name="email" type="email" placeholder="juan@mail.com" ng-model="user.email" required>
+
                     <div class="form-errors" ng-messages="form.login.email.$error" ng-if="form.login.email.$touched && form.login.email.$invalid">
-                                <div class="form-error-red" ng-message="required">Required</div>
+                        <div class="form-error-red" ng-message="required">{{'login.required' | translate}}</div>
                     </div>
                 </label>
-                <label class="item item-input  item-stacked-label" ng-class="{ 'has-error-red' : form.login.password.$invalid  && form.login.password.$touched || form.login.password.$invalid && form.login.$submitted}">
-                    <span class="input-label">Password</span>
-                    <input name="password" type="password" placeholder="*****" ng-model="user.password" required>
+
+                <label class="item item-input item-floating-label in-label" ng-class="{ 'has-error-red' : form.login.password.$invalid  && form.login.password.$touched || form.login.password.$invalid && form.login.$submitted}">
+                    
+                    <input class="input-login" name="password" type="password" placeholder="{{'login.password_label' | translate}}" ng-model="user.password" required>
                     <div class="form-errors" ng-messages="form.login.name.$error" ng-if="form.login.password.$touched && form.login.password.$invalid">
-                                <div class="form-error-red" ng-message="required">Required</div>
+                        <div class="form-error-red" ng-message="required">{{'login.required' | translate}}</div>
                     </div>
                 </label>
-
-            </ion-list>
-            
-            <div>
-                <button class="button button-stable button-block " ng-click="login(user)" ng-disabled="form.login.$invalid">Log in</button>
-                <a  class="button button-positive button-clear button-block " style="font-size: small;!important" ng-click="openRecoveryPasswordModal()">{{'login.recovery_button' | translate}}</a>    
             </div>
-            <div class="spacer" style="height: 10px;"></div>
-
-            <a href="#/signup" class="button button-positive button-clear button-block " ng-click="openModal()">{{'login.register_button' | translate}}</a>
         </form>
-    </div>
-  </ion-content>
+        <div class="padding" style="padding-top: 30px;">
+            <button class="button button-block button-light icon-right ion-ios-unlocked-outline" ng-click="login(user)" ng-disabled="form.login.$invalid">Log in</button>
+            <a href="#/signup" class="button button-block button-light button-outline icon-right ion-ios-compose-outline" ng-click="openModal()">{{'login.register_button' | translate}}</a>
+        </div>
+        <div class="spacer" style="height: 10px;">
+        <h1 class="or">{{'login.or_label' | translate}}</h1>
+        </div>
+        <a class="button button-light button-clear button-block " style="font-size: small !important;     letter-spacing: 2px;"    ng-click="openRecoveryPasswordModal()">{{'login.recovery_button' | translate}}</a>
+        </div>
+    </ion-content>
 </ion-view>
-

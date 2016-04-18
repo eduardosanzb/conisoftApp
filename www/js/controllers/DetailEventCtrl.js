@@ -1,4 +1,4 @@
-angular.module('conisoft16.controllers')
+    angular.module('conisoft16.controllers')
     .controller('DetailEventCtrl', DetailEventCtrl);
 function DetailEventCtrl($rootScope, $scope, $state, $ionicModal, $ionicScrollDelegate, $ionicLoading, $localStorage, $stateParams, $ionicViewSwitcher, Conferences, Users, Reviews) {
     /*  Template:   templates/detail/detailEvent.html
@@ -96,7 +96,7 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 
     /* RETRIEVE DATA SECTION */
     $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });    var prevState = $stateParams.prevState.split(".");
     if(prevState[0] != 'app'){
         /*  THIS VARAIBLE WILL TELL IF WE HAVE TO STOP THE NAVIGATION
@@ -110,6 +110,7 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
     Conferences.get($scope.eventId).$loaded().then(function(data) {
         $scope.event = data;
         $scope.speakers = Conferences.getSpeakers($scope.eventId);
+        console.log(Conferences.getSpeakers($scope.eventId));
     });
     /*IF THE USER IS NOT LOGGED-IN WE HAVE TO BE ABLE TO LET HIM SEE ALL THE INFO.*/
     if($localStorage.getObject('userProfile') != null){
@@ -126,7 +127,7 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
         console.log("Reviewing")
         console.log($scope.review)
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         if(!$scope.user.conferencesReviewed)
             $scope.user.conferencesReviewed = {}
@@ -184,10 +185,10 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
     });
     $scope.openReviewModal = function(){
         $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
     });
         $scope.review = {}
-        $scope.review.value = null;
+        $scope.review.value = 3;
         $scope.review.comment = null;
         $scope.reviewModal.show();
         $ionicLoading.hide();

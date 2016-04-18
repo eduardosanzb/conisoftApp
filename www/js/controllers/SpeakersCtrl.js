@@ -39,7 +39,9 @@ function SpeakersCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
     }
     
     $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>Cargando...</span>',
+        
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+
     });
     $scope.createSpeakers();
     

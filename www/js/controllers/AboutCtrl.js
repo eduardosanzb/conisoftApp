@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
     .controller('AboutCtrl', AboutCtrl);
 
-function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, NgMap, $ionicPopup) {
+function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, NgMap, $ionicPopup, $cordovaLaunchNavigator) {
     /*  Template:   templates/about.html
      *  $state:     app.about
      *
@@ -35,6 +35,16 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
          */
         launchnavigator.navigate([19.047918, -98.216632]);
     }
+
+    $scope.launchNavigator = function() {
+    var destination = [19.047918, -98.216632];
+    var start = "Trento";
+    $cordovaLaunchNavigator.navigate(destination, start).then(function() {
+      console.log("Navigator launched");
+    }, function (err) {
+      console.error(err);
+    });
+  };
     $scope.wifiSettings = function() {
         /*  Strategy:
          *  1. First will display a confirm popup, in the case of Ok
@@ -43,8 +53,12 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
          *  4. Will trigger the intent to the settings app
          */
         $ionicPopup.confirm({
-            title: 'Connecting to Wifi',
-            template: 'The Password is in the clipboard, connect to wifi: UPAEP EVENTOS'
+            title: '<b>CONNECT WIFI</b>',
+            template: 'The password is in the clipboard, connect to wifi: </br><p style="text-align: center;"><b>UPAEP EVENTOS</b></p>',
+            buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
         }).then(function(res) {
             if (res) {
                 cordova.plugins.clipboard.copy("wifi_password");
@@ -65,28 +79,7 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         window.open('https://twitter.com/hashtag/conisoft2016', '_system', 'location=yes');
         return false;
     }
-    $scope.developersInfo = function() {
-        /*  Strategy:
-         *  1. Open the modal for the developers info
-         */
-        $scope.openDevelopersInfoModal();
-    }
-
-    /*MODALS CONFIGURATION && TRIGGERS SECTION*/
-    $ionicModal.fromTemplateUrl('templates/modals/developersInfo.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.developersInfoModal = modal;
-    });
-    $scope.openDevelopersInfoModal = function() {
-        $ionicLoading.show();
-        $scope.developersInfoModal.show();
-        $ionicLoading.hide();
-    }
-    $scope.closeDevelopersInfoModal = function() {
-        $scope.developersInfoModal.hide();
-    }
+   
 
 }
-AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap", "$ionicPopup"];
+AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap", "$ionicPopup", "$cordovaLaunchNavigator"];

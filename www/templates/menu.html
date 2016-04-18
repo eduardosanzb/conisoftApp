@@ -24,6 +24,9 @@
     -webkit-filter: blur(10px) brightness(0.90);
 }
 
+.menu-top {
+    top: 25px;
+}
 .ios-menu .item .item-content,
 .ios-menu .item,
 .ios-menu .icon,
@@ -53,7 +56,7 @@
     <ion-side-menu side="left" id="ios-behind">
         <div id="ios-background"></div>
         <div class="ios-menu">
-            <ion-content>
+            <ion-content class="menu-top ">
                 <ion-list>
                     <ion-item class="item-icon-left" menu-close href="#/app/schedule">
                         <i ng-show="isItemActive('/app/schedule')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.schedule' | translate}}
@@ -70,7 +73,8 @@
                     <ion-item class="item-icon-left" menu-close href="#/app/about">
                         <i ng-show="isItemActive('/app/about')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.about' | translate}}
                     </ion-item>
-                    <ion-item class="item-icon-left" menu-close href="#/app/register"><i ng-show="isItemActive('/app/register')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.register' | translate}}
+                    <ion-item class="item-icon-left" menu-close href="#/app/register">
+                        <i ng-show="isItemActive('/app/register') || sItemActive('/reference')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.register' | translate}}
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="#/app/recomendations">
                         <i ng-show="isItemActive('/app/recomendations')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.recomendations' | translate}}
@@ -87,9 +91,9 @@
     </ion-side-menu>
     <!--Menu Right-->
     <ion-side-menu side="right" class="menu-bg">
-        <!--  <ion-header-bar class="bar-dark">
-            <h1 class="title">Favoritos</h1>
-        </ion-header-bar> -->
+        <ion-header-bar class="bar-dark">
+            <h1 class="title">{{'menu.favorites' | translate}}</h1>
+        </ion-header-bar>
         <ion-content>
         
             <ion-list class="group">
@@ -102,7 +106,7 @@
                     <div class="item conference" ng-repeat="conference in value | orderBy:{startTime:hour }" ng-click="goToDetailEvent(conference.$id)">
                         <a class="item item-icon-right" href="#">
                             {{conference.name}}
-                            <i class="icon ion-ios-heart"></i>
+                            <i class="icon ion-ios-heart" style="font-size: 18px"></i>
                         </a>
                     </div>
                 </div>

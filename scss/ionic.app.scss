@@ -18,7 +18,6 @@ $dark:                            #444 !default; 004b95
 $calm: #094982 !default;
 $dark: #001733 !default;
 $balanced: #129E3A !default;
-
 .bar-calm .button.active,
 .bar-calm .button.activated {
     background-color: #004b95;
@@ -43,6 +42,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     font-style: normal;
 }
 
+$font-family-base: "ProximaNovaCond", sans-serif !default;
+
+.button:hover {
+    color: $calm;
+    text-decoration: none;
+}
+
 .item .item-content,
 .menu-close {
     border: none;
@@ -53,6 +59,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     letter-spacing: 2px;
     font-size: 20px;
     padding: 30px 49px 30px 30px;
+}
+
+.popup-buttons .button {
+    background-color: $calm;
+}
+
+.popup-head {
+
+    // background-color: $dark;
+
 }
 
 .button {
@@ -89,7 +105,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-    color: #000;
+    color: $calm;
     font-weight: 500;
     font-family: "ProximaNovaCond", sans-serif;
 }
@@ -99,7 +115,7 @@ h6,
 
 .profile-pic {
     height: 200px;
-    widht: 200px;
+    width: 200px;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -117,12 +133,12 @@ h6,
 }
 
 label.item.has-error-red {
-    border-bottom: 3px solid #f53838;
+    border-bottom: 3px solid #D2544A;
 }
 
 .form-error-red {
     font-size: small;
-    color: #ef473a;
+    color: #D2544A;
 }
 
 #floating-button .icon.menu-icon {
@@ -136,12 +152,47 @@ label.item.has-error-red {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 18px;
-    margin: 2px 0px 0px 0px;
     text-align: center !important;
 }
 
-.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top{
-      top: 44px !important;
+.or {
+    color: $light;
+    font-family: "ProximaNovaCond";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+font-size: small !important;    
+text-align: center !important;
+}
+
+.input-login {
+    background-color: transparent;
+    width: 95% !important;
+    color: #fff !important;
+     font-family: "ProximaNovaCond";
+     font-size: 18px;
+}
+
+.input-reset{
+    background-color: transparent;
+    width: 95% !important;
+    color: $dark !important;
+     font-family: "ProximaNovaCond";
+     font-size: 18px;
+}
+
+.in-label {
+background-color:transparent;
+border-color: $light;
+}
+
+.stk-label{
+    background-color:transparent;
+border-color: $calm;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs,
+.platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
+    top: 62px !important;
 }
 
 .tabs-top > .tabs,
@@ -255,11 +306,10 @@ label.item.has-error-red {
 }
 
 
-
-
 /* SPEAKER DETAIL CSS */
 
 .speaker-detail-header {
+    background-image: url('../img/bg-4.jpg');
     background-color: grey;
     padding: 15px;
     color: white !important;
@@ -275,10 +325,10 @@ label.item.has-error-red {
 }
 
 .speaker-detail-header h2 {
-    color: #094982 !important;
+    color: #fff !important;
     font-weight: bold !important;
     text-align: center;
-    margin-top: -10px;
+    margin-top: 20px;
 }
 
 .speaker-description-container {
@@ -288,16 +338,24 @@ label.item.has-error-red {
 
 .spk-p {
     overflow: auto !important;
-        white-space: inherit;
+    white-space: inherit;
 }
 
 
 /* ABOUT VIEW CSS */
 
+#map {
+    width: 100%;
+    height: 100% !important;
+}
+
+.scroll,
+.mapWrap {
+    height: 100%;
+}
+
 .the-map-container {
-    height: 210px;
-    width: 85%;
-    position: block;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
 }
