@@ -252,8 +252,12 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                             console.log(data);
                         }).catch(function(error) {
                             $ionicPopup.confirm({
-                                title: 'No login',
-                                content: 'You need to be logged in to access'
+                                title: 'CAN&#039;T LOG IN',
+                                content: 'You need to be logged in to access',
+                buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
                             });
                             $state.go('login');
                             console.log(error);
@@ -277,8 +281,12 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                             //$state.go('app.register');
                         }).catch(function(error) {
                             $ionicPopup.confirm({
-                                title: 'No login',
-                                content: 'You need to be logged in to access'
+                                title: 'CAN&#039;T LOG IN',
+                                content: 'You need to be logged in to access',
+                                 buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
                             });
                             $state.go('login');
                             console.log(error);

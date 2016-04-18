@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
     .controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users, $http, $translate, $ionicScrollDelegate, $anchorScroll, $location, $timeout) {
+function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users, $http, $translate, $ionicScrollDelegate, $anchorScroll, $location, $timeout, $cordovaKeyboard) {
     /*  Template:   templates/login.html
      *  $state:     app.login
      *  FUNCTIONS IN THIS CONTROLLER
@@ -48,7 +48,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             console.log("password reset succesful");
             // An confirm dialog
             $ionicPopup.confirm({
-                title: 'Password Reset',
+                title: 'PASSWORD RESET',
                 template: 'We sent u an email with the new password',
                 buttons: [{
                     text: '<b>OK</b>',
@@ -60,7 +60,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         }).catch(function(error) {
             console.log("Error: " + error);
             $ionicPopup.confirm({
-                title: 'Cant recover',
+                title: 'CAN&#039;T RECOVER',
                 content: error,
                 buttons: [{
                     text: '<b>OK</b>',
@@ -108,8 +108,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
 
         }).catch(function(error) {
             console.log("Error login the user,  " + error);
-            $ionicPopup.confirm({
-                title: 'No Login',
+            $ionicPopup.alert({
+                title: 'CAN&#039;T LOG IN',
                 content: error,
                 buttons: [{
                     text: '<b>OK</b>',
@@ -153,7 +153,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         }).catch(function(error) {
             console.log("Error creating the user, " + error);
             $ionicPopup.confirm({
-                title: 'Cant Register',
+                title: 'CAN&#039;T REGISTER',
                 content: error,
                 buttons: [{
                     text: '<b>OK</b>',
@@ -235,6 +235,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         $scope.selectCountryModal.hide();
     };
     $scope.openCountryModal = function() {
+        $cordovaKeyboard.close();
+
         $ionicLoading.show({
             template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
         });
@@ -243,12 +245,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             $scope.countries = data;
             $ionicLoading.hide();
             $scope.selectCountryModal.show();
-
-
-        
-
         });
-
     };
 
 
@@ -281,6 +278,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         $scope.selectStateModal.hide();
     };
     $scope.openStateModal = function() {
+        $cordovaKeyboard.close();
+
         $ionicLoading.show({
             template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
         });
@@ -325,4 +324,4 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     }
    
 }
-LoginCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicSlideBoxDelegate", "$ionicPopup", "Countries", "$ionicFilterBar", "References", "Auth", "Users", "$http", "$translate", "$ionicScrollDelegate", "$anchorScroll", "$location", "$timeout"];
+LoginCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicSlideBoxDelegate", "$ionicPopup", "Countries", "$ionicFilterBar", "References", "Auth", "Users", "$http", "$translate", "$ionicScrollDelegate", "$anchorScroll", "$location", "$timeout", "$cordovaKeyboard"];
