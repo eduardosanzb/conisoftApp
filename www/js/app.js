@@ -477,18 +477,20 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
         },
         register: {
             reference : "Reference",
-            scholarship: "Scholarship",
+            scholarship: "scholarship",
+            scholarship_holder: "Enter reference number",
             header: "Register",
             status: "Payment Status",
-            number: "Reference Number",
-            kit: "Kit Delivered",
-            button: "Agregar"
+            number: "reference number",
+            number_holder: "Enter reference number",
+            kit: "Kit delivered",
+            button: "Add"
         },
         recomendations: {},
         review: {
             header: "Review",
             comment: "COMMENTS",
-            placeholder: "ENTER THE COMMENTS",
+            placeholder: "ENTER THE COMMENTS...",
             button: "Review this Event"
         }
     });
@@ -588,10 +590,12 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
         },
         register: {
             reference: "Referencia",
-            scholarship: "Becas",
+            scholarship: "BECAS",
+            scholarship_holder: "Introduce referencia de Beca",
             header: "Registro",
             status: "Estado del Pago",
-            number: "Numero Referencia",
+            number: "Número Referencia",
+            number_holder: "Introduce número Referencia",
             kit: "Kit entregado",
             button: "Agregar"
         },
@@ -600,7 +604,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             header: "Calificar",
             comment: "COMENTARIOS",
             placeholder: "ESCRIBE LOS COMENTARIOS",
-            button: "Calificar este EVENTO"
+            button: "CALIFICAR ESTE EVENTO..."
         }
     });
 

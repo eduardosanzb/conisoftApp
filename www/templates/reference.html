@@ -5,16 +5,16 @@
     </ion-header-bar>
     <ion-content>
         <div class="list padding">
-            <div class="item item-divider">{{'register.scholarship' | translate}}</div>
-            <div class="item item-button-right">
-                <input class="input-reset" type="text" placeholder="{{'register.scholarship' | translate}}" ng-model="number.scholarship">
+            <div class="item speake-divider">{{'register.scholarship' | translate}}</div>
+            <div class="item item-button-right border-none">
+                <input class="input-reset" type="text" placeholder="{{'register.scholarship_holder' | translate}}" ng-model="number.scholarship">
                 <button class="button button-calm" ng-click="addScholarship(number.scholarship)" ng-disabled="!number.scholarship" style="top: 15px;">
                     <i class="icon ion-ios-plus-empty"></i>
                 </button>
             </div>
-            <div class="item item-divider">{{'register.number' | translate}}</div>
-            <div class="item item-button-right">
-                <input class="input-reset" type="text" placeholder="{{'register.number' | translate}}" ng-model="number.referenceNumber">
+            <div class="item speake-divider">{{'register.number' | translate}}</div>
+            <div class="item item-button-right border-none">
+                <input class="input-reset" type="text" placeholder="{{'register.number_holder' | translate}}" ng-model="number.referenceNumber">
                 <button class="button button-calm" ng-click="addReference(number.referenceNumber)" ng-disabled="!number.referenceNumber" style="top: 15px;">
                     <i class="icon ion-ios-plus-empty"></i>
                 </button>

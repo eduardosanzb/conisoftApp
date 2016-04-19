@@ -13,33 +13,27 @@
             {{event.description}}
         </div>
         <div class="padding">
-            <button class="button button-block button-calm icon-right ion-ios-heart-outline" ng-click="addToAgenda(eventId)" ng-show="user" ng-if="!user.mySchedule[eventId]">
-                {{'detailEvent.add_button' | translate}}
+            <button class="button icon-right" ng-click="removeFromAgenda(eventId)" ng-class="user.mySchedule[eventId] ? 'button-block  button-outline button-assertive ion-ios-close-outline' : 'button-block button-calm ion-ios-heart-outline'" ng-show="user">
+                <span ng-if="user.mySchedule[eventId]">{{'detailEvent.remove_button' | translate}}</span>
+                <span ng-if="!user.mySchedule[eventId]">{{'detailEvent.add_button' | translate}}</span>
             </button>
-            <button class="button button-block button-outline button-assertive icon-right ion-ios-close-outline" ng-click="removeFromAgenda(eventId)" ng-if="user.mySchedule[eventId]" ng-show="user">
-                {{'detailEvent.remove_button' | translate}}
-            </button>
-            <button class="button button-block icon-right ion-ios-star" ng-click="openReviewModal()" ng-if="!user.conferencesReviewed[eventId]" ng-show="user">
+
+            <button class="button button-block button-outline icon-right ion-ios-star" ng-click="openReviewModal()" ng-show="user" ng-disabled="user.conferencesReviewed[eventId]" ng-class="user.conferencesReviewed[eventId] ? 'button-stable' : 'button-calm'" >
                 {{'detailEvent.review_button' | translate}}
             </button>
-            <button class="button button-stable button-outline  button-block icon-right ion-ios-star-outline" ng-click="openReviewModal()" ng-if="user.conferencesReviewed[eventId]" ng-show="user" disabled>
-                {{'detailEvent.review_button' | translate}}
-            </button>
+           
         </div>
-    
         <div class="list padding">
             <div class="item speake-divider">
                 {{'detailEvent.speaker_divider' | translate}}
             </div>
-            <div class="item item-thumbnail-left border-none" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
-            <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
+            <div class="item item-thumbnail-left border-none item-icon-right" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)" ng-class="{disabled: flagStop}">
+                <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
                 <img src="/img/default-profile.png" ng-if="!speaker.picture">
                 <h2>{{speaker.name}}</h2>
                 <div class="spk">{{speaker.description}}</div>
+                <i class=" icon ion-ios-arrow-thin-right calm"></i>
             </div>
-            
-           
         </div>
-       
     </ion-content>
 </ion-view>

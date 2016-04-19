@@ -9771,6 +9771,14 @@ a.button {
 .popup-buttons .button {
   background-color: #094982; }
 
+.popup-title {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  font-family: "ProximaNovaCond Light";
+  font-weight: 600;
+  text-transform: uppercase; }
+
 .button {
   border-color: #094982;
   background: transparent;
@@ -9804,11 +9812,25 @@ a.button {
   border-left: 0;
   border-bottom: 1px solid #ddd; }
 
+.range-divider {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  min-height: 30px;
+  background-color: #fff;
+  color: #094982;
+  font-weight: 500;
+  font-family: "ProximaNovaCond";
+  text-transform: uppercase;
+  border-right: 0;
+  border-top: 1px solid #ddd;
+  border-left: 0;
+  border-bottom: 1px solid #ddd; }
+
 .border-none {
   border-style: none;
   background: transparent; }
 
-.item-thumbnail-left, .item-thumbnail-left .item-content {
+.item-avatar, .item-thumbnail-left, .item-thumbnail-left .item-content {
   padding-top: 8px;
   padding-left: 106px;
   min-height: 100px;
@@ -9820,7 +9842,8 @@ a.button {
   color: #094982;
   font-weight: 600;
   font-family: "ProximaNovaCond Light";
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  padding-top: 5px; }
 
 body,
 h1,

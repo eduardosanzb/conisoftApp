@@ -16,8 +16,8 @@
             <div class="item border-none" ng-repeat="conference in speaker.conferences" ng-click="goToDetailEvent(conference.$id)" ng-class="{disabled: flagStop}">
                 <div>
                     {{conference.name}}
-                    <div class="icon-list-item" ng-if="user.mySchedule[conference.$id]">
-                    <i class="ion-ios-heart"></i>
+                    <div class="icon-list-item">
+                    <i ng-class="user.mySchedule[conference.$id] ? 'ion-ios-heart' : 'ion-ios-heart-outline'"></i>
                     </div>
                 </div>
                 <p> {{conference.location}} </p>

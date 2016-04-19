@@ -3,22 +3,28 @@
         <button class="button button-clear button-light pull-right" ng-click="reviewModal.hide()">CLOSE</button>
         <h1 class="title">{{'review.header' | translate}}</h1>
     </ion-header-bar>
-    <ion-content class="padding">
-        <div class="list">
-            <div class="item item-divider">
-                {{'review.comment' | translate}}
+    <ion-content>
+        <div class="list padding">
+            <div class="item speake-divider">
+                {{'review.header' | translate}}
             </div>
-            <label class="item item-input item-input-label">
-<!--                 <span class="input-label">{{'review.comment' | translate}}</span>
- -->                <input class="input-reset" type="text" placeholder="{{'review.placeholder' | translate}}" ng-model="review.comment">
-            </label>
-            <div class="item range range-calm calm">
+            <div class="item padding range range-calm calm border-none">
                 <i class="icon ion-sad-outline calm"></i>
                 <input type="range" name="volume" min="0" max="5" value="2.5" ng-model="review.value">
-                <i class="icon ion-happy calm"></i>
+                <i class="icon ion-happy-outline calm"></i>
             </div>
         </div>
-        <div class="buttons-container">
+        <div class="list padding">
+            <div class="item speake-divider">
+                {{'review.comment' | translate}}
+            </div>
+            <label class="item item-input item-input-label border-none">
+                <!--                 <span class="input-label">{{'review.comment' | translate}}</span>
+ -->
+                <input class="input-reset" type="text" placeholder="{{'review.placeholder' | translate}}" ng-model="review.comment">
+            </label>
+        </div>
+        <div class="padding">
             <button class="button button-block button-calm icon-right ion-ios-paperplane-outline" ng-click="reviewConference(eventId)" ng-disabled="!review.value">{{'review.button' | translate}}</button>
         </div>
     </ion-content>
