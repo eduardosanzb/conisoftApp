@@ -23,6 +23,9 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
 
     /* Functions Declarations */
 
+    $scope.currentPlatform = ionic.Platform.platform();
+    // console.log($scope.currentPlatform);
+
    $scope.$on("$destroy", function() {
        var delegate = $ionicScrollDelegate.$getByHandle('homeScroll');
        delegate. forgetScrollPosition();

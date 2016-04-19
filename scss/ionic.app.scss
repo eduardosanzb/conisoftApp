@@ -18,11 +18,9 @@ $dark:                            #444 !default; 004b95
 $calm: #094982 !default;
 $dark: #001733 !default;
 $balanced: #129E3A !default;
-
 $font-size: 14px;
 $line-height: 1.4;
 $lines-to-show: 3;
-
 .bar-calm .button.active,
 .bar-calm .button.activated {
     background-color: #004b95;
@@ -47,8 +45,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     font-style: normal;
 }
 
-$font-family-base: "ProximaNovaCond", sans-serif !default;
-
+$font-family-base: "ProximaNovaCond",
+sans-serif !default;
 .button:hover {
     color: $calm;
     text-decoration: none;
@@ -70,14 +68,13 @@ $font-family-base: "ProximaNovaCond", sans-serif !default;
     background-color: $calm;
 }
 
-
 .popup-title {
     margin: 0;
     padding: 0;
     font-size: 15px;
     font-family: "ProximaNovaCond Light";
     font-weight: 600;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 }
 
 .button {
@@ -108,7 +105,6 @@ $font-family-base: "ProximaNovaCond", sans-serif !default;
     background-color: #fff;
     color: $calm;
     font-weight: 500;
-
     font-family: "ProximaNovaCond";
     text-transform: uppercase;
     border-right: 0;
@@ -124,7 +120,6 @@ $font-family-base: "ProximaNovaCond", sans-serif !default;
     background-color: #fff;
     color: $calm;
     font-weight: 500;
-
     font-family: "ProximaNovaCond";
     text-transform: uppercase;
     border-right: 0;
@@ -133,12 +128,14 @@ $font-family-base: "ProximaNovaCond", sans-serif !default;
     border-bottom: 1px solid #ddd;
 }
 
-.border-none{
- border-style: none;
- background:transparent;
+.border-none {
+    border-style: none;
+    background: transparent;
 }
 
-.item-avatar, .item-thumbnail-left, .item-thumbnail-left .item-content {
+.item-avatar,
+.item-thumbnail-left,
+.item-thumbnail-left .item-content {
     padding-top: 8px;
     padding-left: 106px;
     min-height: 100px;
@@ -147,12 +144,12 @@ $font-family-base: "ProximaNovaCond", sans-serif !default;
     border-bottom: 0;
 }
 
-.item-thumbnail-left h2{
+.item-thumbnail-left h2 {
     color: $calm;
     font-weight: 600;
     font-family: "ProximaNovaCond Light";
     text-transform: uppercase;
-    padding-top:5px;
+    padding-top: 5px;
 }
 
 body,
@@ -208,8 +205,7 @@ label.item.has-error-red {
     color: #fff;
 }
 
-.top-menu-default,
-.title {
+.top-menu-default {
     color: #fff;
     font-family: "ProximaNovaCond";
     text-transform: uppercase;
@@ -218,39 +214,52 @@ label.item.has-error-red {
     text-align: center !important;
 }
 
+.button-custom,
+.button-custom .icon:before {
+    font-size: 14px !important;
+}
+
+.title {
+    color: #fff;
+    font-family: "ProximaNovaCond";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 18px;
+}
+
 .or {
     color: $light;
     font-family: "ProximaNovaCond";
     text-transform: uppercase;
     letter-spacing: 2px;
-font-size: small !important;    
-text-align: center !important;
+    font-size: small !important;
+    text-align: center !important;
 }
 
 .input-login {
     background-color: transparent;
     width: 95% !important;
     color: #fff !important;
-     font-family: "ProximaNovaCond";
-     font-size: 18px;
+    font-family: "ProximaNovaCond";
+    font-size: 18px;
 }
 
-.input-reset{
+.input-reset {
     background-color: transparent;
     width: 95% !important;
     color: $dark !important;
-     font-family: "ProximaNovaCond";
-     font-size: 18px;
+    font-family: "ProximaNovaCond";
+    font-size: 18px;
 }
 
 .in-label {
-background-color:transparent;
-border-color: $light;
+    background-color: transparent;
+    border-color: $light;
 }
 
-.stk-label{
-    background-color:transparent;
-border-color: $calm;
+.stk-label {
+    background-color: transparent;
+    border-color: $calm;
 }
 
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs,
@@ -377,64 +386,85 @@ border-color: $calm;
     padding: 15px;
     color: white !important;
     font-weight: bold;
+    height: 125px;
 }
 
-.speaker-detail-header img {
+.speaker-content {
+    text-align: center;
+    margin-top: -50px;
+    // border-right: 0;
+    // border-top: 0;
+    // border-left: 0;
+    // border-bottom: 1px solid #ddd;
+}
+
+.speaker-content img {
     width: 100px;
     height: 100px;
     margin-left: auto;
     margin-right: auto;
     display: block;
+    border: 2px;
+    border-color: #fff;
+    border-style: solid;
 }
 
-.speaker-detail-header h2 {
-    color: #fff !important;
-    font-weight: bold !important;
+.speaker-content h2 {
+    color: #094982 !important;
+    font-weight: 500;
     text-align: center;
-    margin-top: 20px;
+    font-size: 24px;
+    margin-top: 10px;
+    text-transform: uppercase;
 }
 
 .speaker-description-container {
     font-size: medium;
     padding: 12px;
 }
-
-
-
 .spk {
-  display: block; /* Fallback for non-webkit */
-  display: -webkit-box;
-  max-width: 400px;
-  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
-  margin: 0 auto;
-  font-size: $font-size;
-  line-height: $line-height;
-  -webkit-line-clamp: $lines-to-show;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-      white-space: normal;
+    display: block;
+    /* Fallback for non-webkit */
+    
+    display: -webkit-box;
+    max-width: 400px;
+    height: $font-size*$line-height*$lines-to-show;
+    /* Fallback for non-webkit */
+    
+    margin: 0 auto;
+    font-size: $font-size;
+    line-height: $line-height;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
-
 /* ABOUT VIEW CSS */
-
 #map {
     width: 100%;
     height: 100% !important;
 }
-
 .scroll,
 .mapWrap {
     height: 100%;
+    z-index: 1;
 }
-
 .the-map-container {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
 }
-
+.button-map {
+    z-index: 1000;
+    position: absolute;
+    margin-bottom: 16px;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
 .buttons-container {
     width: 80%;
     display: block;
@@ -442,28 +472,22 @@ border-color: $calm;
     margin-right: auto;
 }
 
-
 /* REGISTER VIEW CSS */
-
 .qrCode canvas {
     display: block !important;
     margin-left: auto !important;
     margin-right: auto !important;
 }
-
 .qr-container {
     margin: 15px;
     margin-top: 25px;
 }
-
 .user-status span {
     color: red;
 }
-
 .green {
     color: green !important;
 }
-
 .date-divider {
     background-color: #001733 !important;
     color: $light !important;

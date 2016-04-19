@@ -1,9 +1,9 @@
 angular.module('conisoft16.controllers')
     .controller('AppCtrl', AppCtrl);
 
-AppCtrl.$inject = ["$location", "$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "UnAuth", "$localStorage", "$ionicSideMenuDelegate","Users","Conferences", "$ionicViewSwitcher"];
+AppCtrl.$inject = ["$location", "$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "UnAuth", "$localStorage", "$ionicSideMenuDelegate", "Users", "Conferences", "$ionicViewSwitcher", "$location"];
 
-function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth, $localStorage, $ionicSideMenuDelegate, Users, Conferences, $ionicViewSwitcher) {
+function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoading, UnAuth, $localStorage, $ionicSideMenuDelegate, Users, Conferences, $ionicViewSwitcher, $location) {
     /*  Template:   menu.html
      *  $state:     app
      *
@@ -11,11 +11,12 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
      *   - logout()
      */
 
+    $scope.currentPlatform = ionic.Platform.platform();
+    // console.log($scope.currentPlatform);
 
     $scope.isItemActive = function(item) {
         return $location.path().indexOf(item) > -1;
     };
-
 
     $scope.logout = function() {
         /*  STRATEGY:
@@ -42,32 +43,32 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
     }
 
 
-  /*THIS FLAG IS TO SELECT IF LOGIN OR LOGOUT WILL BE DISPLAYED IN THE LEFT MENU*/
-  if($localStorage.getObject('userProfile') != null)
-    $scope.flag = true;
-  else
-    $scope.flag = false;
+    /*THIS FLAG IS TO SELECT IF LOGIN OR LOGOUT WILL BE DISPLAYED IN THE LEFT MENU*/
+    if ($localStorage.getObject('userProfile') != null)
+        $scope.flag = true;
+    else
+        $scope.flag = false;
 
 
-  $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
+    $scope.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
 
     /*  Strategy:
      *  1. If the userProfile exist, then we will retrieve all his favorite events
      *  2. When the events are loaded we will bind the speakers and the event
      *  3. bind data with the view
-     */  
-    if($localStorage.getObject('userProfile')){
-      Users.getMySchedule( $localStorage.getObject('userProfile' ).uid)
-      .$loaded()
-      .then(function(mySchedule){
-        mySchedule.forEach( function(item){
-              item.speakers = Conferences.getSpeakers(item.$id);
-        });
-        $scope.conferences = mySchedule;
-        //console.log(moment().format());
-      }).catch(function(error){
-        console.log(error);
-      });
+     */
+    if ($localStorage.getObject('userProfile')) {
+        Users.getMySchedule($localStorage.getObject('userProfile').uid)
+            .$loaded()
+            .then(function(mySchedule) {
+                mySchedule.forEach(function(item) {
+                    item.speakers = Conferences.getSpeakers(item.$id);
+                });
+                $scope.conferences = mySchedule;
+                //console.log(moment().format());
+            }).catch(function(error) {
+                console.log(error);
+            });
     }
 
 

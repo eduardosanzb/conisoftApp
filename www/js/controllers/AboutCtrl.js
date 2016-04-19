@@ -29,35 +29,35 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     /*MAP SECTION*/
     NgMap.getMap().then(function(map) {}); //-> This is the instance of the map in this view
     /*NAVIGATION SECTION*/
-   
-        /*  Strategy:
-         *  1. Will trigger the navigator to the coordinates (Sala Francisco Vittoria UPAEP Puebla)
-         */
-        //launchnavigator.navigate([19.047918, -98.216632]);
-  
+
+    /*  Strategy:
+     *  1. Will trigger the navigator to the coordinates (Sala Francisco Vittoria UPAEP Puebla)
+     */
+    //launchnavigator.navigate([19.047918, -98.216632]);
+
     $scope.openNavigator = function() {
         var geoString = '';
 
+        $scope.currentPlatform = ionic.Platform.platform();
+        console.log($scope.currentPlatform);
         if (ionic.Platform.isIOS()) {
+            console.log('isIOS');
             var options = {
                 location: 'yes',
                 clearcache: 'yes',
                 toolbar: 'no'
             };
 
-            document.addEventListener(function() {
-                $cordovaInAppBrowser.open('maps://maps://?q=19.047918, -98.216632', '_blank', options)
-                    .then(function(event) {
-                        // success
-                    })
-                    .catch(function(event) {
-                        // error
-                    });
+            $cordovaInAppBrowser.open('maps://?q=19.047918, -98.216632', '_system', options)
+                .then(function(event) {
+                    // success
+                })
+                .catch(function(event) {
+                    // error
+                });
 
 
-                $cordovaInAppBrowser.close();
 
-            }, false);
         } else if (ionic.Platform.isAndroid()) {
             var destination = [19.047918, -98.216632];
 
@@ -67,53 +67,10 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
                 console.error(err);
             });
         }
-        window.open(geoString, '_system');
     }
 
 
 
-    $scope.wifiSettings = function() {
-        /*  Strategy:
-         *  1. First will display a confirm popup, in the case of Ok
-         *  2. Then will  put the password in the clipboard
-         *  3. Afterwards will see if the device is android || iphone
-         *  4. Will trigger the intent to the settings app
-         */
-        $ionicPopup.confirm({
-            title: '<b>CONNECT WIFI</b>',
-            template: 'The password is in the clipboard, connect to wifi: </br><p style="text-align: center;"><b>UPAEP EVENTOS</b></p>',
-            buttons: [{
-                text: '<b>OK</b>',
-                type: 'button-calm'
-            }]
-        }).then(function(res) {
-            if (res) {
-                cordova.plugins.clipboard.copy("wifi_password");
-                if (ionic.Platform.isIOS())
-                    cordova.plugins.settings.open()
-                else
-                    cordova.plugins.settings.openSetting("wifi");
-            } else {
-                console.log("The user will not add the upaep wifi network");
-            }
-        })
-    }
-    $scope.twitter = function() {
-        /*  Strategy:
-         *  1. Will call the window property of the device.
-         *  2. inAppBrowser will select the most suitable option to open twitter (Browser or app)
-         */
-        // window.open('https://twitter.com/hashtag/conisoft2016', '_system');
-        // return false;
-
-         $cordovaInAppBrowser.open('https://twitter.com/hashtag/conisoft2016', '_blank', options)
-                    .then(function(event) {
-                        // success
-                    })
-                    .catch(function(event) {
-                        // error
-                    });
-    }
 
 
 }

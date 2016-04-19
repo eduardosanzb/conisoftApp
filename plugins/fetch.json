@@ -99,7 +99,7 @@
     "com.verso.cordova.clipboard": {
         "source": {
             "type": "git",
-            "url": "https://github.com/VersoSolutions/CordovaClipboard",
+            "url": "https://github.com/VersoSolutions/CordovaClipboard.git",
             "subdir": "."
         },
         "is_top_level": true,
@@ -108,7 +108,7 @@
     "com.phonegap.plugins.nativesettingsopener": {
         "source": {
             "type": "git",
-            "url": "https://github.com/deefactorial/Cordova-open-native-settings.git",
+            "url": "https://github.com/selahssea/Cordova-open-native-settings.git",
             "subdir": "."
         },
         "is_top_level": true,

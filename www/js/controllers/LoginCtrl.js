@@ -46,26 +46,22 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             email: userEmail
         }).then(function() {
             console.log("password reset succesful");
-            // An confirm dialog
-            $ionicPopup.confirm({
+            // An alert dialog
+            $ionicPopup.alert({
                 title: 'PASSWORD RESET',
                 template: 'We sent u an email with the new password',
-                buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                okType: 'button-calm'
+
             });
             $ionicLoading.hide();
             $scope.closeRecoveryPasswordModal();
         }).catch(function(error) {
             console.log("Error: " + error);
-            $ionicPopup.confirm({
+            $ionicPopup.alert({
                 title: 'CAN&#039;T RECOVER',
                 content: error,
-                buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                okType: 'button-calm'
+
             });
             $ionicLoading.hide();
         });
@@ -111,10 +107,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             $ionicPopup.alert({
                 title: 'CAN&#039;T LOG IN',
                 content: error,
-                buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                okType: 'button-calm'
+
             });
             $ionicLoading.hide();
         });
@@ -152,13 +146,11 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             $scope.login(newUser);
         }).catch(function(error) {
             console.log("Error creating the user, " + error);
-            $ionicPopup.confirm({
+            $ionicPopup.alert({
                 title: 'CAN&#039;T REGISTER',
                 content: error,
-                buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                okType: 'button-calm'
+
             });
             $ionicLoading.hide();
         });

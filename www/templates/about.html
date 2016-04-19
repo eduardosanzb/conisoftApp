@@ -1,17 +1,17 @@
 <ion-view view-title="{{'about.header' | translate}}">
-<ion-content>
-        <div map-lazy-load="https://maps.google.com/maps/api/js">
-            <ng-map center="[19.0479618,-98.2166959]" zoom='17' style="height:240px">
+    <ion-content>
+        <div class="item button-map">
+            <a class="item item-icon-right" ng-click="openNavigator()">
+                <i class="icon ion-ios-navigate-outline calm"></i>
+                <h2>UPAEP</h2>
+                Calle 21 Sur 1103, Santiago, 72410 <br>Puebla, Pue., Mexico
+            </a>
+            <!--  <button class="button button-block button-calm icon-right ion-navigate" ng-click="launchNavigator()">{{'about.button_drive' | translate}}</button> -->
+        </div>
+        <div class="mapWrap" map-lazy-load="https://maps.google.com/maps/api/js" data-tap-disabled="true">
+            <ng-map center="[19.0479618,-98.2166959]" zoom='17' style="height:100%" zoom-control="false" street-view-control="true" street-view-control-options='{position:"right_top"}'>
                 <marker position="19.047918, -98.216632" title="UPAEP"></marker>
             </ng-map>
         </div>
-        <div class="padding-top">
-            <div class="padding">
-                <button class="button button-block icon-right ion-navigate" ng-click="launchNavigator()">{{'about.button_drive' | translate}}</button>
-                <button class="button button-block icon-right ion-wifi" ng-click="wifiSettings()">{{'about.button_wifi' | translate}}</button>
-                <button class="button button-block icon-right ion-social-twitter" ng-click="twitter()">#conisoft2016</button>
-            </div>
-        </div>
     </ion-content>
-    
 </ion-view>

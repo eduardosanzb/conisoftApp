@@ -9830,7 +9830,9 @@ a.button {
   border-style: none;
   background: transparent; }
 
-.item-avatar, .item-thumbnail-left, .item-thumbnail-left .item-content {
+.item-avatar,
+.item-thumbnail-left,
+.item-thumbnail-left .item-content {
   padding-top: 8px;
   padding-left: 106px;
   min-height: 100px;
@@ -9889,14 +9891,24 @@ label.item.has-error-red {
 #floating-button .icon.menu-icon {
   color: #fff; }
 
-.top-menu-default,
-.title {
+.top-menu-default {
   color: #fff;
   font-family: "ProximaNovaCond";
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 18px;
   text-align: center !important; }
+
+.button-custom,
+.button-custom .icon:before {
+  font-size: 14px !important; }
+
+.title {
+  color: #fff;
+  font-family: "ProximaNovaCond";
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 18px; }
 
 .or {
   color: #fff;
@@ -10024,20 +10036,30 @@ label.item.has-error-red {
   background-color: grey;
   padding: 15px;
   color: white !important;
-  font-weight: bold; }
+  font-weight: bold;
+  height: 125px; }
 
-.speaker-detail-header img {
+.speaker-content {
+  text-align: center;
+  margin-top: -50px; }
+
+.speaker-content img {
   width: 100px;
   height: 100px;
   margin-left: auto;
   margin-right: auto;
-  display: block; }
+  display: block;
+  border: 2px;
+  border-color: #fff;
+  border-style: solid; }
 
-.speaker-detail-header h2 {
-  color: #fff !important;
-  font-weight: bold !important;
+.speaker-content h2 {
+  color: #094982 !important;
+  font-weight: 500;
   text-align: center;
-  margin-top: 20px; }
+  font-size: 24px;
+  margin-top: 10px;
+  text-transform: uppercase; }
 
 .speaker-description-container {
   font-size: medium;
@@ -10066,12 +10088,22 @@ label.item.has-error-red {
 
 .scroll,
 .mapWrap {
-  height: 100%; }
+  height: 100%;
+  z-index: 1; }
 
 .the-map-container {
   width: 100%;
   margin-right: auto;
   margin-left: auto; }
+
+.button-map {
+  z-index: 1000;
+  position: absolute;
+  margin-bottom: 16px;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+  border: none; }
 
 .buttons-container {
   width: 80%;

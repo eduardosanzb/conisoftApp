@@ -45,8 +45,8 @@
                 <button class="button button-icon button-clear ion-ios-drag" menu-toggle="left" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : 'ion-ios-drag'">
                 </button>
             </ion-nav-buttons>
-            <ion-nav-buttons side="right">
-                <button class="button button-icon button-clear" menu-toggle="right" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : ''">
+            <ion-nav-buttons side="right" >
+                <button class="button button-icon button-clear button-custom" menu-toggle="right" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : 'ion-ios-heart'" ng-if="currentPlatform == 'ios'" ng-show="isItemActive('/app/schedule')">
                 </button>
             </ion-nav-buttons>
         </ion-nav-bar>
@@ -67,12 +67,13 @@
                     <ion-item class="item-icon-left" menu-close href="#/app/speakers">
                         <i ng-show="isItemActive('/app/speakers')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.speakers' | translate}}
                     </ion-item>
-                    <ion-item class="item-icon-left" class="item-icon-left" menu-close href="#/app/contact">
-                        <i ng-show="isItemActive('/app/contact')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.contact' | translate}}
-                    </ion-item>
                     <ion-item class="item-icon-left" menu-close href="#/app/about">
                         <i ng-show="isItemActive('/app/about')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.about' | translate}}
                     </ion-item>
+                    <ion-item class="item-icon-left" class="item-icon-left" menu-close href="#/app/contact">
+                        <i ng-show="isItemActive('/app/contact')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.contact' | translate}}
+                    </ion-item>
+                    
                     <ion-item class="item-icon-left" menu-close href="#/app/register">
                         <i ng-show="isItemActive('/app/register') || sItemActive('/reference')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.register' | translate}}
                     </ion-item>

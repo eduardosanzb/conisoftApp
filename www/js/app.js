@@ -251,13 +251,11 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                         Auth.$requireAuth().then(function(data) {
                             console.log(data);
                         }).catch(function(error) {
-                            $ionicPopup.confirm({
+                            $ionicPopup.alert({
                                 title: 'CAN&#039;T LOG IN',
                                 content: 'You need to be logged in to access',
-                buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                                okType: 'button-calm'
+
                             });
                             $state.go('login');
                             console.log(error);
@@ -280,13 +278,11 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                             console.log("WE have");
                             //$state.go('app.register');
                         }).catch(function(error) {
-                            $ionicPopup.confirm({
+                            $ionicPopup.alert({
                                 title: 'CAN&#039;T LOG IN',
                                 content: 'You need to be logged in to access',
-                                 buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                                okType: 'button-calm'
+
                             });
                             $state.go('login');
                             console.log(error);
@@ -388,7 +384,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             favorites:"Favorites",
             speakers:"Speakers",
             contact:"Contact",
-            about:"About",
+            about:"Map",
             register:"Register",
             recomendations:"Recomendations"
         },
@@ -466,7 +462,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             button_call: "Call us"
         },
         about: {
-            header: "About",
+            header: "map",
             button_drive: "Drive to UPAEP",
             button_wifi: "Wifi Connection",
             button_devs: "Developers info",
@@ -501,7 +497,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             favorites: "Favoritos",
             speakers: "Ponente",
             contact: "Contacto",
-            about: "Acerca de",
+            about: "Mapa",
             register: "Registro",
             recomendations: "Recomendaciones"
         },
@@ -579,7 +575,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             button_call: "Llamanos"
         },
         about: {
-            header: "Acerca",
+            header: "MAPA",
             button_drive: "Navega a UPAEP",
             button_wifi: "Wifi Configuración",
             button_devs: "Desarrolladores",
