@@ -9,6 +9,20 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
      *  - cancel()
      *  - addReference(referenceNumber)
      */
+
+     /*CODE FOR ADD SCHOLARSHIPS*/
+         /* Strategy:
+          * 1. IN a foor loop i will create a new scholarship insert into firebase
+          * 2. Now we will set the status of the new scholarship to false
+          */
+         for (var i = 0; i < 10; i++) {
+             var newScholar = Scholarships.ref().push();
+            var id = newScholar.key();
+            Scholarships.ref().child(id).child("status").set(true);
+         }
+     
+
+
     $scope.cancel = function(){
         /*  Strategy:
          *  1. When canceling the login you will be redirect to the schedule without a login
