@@ -1,27 +1,27 @@
 <ion-view>
-<ion-header-bar class="bar bar-calm header-item">
+    <ion-header-bar class="bar bar-calm header-item">
         <button class="button button-icon icon ion-ios-arrow-thin-left" ng-click="goToPrevState()"></button>
         <h1 class="title">{{ 'detailSpeaker.header' | translate}}</h1>
     </ion-header-bar>
-  <ion-content>
-    <div class="speaker-detail-header">
-      <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
-      <img src="/img/default-profile.png" ng-if="!speaker.picture">
-      <h2>{{speaker.name}}</h2>
-    </div>
-    <div class="list">
-      <div class="item item-divider">{{ 'speakers.descritption' | translate}}</div>
-      <div class="speaker-description-container">{{speaker.description}}</div>
-   
-      <div class="item item-divider">{{ 'speakers.sessions' | translate}}</div>
-      <div class="item" ng-repeat="conference in speaker.conferences"  ng-click="goToDetailEvent(conference.$id)" ng-class="{disabled: flagStop}">
-          <div>
-            {{conference.name}}
-            <div class="icon-list-item" ng-if="user.mySchedule[conference.$id]"><i class="ion-checkmark-circled"></i></div>
-          </div>
-          <p> {{conference.location}} </p>
+    <ion-content>
+        <div class="speaker-detail-header">
+            <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
+            <img src="/img/default-profile.png" ng-if="!speaker.picture">
+            <h2>{{speaker.name}}</h2>
         </div>
-    </div>
-    
-  </ion-content>
+        <div class="list padding">
+            <div class="item speake-divider">{{ 'speakers.descritption' | translate}}</div>
+            <div class="speaker-description-container">{{speaker.description}}</div>
+            <div class="item speake-divider">{{ 'speakers.sessions' | translate}}</div>
+            <div class="item border-none" ng-repeat="conference in speaker.conferences" ng-click="goToDetailEvent(conference.$id)" ng-class="{disabled: flagStop}">
+                <div>
+                    {{conference.name}}
+                    <div class="icon-list-item">
+                    <i ng-class="user.mySchedule[conference.$id] ? 'ion-ios-heart' : 'ion-ios-heart-outline'"></i>
+                    </div>
+                </div>
+                <p> {{conference.location}} </p>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>

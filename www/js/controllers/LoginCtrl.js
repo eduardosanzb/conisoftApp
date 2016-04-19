@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
     .controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users, $http) {
+function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, $ionicSlideBoxDelegate, $ionicPopup, Countries, $ionicFilterBar, References, Auth, Users, $http, $translate, $ionicScrollDelegate, $anchorScroll, $location, $timeout, $cordovaKeyboard) {
     /*  Template:   templates/login.html
      *  $state:     app.login
      *  FUNCTIONS IN THIS CONTROLLER
@@ -46,9 +46,9 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             email: userEmail
         }).then(function() {
             console.log("password reset succesful");
-            // An alert dialog
-            $ionicPopup.alert({
-                title: 'Password Reset',
+            // An confirm dialog
+            $ionicPopup.confirm({
+                title: 'PASSWORD RESET',
                 template: 'We sent u an email with the new password',
                 buttons: [{
                     text: '<b>OK</b>',
@@ -60,7 +60,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         }).catch(function(error) {
             console.log("Error: " + error);
             $ionicPopup.confirm({
-                title: 'Cant recover',
+                title: 'CAN&#039;T RECOVER',
                 content: error,
                 buttons: [{
                     text: '<b>OK</b>',
@@ -108,8 +108,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
 
         }).catch(function(error) {
             console.log("Error login the user,  " + error);
-            $ionicPopup.confirm({
-                title: 'No login',
+            $ionicPopup.alert({
+                title: 'CAN&#039;T LOG IN',
                 content: error,
                 buttons: [{
                     text: '<b>OK</b>',
@@ -153,7 +153,7 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         }).catch(function(error) {
             console.log("Error creating the user, " + error);
             $ionicPopup.confirm({
-                title: 'Cant Register',
+                title: 'CAN&#039;T REGISTER',
                 content: error,
                 buttons: [{
                     text: '<b>OK</b>',
@@ -222,6 +222,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
 
 
 
+
+
     $ionicModal.fromTemplateUrl('templates/modals/countriesModal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -233,23 +235,36 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         $scope.selectCountryModal.hide();
     };
     $scope.openCountryModal = function() {
+        $cordovaKeyboard.close();
+
         $ionicLoading.show({
             template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
         });
         Countries.all().$loaded().then(function(data) {
-            console.log(data);
+            //console.log(data);
             $scope.countries = data;
             $ionicLoading.hide();
             $scope.selectCountryModal.show();
         });
     };
+
+
+
     $scope.countrySelected = function(countryId, countryKey) {
+        $translate('login.state_label').then(function(translation) {
+            $scope.user.state = "";
+        });
         console.log(countryId);
         console.log(countryKey);
         $scope.user.country = countryKey.name.common;
         $scope.mxFlag = (countryKey.name.common == "Mexico") ? true : false;
+
         $scope.closeCountryModal();
     }
+
+
+
+
 
 
 
@@ -263,6 +278,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
         $scope.selectStateModal.hide();
     };
     $scope.openStateModal = function() {
+        $cordovaKeyboard.close();
+
         $ionicLoading.show({
             template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
         });
@@ -270,6 +287,8 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             $scope.states = data;
             $ionicLoading.hide();
             $scope.selectStateModal.show();
+
+            
         });
     };
     $scope.stateSelected = function(state) {
@@ -303,6 +322,6 @@ function LoginCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     $scope.closeResetPasswordModal = function() {
         $scope.resetPasswordModal.hide();
     }
-
+   
 }
-LoginCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicSlideBoxDelegate", "$ionicPopup", "Countries", "$ionicFilterBar", "References", "Auth", "Users", "$http"];
+LoginCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "$ionicSlideBoxDelegate", "$ionicPopup", "Countries", "$ionicFilterBar", "References", "Auth", "Users", "$http", "$translate", "$ionicScrollDelegate", "$anchorScroll", "$location", "$timeout", "$cordovaKeyboard"];

@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
     .controller('AboutCtrl', AboutCtrl);
 
-function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, NgMap, $ionicPopup, $cordovaLaunchNavigator) {
+function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, NgMap, $ionicPopup, $cordovaLaunchNavigator, $cordovaInAppBrowser) {
     /*  Template:   templates/about.html
      *  $state:     app.about
      *
@@ -29,22 +29,49 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     /*MAP SECTION*/
     NgMap.getMap().then(function(map) {}); //-> This is the instance of the map in this view
     /*NAVIGATION SECTION*/
-    $scope.driveToUpaep = function() {
+   
         /*  Strategy:
          *  1. Will trigger the navigator to the coordinates (Sala Francisco Vittoria UPAEP Puebla)
          */
-        launchnavigator.navigate([19.047918, -98.216632]);
+        //launchnavigator.navigate([19.047918, -98.216632]);
+  
+    $scope.openNavigator = function() {
+        var geoString = '';
+
+        if (ionic.Platform.isIOS()) {
+            var options = {
+                location: 'yes',
+                clearcache: 'yes',
+                toolbar: 'no'
+            };
+
+            document.addEventListener(function() {
+                $cordovaInAppBrowser.open('maps://maps://?q=19.047918, -98.216632', '_blank', options)
+                    .then(function(event) {
+                        // success
+                    })
+                    .catch(function(event) {
+                        // error
+                    });
+
+
+                $cordovaInAppBrowser.close();
+
+            }, false);
+        } else if (ionic.Platform.isAndroid()) {
+            var destination = [19.047918, -98.216632];
+
+            $cordovaLaunchNavigator.navigate(destination).then(function() {
+                console.log("Navigator launched");
+            }, function(err) {
+                console.error(err);
+            });
+        }
+        window.open(geoString, '_system');
     }
 
-    $scope.launchNavigator = function() {
-    var destination = [19.047918, -98.216632];
-    var start = "Trento";
-    $cordovaLaunchNavigator.navigate(destination, start).then(function() {
-      console.log("Navigator launched");
-    }, function (err) {
-      console.error(err);
-    });
-  };
+
+
     $scope.wifiSettings = function() {
         /*  Strategy:
          *  1. First will display a confirm popup, in the case of Ok
@@ -56,9 +83,9 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
             title: '<b>CONNECT WIFI</b>',
             template: 'The password is in the clipboard, connect to wifi: </br><p style="text-align: center;"><b>UPAEP EVENTOS</b></p>',
             buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
+                text: '<b>OK</b>',
+                type: 'button-calm'
+            }]
         }).then(function(res) {
             if (res) {
                 cordova.plugins.clipboard.copy("wifi_password");
@@ -76,10 +103,18 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
          *  1. Will call the window property of the device.
          *  2. inAppBrowser will select the most suitable option to open twitter (Browser or app)
          */
-        window.open('https://twitter.com/hashtag/conisoft2016', '_system', 'location=yes');
-        return false;
+        // window.open('https://twitter.com/hashtag/conisoft2016', '_system');
+        // return false;
+
+         $cordovaInAppBrowser.open('https://twitter.com/hashtag/conisoft2016', '_blank', options)
+                    .then(function(event) {
+                        // success
+                    })
+                    .catch(function(event) {
+                        // error
+                    });
     }
-   
+
 
 }
-AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap", "$ionicPopup", "$cordovaLaunchNavigator"];
+AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap", "$ionicPopup", "$cordovaLaunchNavigator", "$cordovaInAppBrowser"];

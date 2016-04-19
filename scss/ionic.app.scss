@@ -18,6 +18,11 @@ $dark:                            #444 !default; 004b95
 $calm: #094982 !default;
 $dark: #001733 !default;
 $balanced: #129E3A !default;
+
+$font-size: 14px;
+$line-height: 1.4;
+$lines-to-show: 3;
+
 .bar-calm .button.active,
 .bar-calm .button.activated {
     background-color: #004b95;
@@ -65,10 +70,14 @@ $font-family-base: "ProximaNovaCond", sans-serif !default;
     background-color: $calm;
 }
 
-.popup-head {
 
-    // background-color: $dark;
-
+.popup-title {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: "ProximaNovaCond Light";
+    font-weight: 600;
+    text-transform: uppercase; 
 }
 
 .button {
@@ -90,6 +99,60 @@ $font-family-base: "ProximaNovaCond", sans-serif !default;
     letter-spacing: 2px;
     font-size: 20px;
     padding: 30px 49px 30px 30px;
+}
+
+.speake-divider {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 30px;
+    background-color: #fff;
+    color: $calm;
+    font-weight: 500;
+
+    font-family: "ProximaNovaCond";
+    text-transform: uppercase;
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.range-divider {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 30px;
+    background-color: #fff;
+    color: $calm;
+    font-weight: 500;
+
+    font-family: "ProximaNovaCond";
+    text-transform: uppercase;
+    border-right: 0;
+    border-top: 1px solid #ddd;
+    border-left: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.border-none{
+ border-style: none;
+ background:transparent;
+}
+
+.item-avatar, .item-thumbnail-left, .item-thumbnail-left .item-content {
+    padding-top: 8px;
+    padding-left: 106px;
+    min-height: 100px;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.item-thumbnail-left h2{
+    color: $calm;
+    font-weight: 600;
+    font-family: "ProximaNovaCond Light";
+    text-transform: uppercase;
+    padding-top:5px;
 }
 
 body,
@@ -336,9 +399,21 @@ border-color: $calm;
     padding: 12px;
 }
 
-.spk-p {
-    overflow: auto !important;
-    white-space: inherit;
+
+
+.spk {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+      white-space: normal;
 }
 
 

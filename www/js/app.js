@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 // 'firebase' will inject all the firebase and angularFire functions to our app
 
-angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'firebase', 'conisoft16.services', 'conisoft16.filters', 'angular.filter', 'pascalprecht.translate', 'jett.ionic.scroll.sista', 'ion-affix', 'ion-sticky', 'ion-floating-menu', 'jett.ionic.filter.bar', 'ngMap', 'angular-clipboard', 'monospaced.qrcode', 'angularMoment'])
+angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'firebase', 'conisoft16.services', 'conisoft16.filters', 'angular.filter', 'pascalprecht.translate', 'jett.ionic.scroll.sista', 'ion-affix', 'ion-sticky', 'ion-floating-menu', 'jett.ionic.filter.bar', 'ngMap', 'angular-clipboard', 'monospaced.qrcode', 'angularMoment', 'ionic-modal-select'])
 
 
 .constant('FirebaseUrl', "https://conisoft16.firebaseio.com/")
@@ -252,8 +252,12 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                             console.log(data);
                         }).catch(function(error) {
                             $ionicPopup.confirm({
-                                title: 'No login',
-                                content: 'You need to be logged in to access'
+                                title: 'CAN&#039;T LOG IN',
+                                content: 'You need to be logged in to access',
+                buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
                             });
                             $state.go('login');
                             console.log(error);
@@ -277,8 +281,12 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                             //$state.go('app.register');
                         }).catch(function(error) {
                             $ionicPopup.confirm({
-                                title: 'No login',
-                                content: 'You need to be logged in to access'
+                                title: 'CAN&#039;T LOG IN',
+                                content: 'You need to be logged in to access',
+                                 buttons: [{
+                    text: '<b>OK</b>',
+                    type: 'button-calm'
+                }]
                             });
                             $state.go('login');
                             console.log(error);
@@ -469,18 +477,20 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
         },
         register: {
             reference : "Reference",
-            scholarship: "Scholarship",
+            scholarship: "scholarship",
+            scholarship_holder: "Enter reference number",
             header: "Register",
             status: "Payment Status",
-            number: "Reference Number",
-            kit: "Kit Delivered",
-            button: "Agregar"
+            number: "reference number",
+            number_holder: "Enter reference number",
+            kit: "Kit delivered",
+            button: "Add"
         },
         recomendations: {},
         review: {
             header: "Review",
             comment: "COMMENTS",
-            placeholder: "ENTER THE COMMENTS",
+            placeholder: "ENTER THE COMMENTS...",
             button: "Review this Event"
         }
     });
@@ -580,10 +590,12 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
         },
         register: {
             reference: "Referencia",
-            scholarship: "Becas",
+            scholarship: "BECAS",
+            scholarship_holder: "Introduce referencia de Beca",
             header: "Registro",
             status: "Estado del Pago",
-            number: "Numero Referencia",
+            number: "Número Referencia",
+            number_holder: "Introduce número Referencia",
             kit: "Kit entregado",
             button: "Agregar"
         },
@@ -592,7 +604,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             header: "Calificar",
             comment: "COMENTARIOS",
             placeholder: "ESCRIBE LOS COMENTARIOS",
-            button: "Calificar este EVENTO"
+            button: "CALIFICAR ESTE EVENTO..."
         }
     });
 

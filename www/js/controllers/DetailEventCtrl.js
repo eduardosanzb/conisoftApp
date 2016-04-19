@@ -164,11 +164,12 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
         });
     }
     $scope.removeFromAgenda = function(eventId) {
-        Conferences.get(eventId).$loaded().then(function (event){
+       
+        $scope.user.mySchedule[eventId] = !$scope.user.mySchedule[eventId] ;
+         Conferences.get(eventId).$loaded().then(function (event){
             event.users[$scope.user.$id] = null;
             event.$save();
         })
-        $scope.user.mySchedule[eventId] = null;
         $scope.user.$save().then(function(data) {
             console.log("Conference Deleted from my agenda" + data);
         }, function(error) {
