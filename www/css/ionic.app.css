@@ -9944,6 +9944,11 @@ label.item.has-error-red {
 .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
   top: 62px !important; }
 
+.platform-android .bar .title {
+  font-size: 19px;
+  line-height: 44px;
+  left: 40px !important; }
+
 .tabs-top > .tabs,
 .tabs.tabs-top {
   top: 42px; }

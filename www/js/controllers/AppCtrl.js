@@ -63,9 +63,10 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
             .then(function(mySchedule) {
                 mySchedule.forEach(function(item) {
                     item.speakers = Conferences.getSpeakers(item.$id);
+                    
                 });
                 $scope.conferences = mySchedule;
-                //console.log(moment().format());
+                console.log(mySchedule);
             }).catch(function(error) {
                 console.log(error);
             });

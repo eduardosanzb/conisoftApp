@@ -1,12 +1,13 @@
 <ion-modal-view>
     <ion-header-bar class="bar bar-dark header-item">
-        <button ng-click="closeModal()" class="button button-clear button-light" ng-class="{ 'pull-right' : (selectModalSlider.currentIndex() == 0) }">
-            <span ng-if="selectModalSlider.currentIndex() == 0">close</span>
-            <i ng-if="selectModalSlider.currentIndex() > 0" class="button button-icon icon ion-ios-arrow-thin-left"></i>
+        <button ng-click="closeModal()" class="button button-clear button-light" ng-class="{ 'button button-icon icon ion-ios-arrow-thin-left' : (selectModalSlider.currentIndex() > 0) }">
         </button>
-        <h1 class="title">{{'login.first_modal_header' | translate}}</h1>
+        <h1 class="title" style="left: 54px !important;">{{'login.first_modal_header' | translate}}</h1>
+        <button ng-click="closeModal()"  ng-if="selectModalSlider.currentIndex() == 0" ng-click="createUser()" class="button button-clear button-light">
+            <span>close</span>
+        </button>
         <button ng-if="selectModalSlider.currentIndex() > 0" ng-click="createUser()" class="button button-clear button-light" ng-disabled=" user.afiliation == null ">
-            Done
+            <span>Done</span>
         </button>
     </ion-header-bar>
     <ion-content class="menu-bg">
@@ -41,14 +42,12 @@
  -->
                         <input class="input-login" type="text" placeholder="{{ 'login.country_label' | translate }}" ng-model="user.country" required>
                     </label>
-
                     <label class="item item-input  item-input-label in-label" ng-if="mxFlag" ng-click="openStateModal()">
-<!--                         <span class="input-label">{{ 'login.state_label' | translate }}</span>
+                        <!--                         <span class="input-label">{{ 'login.state_label' | translate }}</span>
 
- --> 
-                    <input class="input-login" type="text" placeholder="{{ 'login.state_label' | translate }}" ng-model="user.state" required ng-show="mxFlag" >
+ -->
+                        <input class="input-login" type="text" placeholder="{{ 'login.state_label' | translate }}" ng-model="user.state" required ng-show="mxFlag">
                     </label>
-
                     <label class="item item-input  item-input-label in-label" ng-class="{ 'has-error-red' : (secondPage.afiliation.$invalid  && secondPage.afiliation.$touched )}">
                         <input class="input-login" name="afiliation" type="text" placeholder="{{ 'login.afiliation_label' | translate }}" ng-model="user.afiliation" required>
                         <div class="form-errors" ng-messages="secondPage.afiliation.$error" ng-if="secondPage.afiliation.$touched && secondPage.afiliation.$invalid">

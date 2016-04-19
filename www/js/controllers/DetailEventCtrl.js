@@ -144,6 +144,15 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
         $scope.reviewModal.hide();
         $ionicLoading.hide();
     }
+
+    $scope.choose = function(eventId, choose){
+        console.log(choose)
+        if (choose) {
+            $scope.removeFromAgenda(eventId);
+        }else{
+            $scope.addToAgenda(eventId);
+        }
+    }
     $scope.addToAgenda = function(eventId) {
         if (!$scope.user.mySchedule) {
             console.log("No events");
