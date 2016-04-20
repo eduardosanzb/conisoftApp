@@ -9,8 +9,15 @@
             <!--  <button class="button button-block button-calm icon-right ion-navigate" ng-click="launchNavigator()">{{'about.button_drive' | translate}}</button> -->
         </div>
         <div class="mapWrap" map-lazy-load="https://maps.google.com/maps/api/js" data-tap-disabled="true">
-            <ng-map center="[19.0479618,-98.2166959]" zoom='17' style="height:100%" zoom-control="false" street-view-control="true" street-view-control-options='{position:"right_top"}'>
-                <marker position="19.047918, -98.216632" title="UPAEP"></marker>
+            <ng-map center="[19.0484432,-98.2172265]" zoom='17' style="height:100%" zoom-control="false" street-view-control="true" street-view-control-options='{position:"right_top"}'>
+                <marker position="19.047918, -98.2166959" title="UPAEP"></marker>S
+                <custom-marker  position=19.0491582,-98.2178273 title="Parking">
+                  <a class="item" ng-click="openNavigator2()">
+                    <i class="icon ion-model-s"></i>
+                    $15.00 / day<br>
+                    Centro de Vinculación
+                  </a>
+                </custom-marker>
             </ng-map>
         </div>
     </ion-content>

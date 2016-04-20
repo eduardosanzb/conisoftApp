@@ -29,7 +29,15 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
      $scope.wiData = Wifi;
     
     /*MAP SECTION*/
-    NgMap.getMap().then(function(map) {}); //-> This is the instance of the map in this view
+    NgMap.getMap().then(function(map) {
+        $scope.showCustomMarker= function(evt) {
+            map.customMarkers.foo.setVisible(true);
+            map.customMarkers.foo.setPosition(this.getPosition());
+          };
+          $scope.closeCustomMarker= function(evt) {
+            this.style.display = 'none';
+          };
+    }); //-> This is the instance of the map in this view
     /*NAVIGATION SECTION*/
 
     /*  Strategy:
@@ -62,6 +70,39 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
 
         } else if (ionic.Platform.isAndroid()) {
             var destination = [19.047918, -98.216632];
+
+            $cordovaLaunchNavigator.navigate(destination).then(function() {
+                console.log("Navigator launched");
+            }, function(err) {
+                console.error(err);
+            });
+        }
+    }
+    $scope.openNavigator2 = function() {
+        var geoString = '';
+
+        $scope.currentPlatform = ionic.Platform.platform();
+        console.log($scope.currentPlatform);
+        if (ionic.Platform.isIOS()) {
+            console.log('isIOS');
+            var options = {
+                location: 'yes',
+                clearcache: 'yes',
+                toolbar: 'no'
+            };
+
+            $cordovaInAppBrowser.open('maps://?q=19.0491582,-98.2178273', '_system', options)
+                .then(function(event) {
+                    // success
+                })
+                .catch(function(event) {
+                    // error
+                });
+
+
+
+        } else if (ionic.Platform.isAndroid()) {
+            var destination = [19.0491582,-98.2178273];
 
             $cordovaLaunchNavigator.navigate(destination).then(function() {
                 console.log("Navigator launched");
