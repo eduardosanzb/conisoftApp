@@ -10,8 +10,15 @@ angular
     .factory('Reviews', Reviews)
     .factory('Auth', Auth)
     .factory('UnAuth', UnAuth)
-    .factory('Hours', Hours);
+    .factory('Hours', Hours)
+    .factory('Wifi',Wifi);
 
+function Wifi(FirebaseUrl, $firebaseObject){
+    var ref = new Firebase(FirebaseUrl);
+    
+    return $firebaseObject(ref.child('wifi'));
+}
+Wifi.$inject = ["FirebaseUrl","$firebaseObject"];
 function Hours() {
     return {
         0: 08,

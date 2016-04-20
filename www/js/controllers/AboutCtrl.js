@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
     .controller('AboutCtrl', AboutCtrl);
 
-function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, NgMap, $ionicPopup, $cordovaLaunchNavigator, $cordovaInAppBrowser) {
+function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $localStorage, NgMap, $ionicPopup, $cordovaLaunchNavigator, $cordovaInAppBrowser, Wifi) {
     /*  Template:   templates/about.html
      *  $state:     app.about
      *
@@ -26,6 +26,8 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
      *      + closeDevelopersInfoModal()
      */
 
+     $scope.wifipass = Wifi;
+     console.log(Wifi)
     /*MAP SECTION*/
     NgMap.getMap().then(function(map) {}); //-> This is the instance of the map in this view
     /*NAVIGATION SECTION*/
@@ -79,23 +81,24 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
          *  3. Afterwards will see if the device is android || iphone
          *  4. Will trigger the intent to the settings app
          */
+         $scope.wiData = Wifi;
+
         $ionicPopup.confirm({
             title: '<b>CONNECT WIFI</b>',
-            template: 'The password is in the clipboard, connect to wifi: </br><p style="text-align: center;"><b>UPAEP EVENTOS</b></p>',
+            template: 'The password is in the clipboard(texto Copiado), connect to wifi: </br><p style="text-align: center;"><b>'+ $scope.wiData.name+'</b></p>',
             buttons: [{
                 text: '<b>OK</b>',
                 type: 'button-calm'
             }]
         }).then(function(res) {
-            if (res) {
-                cordova.plugins.clipboard.copy("wifi_password");
+                cordova.plugins.clipboard.copy(Wifi.password);
                 if (ionic.Platform.isIOS())
                     cordova.plugins.settings.open()
                 else
                     cordova.plugins.settings.openSetting("wifi");
-            } else {
+            //} else {
                 console.log("The user will not add the upaep wifi network");
-            }
+            //}
         })
     }
     $scope.twitter = function() {
@@ -117,4 +120,4 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
 
 
 }
-AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap", "$ionicPopup", "$cordovaLaunchNavigator", "$cordovaInAppBrowser"];
+AboutCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "NgMap", "$ionicPopup", "$cordovaLaunchNavigator", "$cordovaInAppBrowser","Wifi"];
