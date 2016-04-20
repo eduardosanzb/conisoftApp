@@ -61,6 +61,8 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
         Users.getMySchedule($localStorage.getObject('userProfile').uid)
             .$loaded()
             .then(function(mySchedule) {
+                console.log("Helloooo")
+                console.log(mySchedule)
                 mySchedule.forEach(function(item) {
                     item.speakers = Conferences.getSpeakers(item.$id);
 
