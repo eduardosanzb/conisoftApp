@@ -1,7 +1,7 @@
 angular.module('conisoft16.controllers')
     .controller('ContactCtrl', ContactCtrl);
 
-function ContactCtrl($rootScope, $scope, $state, $ionicModal, $ionicPopup,  $ionicLoading, $localStorage, $cordovaEmailComposer, $cordovaInAppBrowser) {
+function ContactCtrl($rootScope, $scope, $state, $ionicModal, $ionicPopup,  $ionicLoading, $localStorage, $cordovaEmailComposer, $cordovaInAppBrowser,Wifi) {
     /*  Template:   templates/contact.html
      *  $state:     app.contact
      *
@@ -13,6 +13,10 @@ function ContactCtrl($rootScope, $scope, $state, $ionicModal, $ionicPopup,  $ion
      *  - sendEmail()
      *  - makeCall()
      */
+
+     /*This is the wifi password from firebase*/
+    $scope.wiData = Wifi;
+
     $scope.sendEmail = function() {
         /*  Strategy:
          *  1. Use the plugin email
@@ -80,22 +84,29 @@ function ContactCtrl($rootScope, $scope, $state, $ionicModal, $ionicPopup,  $ion
          *  3. Afterwards will see if the device is android || iphone
          *  4. Will trigger the intent to the settings app
          */
-        $ionicPopup.alert({
+         
+         console.log($scope.wiData)
+         console.log(Wifi)
+         Wifi.$loaded().then(function(wiData){
+            $ionicPopup.confirm({
             title: '<b>CONNECT WIFI</b>',
-            template: 'The password is in the clipboard, connect to wifi: </br><p style="text-align: center;"><b>UPAEP EVENTOS</b></p>',
-            okType: 'button-calm'
+            template: 'The password is in the clipboard(texto Copiado), connect to wifi: </br><p style="text-align: center;"><b>'+ wiData.name+'</b></p>',
+            buttons: [{
+                text: '<b>OK</b>',
+                type: 'button-calm'
+            }]
         }).then(function(res) {
-            console.log(res);
-            if (res) {
-                cordova.plugins.clipboard.copy("wifi_password");
+                cordova.plugins.clipboard.copy(wiData.password);
                 if (ionic.Platform.isIOS())
                     cordova.plugins.settings.open()
                 else
                     cordova.plugins.settings.openSetting("wifi");
-            } else {
-                console.log("The user will not add the upaep wifi network");
-            }
+            //} else {
+                //console.log("The user will not add the upaep wifi network");
+            //}
         })
+         })
+        
     }
 
     
@@ -122,4 +133,4 @@ function ContactCtrl($rootScope, $scope, $state, $ionicModal, $ionicPopup,  $ion
                     });
     }
 }
-ContactCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicPopup", "$ionicLoading", "$localStorage", "$cordovaEmailComposer", "$cordovaInAppBrowser"];
+ContactCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicPopup", "$ionicLoading", "$localStorage", "$cordovaEmailComposer", "$cordovaInAppBrowser","Wifi"];
