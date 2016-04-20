@@ -74,11 +74,14 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
             });
     }
 
-    var userId = $localStorage.getObject('userProfile').uid;
+    if($localStorage.getObject('userProfile') != null){
+        var userId = $localStorage.getObject('userProfile').uid;
             Users.get(userId).$loaded().then(function(data) {
                 $scope.user = data;
                 console.log('userdata: ' + $scope.user )
-            });
+            });    
+    }
+    
 
     $scope.removeFromAgenda = function(eventId) {
             
