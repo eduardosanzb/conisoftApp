@@ -197,7 +197,7 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                         });
                     },
                     "agenda": function(Conferences, $ionicLoading) {
-                        $ionicLoading.show();
+                        
                         var conferences = Conferences.all()
                         return conferences;
                     },
