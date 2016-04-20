@@ -1,22 +1,35 @@
 <ion-view view-title="{{'about.header' | translate}}">
-    <ion-content>
+    <ion-content data-tap-disabled="true">
         <div class="item button-map">
-            <a class="item item-icon-right" ng-click="openNavigator()">
-                <i class="icon ion-ios-navigate-outline calm"></i>
-                <h2>UPAEP</h2>
-                Calle 21 Sur 1103, Santiago, 72410 <br>Puebla, Pue., México
-            </a>
+            <div class="list">
+                <a class="item item-icon-right item-icon-left" ng-click="openNavigator()">
+                    <i class="icon ion-university calm"></i>
+                    <h2>UPAEP</h2> Calle 21 Sur No. 1103
+                    
+                    <i class="icon ion-ios-navigate-outline calm"></i>
+                </a>
+                <a class="item item-icon-right item-icon-left" ng-click="openNavigator2()">
+                    <i class="icon ion-model-s calm"></i>
+                    <h2>PARKING $15.00 / day</h2> 
+                     Centro de Vinculación
+                    <i class="icon ion-ios-navigate-outline calm"></i>
+                </a>
+            </div>
             <!--  <button class="button button-block button-calm icon-right ion-navigate" ng-click="launchNavigator()">{{'about.button_drive' | translate}}</button> -->
         </div>
-        <div class="mapWrap" map-lazy-load="https://maps.google.com/maps/api/js" data-tap-disabled="true">
-            <ng-map center="[19.0484432,-98.2172265]" zoom='17' style="height:100%" zoom-control="false" street-view-control="true" street-view-control-options='{position:"right_top"}'>
-                <marker position="19.047918, -98.2166959" title="UPAEP"></marker>S
-                <custom-marker  position=19.0491582,-98.2178273 title="Parking">
-                  <a class="item" ng-click="openNavigator2()">
-                    <i class="icon ion-model-s"></i>
-                    $15.00 / day<br>
-                    Centro de Vinculación
-                  </a>
+        <div class="mapWrap" map-lazy-load="https://maps.google.com/maps/api/js">
+            <ng-map center="[19.0475132,-98.2172265]" zoom='17' style="height:100%" zoom-control="false" street-view-control="true" street-view-control-options='{position:"right_top"}'>
+                <custom-marker position="19.047918, -98.2166959" title="UPAEP" on-click="openNavigator()">
+                    <div class="button button-calm" >
+                        <i class="icon ion-university"></i>
+                    </div>
+                </custom-marker>
+                <custom-marker position=19.0491582,-98.2178273 title="PARKING" on-click="openNavigator2()">
+                    
+                        <div class="button button-calm" >
+                            <i class="icon ion-model-s"></i>
+                        </div>
+                   
                 </custom-marker>
             </ng-map>
         </div>
