@@ -12,7 +12,7 @@
             </a>
         </div>
     </div>
-    <ion-floating-button  click="myEvent()" has-footer="false" button-color="#094982" icon="ion-ios-heart" menu-toggle="right" iconColor="#fff" click="" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : 'ion-ios-heart'">
+    <ion-floating-button  click="myEvent()" has-footer="false" button-color="#094982" icon="ion-ios-heart" menu-toggle="right" iconColor="#fff" click="" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : 'ion-ios-heart'" ng-if="currentPlatform == 'android'">
     </ion-floating-button>
     <ion-content class="has-subheader" delegate-handle="homeScroll">
         <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="lines" pulling-icon="ion-ios-arrow-thin-down">

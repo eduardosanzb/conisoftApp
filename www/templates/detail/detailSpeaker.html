@@ -4,7 +4,8 @@
         <h1 class="title">{{ 'detailSpeaker.header' | translate}}</h1>
     </ion-header-bar>
     <ion-content>
-        <div class="speaker-detail-header">
+        <div class="speaker-detail-header"></div>
+        <div class="speaker-content">
             <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
             <img src="/img/default-profile.png" ng-if="!speaker.picture">
             <h2>{{speaker.name}}</h2>
@@ -17,7 +18,7 @@
                 <div>
                     {{conference.name}}
                     <div class="icon-list-item">
-                    <i ng-class="user.mySchedule[conference.$id] ? 'ion-ios-heart' : 'ion-ios-heart-outline'"></i>
+                        <i ng-class="user.mySchedule[conference.$id] ? 'ion-ios-heart' : 'ion-ios-heart-outline'"></i>
                     </div>
                 </div>
                 <p> {{conference.location}} </p>

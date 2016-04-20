@@ -97,29 +97,34 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
     /* RETRIEVE DATA SECTION */
     $ionicLoading.show({
         template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
-    });    var prevState = $stateParams.prevState.split(".");
+    });    
+    var prevState = $stateParams.prevState.split(".");
     if(prevState[0] != 'app'){
         /*  THIS VARAIBLE WILL TELL IF WE HAVE TO STOP THE NAVIGATION
          *      IF THE PREVIOUS-PREVIOUS NAVIGATION IS A DETAILSOMETHING THE NAVIGATION WILL STOP
          */
         $scope.flagStop = true;
     }
+
+     /*IF THE USER IS NOT LOGGED-IN WE HAVE TO BE ABLE TO LET HIM SEE ALL THE INFO.*/
+    if($localStorage.getObject('userProfile') != null){
+        var userId = $localStorage.getObject('userProfile').uid;
+        Users.get(userId).$loaded().then(function(data) {
+            $scope.user = data;
+            //  console.log(data)
+        });
+    }
+
+    
     /* THIS IS THE EVENTID FROM THE PREVIOUS STATE*/
     $scope.eventId = $stateParams.id;
     /* GET THE CONFERENCE INFO UPDATED AND ALSO ALL HIS SPEAKERS*/
     Conferences.get($scope.eventId).$loaded().then(function(data) {
         $scope.event = data;
         $scope.speakers = Conferences.getSpeakers($scope.eventId);
-        console.log(Conferences.getSpeakers($scope.eventId));
+        //console.log(Conferences.getSpeakers($scope.eventId));
     });
-    /*IF THE USER IS NOT LOGGED-IN WE HAVE TO BE ABLE TO LET HIM SEE ALL THE INFO.*/
-    if($localStorage.getObject('userProfile') != null){
-        var userId = $localStorage.getObject('userProfile').uid;
-        Users.get(userId).$loaded().then(function(data) {
-            $scope.user = data;
-            console.log(data)
-        });
-    }
+   
     $ionicLoading.hide();
 
     /* MODIFIERS OF USER SECTION */
@@ -143,6 +148,14 @@ $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
         Reviews.ref().child(eventId).child(reviewId).set(reviewObject);
         $scope.reviewModal.hide();
         $ionicLoading.hide();
+    }
+
+    $scope.choose = function(eventId, choice){
+        if (choice  ) {
+            $scope.removeFromAgenda(eventId);
+        }else{
+            $scope.addToAgenda(eventId);
+        }
     }
     $scope.addToAgenda = function(eventId) {
         if (!$scope.user.mySchedule) {

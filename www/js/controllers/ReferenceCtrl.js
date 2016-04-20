@@ -10,70 +10,63 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
      *  - addReference(referenceNumber)
      */
 
-     /*CODE FOR ADD SCHOLARSHIPS*/
-         /* Strategy:
-          * 1. IN a foor loop i will create a new scholarship insert into firebase
-          * 2. Now we will set the status of the new scholarship to false
-          */
-         for (var i = 0; i < 10; i++) {
-             var newScholar = Scholarships.ref().push();
-            var id = newScholar.key();
-            Scholarships.ref().child(id).child("status").set(true);
-         }
-     
+    /*CODE FOR ADD SCHOLARSHIPS*/
+    /* Strategy:
+     * 1. IN a foor loop i will create a new scholarship insert into firebase
+     * 2. Now we will set the status of the new scholarship to false
+     */
+    for (var i = 0; i < 10; i++) {
+        var newScholar = Scholarships.ref().push();
+        var id = newScholar.key();
+        Scholarships.ref().child(id).child("status").set(true);
+    }
 
 
-    $scope.cancel = function(){
+
+    $scope.cancel = function() {
         /*  Strategy:
          *  1. When canceling the login you will be redirect to the schedule without a login
          */
         $state.go('app.schedule');
     }
     $scope.number = {};
-    $scope.addScholarship = function(scholarshipNumber) {       
-       Scholarships.get(scholarshipNumber).$loaded()
-       .then(function(data){
-            console.log(data)
-            if(data.status != null){
-                if(data.status){
-                    Scholarships.ref().child(scholarshipNumber).child("status").set(false);
-                    Users.ref().child($localStorage.getObject('userProfile').uid).child("scholarship").set(true);
-                    Users.ref().child($localStorage.getObject('userProfile').uid).child("payment").child("referenceNumber").set(scholarshipNumber);
-                    $state.go('app.register');
-                }
-                else{
-                    $ionicPopup.confirm({
-                        title: "This scholarship is already in use",
-                        template: "Try again please",
-                        buttons: [
-                                    {
-                                        text: '<b>OK</b>',
-                                        type: 'button-calm'
-                                    }
-                                ]
-                    }).then(function(res){
-                        $scope.number = {};
-                    });
-                }
+    $scope.addScholarship = function(scholarshipNumber) {
+        Scholarships.get(scholarshipNumber).$loaded()
+            .then(function(data) {
+                console.log(data)
+                if (data.status != null) {
+                    if (data.status) {
+                        Scholarships.ref().child(scholarshipNumber).child("status").set(false);
+                        Users.ref().child($localStorage.getObject('userProfile').uid).child("scholarship").set(true);
+                        Users.ref().child($localStorage.getObject('userProfile').uid).child("payment").child("referenceNumber").set(scholarshipNumber);
+                        $state.go('app.register');
+                    } else {
+                        $ionicPopup.alert({
+                            title: "This scholarship is already in use",
+                            template: "Try again please",
+                            okType: 'button-calm'
 
-            } else {
-                $ionicPopup.confirm({
+                        }).then(function(res) {
+                            $scope.number = {};
+                        });
+                    }
+
+                } else {
+                    $ionicPopup.alert({
                         title: "This scholarship does not exist",
                         template: "Try again please",
-                        buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
-                    }).then(function(res){
+                        okType: 'button-calm'
+
+                    }).then(function(res) {
                         $scope.number = {};
                     });
-            }
-       })
-       .catch(function(error){
-        console.log(error);
-       });
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
 
-        
+
 
     }
     $scope.addReference = function(referenceNumber) {
@@ -92,40 +85,38 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
         $ionicLoading.show({
             template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
         });
-        $http.get(url).then(function(data){
+        $http.get(url).then(function(data) {
             console.log("the data is: ");
             console.log(data)
-            if(data.data == ""){
+            if (data.data == "") {
                 $ionicLoading.hide();
-                 $ionicPopup.confirm({
+                $ionicPopup.alert({
                     title: "This Reference does not exist",
                     template: "Try again please",
-                          buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
-                }).then(function(res){
+                    okType: 'button-calm'
+
+                }).then(function(res) {
                     $scope.number = {};
                 });
-                
-             } else {
-                if(data.data != "null"){
-                    data.data.map(function(e){
-                        validatingTheReference(referenceNumber,e.RESULTADO);
+
+            } else {
+                if (data.data != "null") {
+                    data.data.map(function(e) {
+                        validatingTheReference(referenceNumber, e.RESULTADO);
                     })
                 } else {
-                    validatingTheReference(referenceNumber,0);
+                    validatingTheReference(referenceNumber, 0);
                 }
 
-                
-             }
-            
-        },function(error){
+
+            }
+
+        }, function(error) {
             console.log("The error is: ");
             console.log(error)
         });
 
-            }
+    }
 
     var validatingTheReference = function(referenceNumber, status) {
         var used = false;
@@ -133,14 +124,12 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
         angular.forEach(referencesList, function(reference) {
             if (reference.value == referenceNumber) {
                 console.log("The reference is already used by: ");
-                $ionicPopup.confirm({
+                $ionicPopup.alert({
                     title: "The reference is already used",
                     template: "Try again please",
-                          buttons: [{
-                    text: '<b>OK</b>',
-                    type: 'button-calm'
-                }]
-                }).then(function(res){
+                    okType: 'button-calm'
+
+                }).then(function(res) {
                     $scope.number = {};
                 });
                 used = true;
@@ -158,12 +147,6 @@ function ReferenceCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $
         }
     }
 
-    
+
 }
 ReferenceCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "referencesList", "References", "Users", "$http", "$ionicPopup", "Scholarships"];
-
-
-
-
-
-

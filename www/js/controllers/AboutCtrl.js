@@ -31,35 +31,35 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
     /*MAP SECTION*/
     NgMap.getMap().then(function(map) {}); //-> This is the instance of the map in this view
     /*NAVIGATION SECTION*/
-   
-        /*  Strategy:
-         *  1. Will trigger the navigator to the coordinates (Sala Francisco Vittoria UPAEP Puebla)
-         */
-        //launchnavigator.navigate([19.047918, -98.216632]);
-  
+
+    /*  Strategy:
+     *  1. Will trigger the navigator to the coordinates (Sala Francisco Vittoria UPAEP Puebla)
+     */
+    //launchnavigator.navigate([19.047918, -98.216632]);
+
     $scope.openNavigator = function() {
         var geoString = '';
 
+        $scope.currentPlatform = ionic.Platform.platform();
+        console.log($scope.currentPlatform);
         if (ionic.Platform.isIOS()) {
+            console.log('isIOS');
             var options = {
                 location: 'yes',
                 clearcache: 'yes',
                 toolbar: 'no'
             };
 
-            document.addEventListener(function() {
-                $cordovaInAppBrowser.open('maps://maps://?q=19.047918, -98.216632', '_blank', options)
-                    .then(function(event) {
-                        // success
-                    })
-                    .catch(function(event) {
-                        // error
-                    });
+            $cordovaInAppBrowser.open('maps://?q=19.047918, -98.216632', '_system', options)
+                .then(function(event) {
+                    // success
+                })
+                .catch(function(event) {
+                    // error
+                });
 
 
-                $cordovaInAppBrowser.close();
 
-            }, false);
         } else if (ionic.Platform.isAndroid()) {
             var destination = [19.047918, -98.216632];
 
@@ -69,8 +69,8 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
                 console.error(err);
             });
         }
-        window.open(geoString, '_system');
     }
+
 
 
 
@@ -117,6 +117,7 @@ function AboutCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $loca
                         // error
                     });
     }
+
 
 
 }
