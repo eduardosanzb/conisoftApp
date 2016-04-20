@@ -1,4 +1,4 @@
-    <style type="text/css">
+<style type="text/css">
 #ios-background:before {
     content: "";
     position: fixed;
@@ -27,6 +27,7 @@
 .menu-top {
     top: 25px;
 }
+
 .ios-menu .item .item-content,
 .ios-menu .item,
 .ios-menu .icon,
@@ -45,7 +46,7 @@
                 <button class="button button-icon button-clear ion-ios-drag" menu-toggle="left" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : 'ion-ios-drag'">
                 </button>
             </ion-nav-buttons>
-            <ion-nav-buttons side="right" >
+            <ion-nav-buttons side="right">
                 <button class="button button-icon button-clear button-custom" menu-toggle="right" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : 'ion-ios-heart-outline'" ng-if="currentPlatform == 'ios'" ng-show="isItemActive('/app/schedule')">
                 </button>
             </ion-nav-buttons>
@@ -73,7 +74,6 @@
                     <ion-item class="item-icon-left" class="item-icon-left" menu-close href="#/app/contact">
                         <i ng-show="isItemActive('/app/contact')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.contact' | translate}}
                     </ion-item>
-                    
                     <ion-item class="item-icon-left" menu-close href="#/app/register">
                         <i ng-show="isItemActive('/app/register') || sItemActive('/reference')" class="icon ion-ios-arrow-thin-right"></i> {{'menu.register' | translate}}
                     </ion-item>
@@ -96,22 +96,27 @@
             <h1 class="title">{{'menu.favorites' | translate}}</h1>
         </ion-header-bar>
         <ion-content>
-        
             <ion-list class="group">
-                <div  ng-repeat="(key, value) in conferences | groupBy:'date'">
+                <div ng-repeat="(key, value) in conferences | groupBy:'date'">
                     <!--======================= Group Day =====================-->
                     <div class="item item-divider date-divider" ion-affix data-affix-within-parent-with-class="group">
                         {{key | date:'mediumDate'}}
                     </div>
                     <!--======================= Item List =====================-->
-                    <div class="item conference" ng-repeat="conference in value | orderBy:{startTime:hour }" ng-click="goToDetailEvent(conference.$id)">
-                        <a class="item item-icon-right" href="#">
-                            {{conference.name}}
-                            <i class="icon ion-ios-heart" style="font-size: 18px"></i>
-                        </a>
+                    <div class="row"  ng-repeat="conference in value | orderBy:'startTime':reverse">
+                        <div class="col-80">
+                            <div class="item conference " ng-click="goToDetailEvent(conference.$id)">
+                                {{conference.name}}
+                            </div>
+                        </div>
+        
+                        <div class="col-20">
+                            <button class="button button-icon icon button-light pull-right" style="float: right; margin-right: 7px;" ng-click="removeFromAgenda(conference.$id)">
+                                <i class="icon ion-ios-close-empty light" style="font-size: 14px;"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div ng-repeat-end=""></div>
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>

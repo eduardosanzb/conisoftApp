@@ -63,7 +63,7 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
             .then(function(mySchedule) {
                 mySchedule.forEach(function(item) {
                     item.speakers = Conferences.getSpeakers(item.$id);
-                    
+
                 });
                 $scope.conferences = mySchedule;
                 console.log(mySchedule);
@@ -72,5 +72,26 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
             });
     }
 
+    var userId = $localStorage.getObject('userProfile').uid;
+            Users.get(userId).$loaded().then(function(data) {
+                $scope.user = data;
+                console.log('userdata: ' + $scope.user )
+            });
+
+    $scope.removeFromAgenda = function(eventId) {
+            
+        
+        console.log(eventId)
+        $scope.user.mySchedule[eventId] = !$scope.user.mySchedule[eventId];
+        Conferences.get(eventId).$loaded().then(function(event) {
+            event.users[$scope.user.$id] = null;
+            event.$save();
+        })
+        $scope.user.$save().then(function(data) {
+            console.log("Conference Deleted from my agenda" + data);
+        }, function(error) {
+            console.log("Error deleting event from agenda: " + error);
+        });
+    }
 
 }

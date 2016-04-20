@@ -13,7 +13,7 @@
             {{event.description}}
         </div>
         <div class="padding">
-            <button class="button icon-right icon" ng-click="choose(eventId, user.mySchedule[eventId] )" ng-class="user.mySchedule[eventId] ? 'button-outline button-assertive ion-ios-close-outline' : 'button-block button-calm ion-ios-heart-outline'" ng-show="user" style="width: 100%;">
+            <button ng-click="choose(eventId, user.mySchedule[eventId] )" ng-class="!user.mySchedule[eventId] ? 'button icon-right button-block button-calm ion-ios-heart-outline' : 'button icon-right button-block button-outline button-assertive ion-ios-close-outline'" ng-show="user" >
                 <span ng-if="user.mySchedule[eventId]">{{'detailEvent.remove_button' | translate}}</span>
                 <span ng-if="!user.mySchedule[eventId]">{{'detailEvent.add_button' | translate}}</span>
             </button>
