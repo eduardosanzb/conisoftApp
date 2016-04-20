@@ -2,9 +2,9 @@ angular.module('conisoft16.controllers')
     .controller('ScheduleCtrl', ScheduleCtrl);
 
 
-ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$timeout", "$ionicModal", "$ionicLoading", "$ionicScrollDelegate", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda", "Users","$ionicHistory","$ionicPlatform","userAgenda","currentAuth"];
+ScheduleCtrl.$inject = ["$rootScope", "$scope", "$state", "$timeout", "$ionicModal", "$ionicLoading", "$ionicScrollDelegate", "$localStorage", "Conferences", "Speakers", "$firebaseArray", "Auth", "Hours", "$ionicViewSwitcher", "agenda", "Users","$ionicHistory","$ionicPlatform","userAgenda","currentAuth","$ionicLoading","CurrentDay"];
 
-function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicLoading, $ionicScrollDelegate, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda, Users, $ionicHistory, $ionicPlatform, userAgenda, currentAuth) {
+function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicLoading, $ionicScrollDelegate, $localStorage, Conferences, Speakers, $firebaseArray, Auth, Hours, $ionicViewSwitcher, agenda, Users, $ionicHistory, $ionicPlatform, userAgenda, currentAuth, $ionicLoading,CurrentDay) {
     /*  Template:   templates/schedule.html
      *  $state:     app.schedule
      *  FUNCTIONS IN THIS CONTROLLER
@@ -20,7 +20,9 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
      *      + removeFromAgenda() -> Will delete the event form thomeScrollhe agenda of the user
      */
 
-
+     $ionicLoading.show({
+        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
+    });
     /* Functions Declarations */
 
     $scope.currentPlatform = ionic.Platform.platform();
@@ -91,13 +93,12 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
      *  2.- Call the service of the hours of the day
      *  3.- Check if the agenda is in cache memory; If not we will create the agenda with a function
      */
-    $ionicLoading.show({
-        template: ' <ion-spinner icon="lines" class="spinner-light"></ion-spinner><br /><span>{{ "login.loading" | translate}}</span>',
-    });
-    $scope.theDay = 1461733200000; // 04/27/2016
+    
     $scope.hours = Hours;
-
-    if (true) { //There is internet connection
+    CurrentDay.$loaded().then(function(day){
+        console.log(day.value)
+        $scope.theDay = day.value;
+        if (true) { //There is internet connection
         agenda.$loaded().then(function(conferences) {
             conferences.forEach(function(conference) {
                 conference.speakers = Conferences.getSpeakers(conference.$id);
@@ -118,6 +119,9 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
             $ionicLoading.hide();
         }
     }
+    })
+
+    
     $scope.MYMENU =  function(){
         $state.go('app.myschedule', {
             prevState: 'app.schedule'

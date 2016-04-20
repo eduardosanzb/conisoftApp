@@ -196,11 +196,13 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
                             console.log(error);
                         });
                     },
-                    "agenda": function(Conferences) {
+                    "agenda": function(Conferences, $ionicLoading) {
+                        $ionicLoading.show();
                         var conferences = Conferences.all()
                         return conferences;
                     },
                     "userAgenda": function($localStorage, Users) {
+
                         if ($localStorage.getObject('userProfile') != null)
                             return Users.get($localStorage.getObject('userProfile').uid);
                     }

@@ -11,8 +11,13 @@ angular
     .factory('Auth', Auth)
     .factory('UnAuth', UnAuth)
     .factory('Hours', Hours)
-    .factory('Wifi',Wifi);
-
+    .factory('Wifi',Wifi)
+    .factory('CurrentDay',CurrentDay);
+function CurrentDay(FirebaseUrl, $firebaseObject){
+    var ref = new Firebase(FirebaseUrl+'/CurrentDay');
+    return $firebaseObject(ref);
+}
+CurrentDay.$inject = ["FirebaseUrl","$firebaseObject"];
 function Wifi(FirebaseUrl, $firebaseObject){
     var ref = new Firebase(FirebaseUrl);
     
