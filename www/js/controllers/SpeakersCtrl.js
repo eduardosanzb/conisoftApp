@@ -45,6 +45,9 @@ function SpeakersCtrl($rootScope, $scope, $state, $ionicModal, $ionicLoading, $l
     });
     $scope.createSpeakers();
     
-
+    $scope.sort = function(){
+        $scope.reverse = !$scope.reverse;
+        console.log( $scope.reverse);
+    }
 }
 SpeakersCtrl.$inject = ["$rootScope", "$scope", "$state", "$ionicModal", "$ionicLoading", "$localStorage", "speakersList", "$ionicViewSwitcher", "Users", "$ionicHistory","$ionicPlatform"];

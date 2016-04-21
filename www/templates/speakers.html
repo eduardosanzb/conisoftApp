@@ -1,9 +1,15 @@
+
+
 <ion-view view-title="{{'speakers.header' | translate}}">
+ <ion-nav-buttons side="secondary">
+            <button class="button button-icon icon" ng-click="sort();" ng-class="reverse ? 'ion-android-arrow-dropup' : 'ion-android-arrow-dropdown'"></button>
+
+    </ion-nav-buttons>
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="lines" pulling-icon="ion-ios-arrow-thin-down">
         </ion-refresher>
         <div class="list padding">
-            <a class="item item-thumbnail-left item-icon-right border-none" ng-repeat="speaker in speakers" ng-click="goToDetailSpeaker(speaker.$id)">
+            <a class="item item-thumbnail-left item-icon-right border-none" ng-repeat="speaker in speakers | orderBy : 'name' : reverse" ng-click="goToDetailSpeaker(speaker.$id)">
                 <img data-ng-src="data:image/png;base64,{{speaker.picture}}" ng-if="speaker.picture">
                 <img src="/img/default-profile.png" ng-if="!speaker.picture">
                 <h2>{{speaker.name}}</h2>

@@ -144,7 +144,7 @@ function Speakers(FirebaseUrl, $firebaseArray, $firebaseObject, $rootScope) {
             return $firebaseObject(ref.child(speakerId));
         },
         all: function() {
-            return $firebaseArray(ref.orderByChild("order"));
+            return $firebaseArray(ref.orderByChild("name"));
         },
         allObject: function() {
             return $firebaseObject(ref);
