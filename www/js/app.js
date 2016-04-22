@@ -419,7 +419,8 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             states_header: "States",
             modality_header: "Modalities",
             recovery_header: "Recover Password",
-            recovery_button: "Reset Password"
+            recovery_button: "Reset Password",
+            login_error: "You need to be logged in to access"
 
         },
         reset: {
@@ -532,7 +533,8 @@ angular.module('conisoft16', ['ionic', 'ngCordova', 'conisoft16.controllers', 'f
             states_header: "Estados",
             modality_header: "Modalidades",
             recovery_header: "Recuperar Contraseña",
-            recovery_button: "Resetear"
+            recovery_button: "Resetear",
+            login_error: "Necesitas iniciar sesión"
 
         },
         reset: {

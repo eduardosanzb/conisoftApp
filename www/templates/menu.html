@@ -84,7 +84,7 @@
                         <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log Out
                     </ion-item>
                     <ion-item class="item-icon-left" menu-close href="javascript:void(0);" ng-click="logout()" ng-hide="flag">
-                        <i ng-show="isItemActive('/app/logout')" class="icon ion-ios-arrow-thin-right"></i>Log In
+                        <i ng-show="isItemActive('/app/login')" class="icon ion-ios-arrow-thin-right"></i>Log In
                     </ion-item>
                 </ion-list>
             </ion-content>
@@ -97,6 +97,9 @@
         </ion-header-bar>
         <ion-content>
             <ion-list class="group">
+            <div class="item item conference" ng-show="!flag">
+                        {{'login.login_error' | translate}}
+                    </div>
                 <div ng-repeat="(key, value) in conferences | groupBy:'date'">
                     <!--======================= Group Day =====================-->
                     <div class="item item-divider date-divider" ion-affix data-affix-within-parent-with-class="group">
