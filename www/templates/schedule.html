@@ -14,13 +14,13 @@
     </div>
     <ion-floating-button  click="myEvent()" has-footer="false" button-color="#094982" icon="ion-ios-heart" menu-toggle="right" iconColor="#fff" click="" ng-class="$ionicSideMenuDelegate.isOpen() ? 'ion-ios-close-empty' : 'ion-ios-heart'" ng-if="currentPlatform == 'android'">
     </ion-floating-button>
-    <ion-content class="has-subheader" delegate-handle="homeScroll">
+    <ion-content class="has-subheader" delegate-handle="homeScroll" ion-sticky ion-sticky-class="dark">
         <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()" spinner="lines" pulling-icon="ion-ios-arrow-thin-down">
         </ion-refresher>
         <div ng-repeat="hour in hours">
             <div class="group-list">
                 <ion-list>
-                    <ion-item class="item item-divider" ion-affix data-affix-within-parent-with-class="group-list">
+                    <ion-item class="item item-divider">
                         {{hour}}:00 Hrs.
                     </ion-item>
                     <div class="item conference" ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }" ng-click="goToDetailEvent(conference.$id)" >
