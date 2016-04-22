@@ -49,11 +49,14 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
              *  4.- Hide the Spinner
              */
             console.log("using internet to go to Firebase");
+            
+            $scope.conferences = conferences;
             angular.forEach($scope.conferences, function(conference) {
                 conference.speakers = Conferences.getSpeakers(conference.$id);
             });
-            $scope.conferences = conferences;
             $localStorage.setObject('conferences', $scope.conferences);
+
+            console.log("conferences" + $scope.conferences);
         }, function(error) {
             console.log("Error: ", error)
         });
@@ -96,7 +99,7 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
     
     $scope.hours = Hours;
     CurrentDay.$loaded().then(function(day){
-        console.log(day.value)
+        //console.log(day.value)
         $scope.theDay = day.value;
         if (true) { //There is internet connection
         agenda.$loaded().then(function(conferences) {
@@ -104,7 +107,7 @@ function ScheduleCtrl($rootScope, $scope, $state, $timeout, $ionicModal, $ionicL
                 conference.speakers = Conferences.getSpeakers(conference.$id);
               });
           if(userAgenda){
-            console.log(userAgenda)
+            //console.log(userAgenda)
             $scope.user = userAgenda;
           }
           $scope.conferences = conferences

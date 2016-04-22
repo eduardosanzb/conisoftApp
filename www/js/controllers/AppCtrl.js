@@ -61,14 +61,14 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
         Users.getMySchedule($localStorage.getObject('userProfile').uid)
             .$loaded()
             .then(function(mySchedule) {
-                console.log("Helloooo")
-                console.log(mySchedule)
+                //console.log("Helloooo")
+                //console.log(mySchedule)
                 mySchedule.forEach(function(item) {
                     item.speakers = Conferences.getSpeakers(item.$id);
 
                 });
                 $scope.conferences = mySchedule;
-                console.log(mySchedule);
+                //console.log(mySchedule);
             }).catch(function(error) {
                 console.log(error);
             });
@@ -78,7 +78,7 @@ function AppCtrl($location, $rootScope, $scope, $state, $ionicModal, $ionicLoadi
         var userId = $localStorage.getObject('userProfile').uid;
             Users.get(userId).$loaded().then(function(data) {
                 $scope.user = data;
-                console.log('userdata: ' + $scope.user )
+                //console.log('userdata: ' + $scope.user )
             });    
     }
     

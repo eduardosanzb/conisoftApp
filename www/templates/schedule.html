@@ -20,7 +20,7 @@
         <div ng-repeat="hour in hours">
             <div class="group-list">
                 <ion-list>
-                    <ion-item class="item item-divider">
+                    <ion-item class="item item-divider" ion-affix data-affix-within-parent-with-class="group-list">
                         {{hour}}:00 Hrs.
                     </ion-item>
                     <div class="item conference" ng-repeat="conference in conferences | filter:{ date : theDay, startTime:hour }" ng-click="goToDetailEvent(conference.$id)" >
